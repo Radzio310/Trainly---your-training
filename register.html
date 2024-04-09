@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="”pl”">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Trainly - Rejestracja</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-ikonka.svg"
+    />
+
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li>
+          <a href="Trainly.html">
+            <img
+              class="logo"
+              src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
+            />
+          </a>
+        </li>
+        <li><a href="Trainly.html">Strona główna</a></li>
+        <li><a href="Trainly.html">O nas</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+        <li><a href="login.html" class="current_site">Logowanie</a></li>
+      </ul>
+    </header>
+    <main>
+      <section class="Rejestracja">
+        <form id="registrationForm" action="" method="POST">
+          <h1>Załóż konto aby rozpocząć swój trening!</h1>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Imię"
+            required
+          />
+          <br />
+          <input
+            type="text"
+            name="surname"
+            id="surname"
+            placeholder="Nazwisko"
+            required
+          />
+          <br />
+          <input
+            type="number"
+            name="age"
+            id="age"
+            placeholder="Wiek"
+            min="16"
+            max="100"
+            required
+          />
+          <br />
+          <div class="gender-selection">
+            <input type="radio" id="male" name="gender" value="male" checked />
+            <label for="male">Mężczyzna</label>
+
+            <input type="radio" id="female" name="gender" value="female" />
+            <label for="female">Kobieta</label>
+          </div>
+          <br />
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Numer telefonu"
+            pattern="[5-9]\d{8}"
+            title="Wprowadź poprawny numer telefonu (9 cyfr bez spacji)"
+            required
+          />
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
+          <br />
+          <input
+            type="text"
+            name="password"
+            id="password"
+            placeholder="Hasło do konta"
+            pattern=".{8,}"
+            title="Hasło musi mieć co najmniej 8 znaków."
+            required
+          />
+          <br />
+          <input type="submit" value="Załóż konto" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <a href="Trainly.html">
+        <img
+          class="logo"
+          src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
+        />
+      </a>
+      <img
+        class="media"
+        src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
+      />
+    </footer>
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>
+          Konto utworzone poprawnie!<br />
+          Możesz teraz zalogować się na swoje konto.
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("registrationForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Zatrzymaj domyślne zachowanie formularza (przesłanie danych)
+
+        // Tutaj dodaj kod sprawdzający poprawność danych formularza
+        var name = document.getElementById("name").value;
+        var surname = document.getElementById("surname").value;
+        var age = document.getElementById("age").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var password = document.getElementById("password").value;
+
+        // Sprawdź, czy wszystkie pola formularza są wypełnione
+        if (name && surname && age && email && phone && password) {
+          // Jeśli tak, wyświetl komunikat
+          document.getElementById("successModal").style.display = "block";
+
+          // Wyczyść wpisane dane przez użytkownika
+          document.getElementById("name").value = "";
+          document.getElementById("surname").value = "";
+          document.getElementById("age").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("password").value = "";
+        }
+      });
+    // Zamknij okno modalne po kliknięciu na krzyżyk
+    document.getElementsByClassName("close")[0].onclick = function () {
+      document.getElementById("successModal").style.display = "none";
+    };
+  </script>
+</html>
