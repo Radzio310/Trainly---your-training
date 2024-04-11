@@ -226,6 +226,7 @@ footer {
 footer .logo {
   width: auto;
   height: 75px;
+  margin-top: 10px;
   margin-left: 50px;
 }
 
