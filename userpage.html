@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Trainly - Twój trening</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-ikonka.svg"
+    />
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta
+      name="keywords"
+      content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami"
+    />
+    <meta
+      name="description"
+      content="Trainly - aplikacja do zarządzania treningami"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li>
+          <img
+            class="logo"
+            id="user_logo"
+            src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
+          />
+        </li>
+        <li><a href="Trainly.html" class="current_site">Twój panel</a></li>
+        <li><a href="settings.html">Ustawienia</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+        <li><a href="Trainly.html">Wyloguj</a></li>
+      </ul>
+    </header>
+    <main>
+      <div class="sidebar">
+        <ul>
+          <li>
+            <img
+              src="Graphics\Kalendarz.png"
+              alt="Kalendarz"
+              onclick="showContent('kalendarz')"
+            />
+          </li>
+          <li>
+            <img
+              src="Graphics\Powiadomienia.png"
+              alt="Historia i powiadomienia"
+              onclick="showContent('powiadomienia')"
+            />
+          </li>
+          <li>
+            <img
+              src="Graphics\Statystyki.png"
+              alt="Statystyki"
+              onclick="showContent('statystyki')"
+            />
+          </li>
+          <li>
+            <img
+              src="Graphics\Lista.png"
+              alt="Lista ćwiczeń"
+              onclick="showContent('lista')"
+            />
+          </li>
+        </ul>
+      </div>
+      <section class="content"></section>
+    </main>
+    <footer>
+      <a href="Trainly.html">
+        <img
+          class="logo"
+          src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png"
+        />
+      </a>
+      <img
+        class="media"
+        src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
+      />
+    </footer>
+  </body>
+
+  <script>
+    function showContent(section) {
+      var content = document.getElementById("content");
+      var html = "";
+
+      // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
+      switch (section) {
+        case "kalendarz":
+          html =
+            "<h2>Kalendarz</h2><p>Tutaj będzie zawartość dla Kalendarza.</p>";
+          break;
+        case "powiadomienia":
+          html =
+            "<h2>Powiadomienia</h2><p>Tutaj będzie zawartość dla Powiadomień.</p>";
+          break;
+        case "statystyki":
+          html =
+            "<h2>Statystyki</h2><p>Tutaj będzie zawartość dla Statystyk.</p>";
+          break;
+        case "lista":
+          html =
+            "<h2>Lista ćwiczeń</h2><p>Tutaj będzie zawartość dla Listy ćwiczeń.</p>";
+          break;
+        default:
+          html = "<p>Nieznany dział</p>";
+      }
+
+      // Wstawiamy wygenerowaną zawartość do sekcji content
+      content.innerHTML = html;
+    }
+  </script>
+</html>

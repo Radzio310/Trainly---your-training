@@ -44,7 +44,7 @@
     </header>
     <main>
       <section class="Logowanie">
-        <form action="" method="POST">
+        <form id="loginForm" action="" method="POST">
           <h1>Zaloguj się i zacznij swój trening!</h1>
           <input
             type="email"
@@ -66,7 +66,7 @@
         </form>
         <br />
         <h3>Jeszcze nie masz konta? Zarejestruj się tutaj!</h3>
-        <a href="register.html">Zarejestruj się</a>
+        <a id="register" href="register.html">Zarejestruj się</a>
         <br /><br /><br />
       </section>
     </main>
@@ -83,4 +83,22 @@
       />
     </footer>
   </body>
+
+  <script>
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Zapobiega domyślnej akcji przesyłania formularza
+
+        // Tutaj możesz dodać kod do weryfikacji poprawności danych logowania
+        // Jeśli dane są poprawne, możesz przekierować użytkownika na userpage.html
+        var login = document.getElementById("login").value; // Pobierz wartość pola login
+        var password = document.getElementById("password").value; // Pobierz wartość pola password
+
+        // Tutaj możesz dodać logikę weryfikacji loginu i hasła
+
+        // Przekierowanie użytkownika na userpage.html po poprawnym zalogowaniu
+        window.location.href = "userpage.html";
+      });
+  </script>
 </html>
