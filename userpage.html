@@ -27,6 +27,12 @@
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
   </head>
 
   <body>
@@ -39,9 +45,9 @@
             src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
           />
         </li>
-        <li><a href="Trainly.html" class="current_site">Twój panel</a></li>
+        <li><a href="userpage.html" class="current_site">Twój panel</a></li>
         <li><a href="settings.html">Ustawienia</a></li>
-        <li><a href="contact.html">Kontakt</a></li>
+        <li><a href="user_contact.html">Kontakt</a></li>
         <li><a href="Trainly.html">Wyloguj</a></li>
       </ul>
     </header>
@@ -53,6 +59,7 @@
               src="Graphics\Kalendarz.png"
               alt="Kalendarz"
               onclick="showContent('kalendarz')"
+              id="kalendarz"
             />
           </li>
           <li>
@@ -60,6 +67,7 @@
               src="Graphics\Powiadomienia.png"
               alt="Historia i powiadomienia"
               onclick="showContent('powiadomienia')"
+              id="powiadomienia"
             />
           </li>
           <li>
@@ -67,6 +75,7 @@
               src="Graphics\Statystyki.png"
               alt="Statystyki"
               onclick="showContent('statystyki')"
+              id="statystyki"
             />
           </li>
           <li>
@@ -74,14 +83,17 @@
               src="Graphics\Lista.png"
               alt="Lista ćwiczeń"
               onclick="showContent('lista')"
+              id="lista"
             />
           </li>
         </ul>
       </div>
-      <section class="content"></section>
+      <section class="content" id="content">
+        <div id="calendar"></div>
+      </section>
     </main>
     <footer>
-      <a href="Trainly.html">
+      <a href="user_homepage.html">
         <img
           class="logo"
           src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png"
@@ -92,37 +104,100 @@
         src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
       />
     </footer>
-  </body>
+    <script>
+      function showContent(section) {
+        var content = document.getElementById("content");
+        var html = "";
 
-  <script>
-    function showContent(section) {
-      var content = document.getElementById("content");
-      var html = "";
+        // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
+        switch (section) {
+          case "kalendarz":
+            html = "<h2>Kalendarz</h2><div id='calendar'></div>";
+            document.getElementById("kalendarz").classList.add("selected");
+            document.getElementById("statystyki").classList.remove("selected");
+            document.getElementById("lista").classList.remove("selected");
+            document
+              .getElementById("powiadomienia")
+              .classList.remove("selected");
+            break;
+          case "powiadomienia":
+            document.getElementById("powiadomienia").classList.add("selected");
+            document.getElementById("statystyki").classList.remove("selected");
+            document.getElementById("lista").classList.remove("selected");
+            document.getElementById("kalendarz").classList.remove("selected");
+            html = "<h2>Powiadomienia</h2>";
+            html += generateNotification(
+              "Zobacz swoje statystyki za marzec",
+              "W sekcji Statystyki są już dostępne Twoje wyniki i osiągnięcia w miesiącu MARZEC!<br>Sprawdź już teraz, aby poprawić jakość swoich treningów"
+            );
+            html += generateNotification(
+              "Zacznij swój trening!",
+              "Witaj Radek!<br> Możesz już tworzyć nowe plany treningowe lub stworzyć własną listę ćwiczeń w sekcji Mój Trening lub Lista ćwiczeń<br>Sprawdź już dziś!"
+            );
+            html += generateNotification(
+              "Witaj Nowy Użytkowniku!",
+              "Witaj Radek!<br>Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
+            );
+            break;
+          case "statystyki":
+            html =
+              "<h2>Statystyki</h2><p>Tutaj będzie zawartość dla Statystyk.</p>";
+            document.getElementById("statystyki").classList.add("selected");
+            document.getElementById("kalendarz").classList.remove("selected");
+            document.getElementById("lista").classList.remove("selected");
+            document
+              .getElementById("powiadomienia")
+              .classList.remove("selected");
+            break;
+          case "lista":
+            html =
+              "<h2>Lista ćwiczeń</h2><p>Tutaj będzie zawartość dla Listy ćwiczeń.</p>";
+            document.getElementById("lista").classList.add("selected");
+            document.getElementById("statystyki").classList.remove("selected");
+            document.getElementById("kalendarz").classList.remove("selected");
+            document
+              .getElementById("powiadomienia")
+              .classList.remove("selected");
+            break;
+          default:
+            html = "<p>Nieznany dział</p>";
+        }
 
-      // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
-      switch (section) {
-        case "kalendarz":
-          html =
-            "<h2>Kalendarz</h2><p>Tutaj będzie zawartość dla Kalendarza.</p>";
-          break;
-        case "powiadomienia":
-          html =
-            "<h2>Powiadomienia</h2><p>Tutaj będzie zawartość dla Powiadomień.</p>";
-          break;
-        case "statystyki":
-          html =
-            "<h2>Statystyki</h2><p>Tutaj będzie zawartość dla Statystyk.</p>";
-          break;
-        case "lista":
-          html =
-            "<h2>Lista ćwiczeń</h2><p>Tutaj będzie zawartość dla Listy ćwiczeń.</p>";
-          break;
-        default:
-          html = "<p>Nieznany dział</p>";
+        // Wstawiamy wygenerowaną zawartość do sekcji content
+        content.innerHTML = html;
       }
 
-      // Wstawiamy wygenerowaną zawartość do sekcji content
-      content.innerHTML = html;
-    }
-  </script>
+      function generateNotification(title, n_content) {
+        var notification = document.createElement("div");
+        notification.classList.add("notification");
+        notification.innerHTML =
+          "<strong>" +
+          title +
+          "</strong><br><span style='display:none;'>" +
+          n_content +
+          "</span>";
+        // Dodajemy zdarzenie kliknięcia tylko do tytułu
+        notification.onclick = function () {
+          showNotificationContent(title, n_content);
+        };
+        return notification.outerHTML;
+      }
+
+      function showNotificationContent(title, n_content) {
+        var notificationContent = document.createElement("div");
+        notificationContent.classList.add("notificationContent"); // Użyto spójnej nazwy klasy
+        notificationContent.innerHTML =
+          "<h2>" + title + "</h2><p>" + n_content + "</p>";
+        // Dodajemy powiadomienie do sekcji content
+        var content = document.getElementById("content");
+        content.appendChild(notificationContent);
+        // Wyświetlamy powiadomienie
+        notificationContent.style.display = "block";
+        // Centrujemy powiadomienie na ekranie
+        notificationContent.style.top = "50%";
+        notificationContent.style.left = "50%";
+        notificationContent.style.transform = "translate(-50%, -50%)";
+      }
+    </script>
+  </body>
 </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Trainly - Twój trening</title>
+    <link rel="icon" type="image/png" href="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-ikonka.svg">
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta name="keywords" content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami" />
+    <meta name="description" content="Trainly - aplikacja do zarządzania treningami" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li>
+                <img class="logo" id="user_logo" src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png" />
+            </li>
+            <li><a href="userpage.html">Twój panel</a></li>
+            <li><a href="settings.html">Ustawienia</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="Trainly.html">Wyloguj</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="hero">
+            <h1 id="title">Trainly</h1>
+            <h2 id="subtitle">Twój kalendarz treningowy</h2>
+        </section>
+
+        <section>
+            <h2 id="o_nas">Witaj w Trainly!</h2>
+            <div class="paragraph">
+                <p>
+                    Trainly to aplikacja, która pomoże Ci w planowaniu i zarządzaniu treningami. Dzięki niej będziesz mógł skutecznie zorganizować swój czas i osiągnąć zamierzone cele treningowe.
+                </p>
+            </div>
+        </section>
+        <section>
+            <h2>Co oferujemy?</h2>
+            <div class="paragraph">
+                <p>
+                    W Trainly znajdziesz wiele przydatnych funkcji, które ułatwią Ci zarządzanie treningami. Aplikacja pozwala na tworzenie planów treningowych, dodawanie ćwiczeń, monitorowanie postępów oraz analizowanie wyników. Dzięki temu będziesz mógł śledzić swoje postępy
+                    i dostosowywać treningi do swoich potrzeb.
+                </p>
+            </div>
+            <div class="photos">
+                <div class="photo">
+                    <img src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Kalendarz.png" alt="Kalendarz" onclick="showDescription('Kalendarz', 'Kalendarz pozwoli Ci na planowanie i zapisywanie treningów, dzięki czemu z pewnością nie zapomnisz o treningu i w bardzo szybki sposób sprawdzisz go z poziomu swojego konta.')"
+                    />
+                    <p>Kalendarz</p>
+                </div>
+                <div class="photo">
+                    <img src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Statystyki.png" alt="Statystyki" onclick="showDescription('Statystyki', 'Statystyki będą szczególnie przydatne, gdy będziesz chciał/a śledzić swoje postępy i osiągnięcia. Możesz tu obserwować zmianę swoich parametrów ciała oraz częstotliwość i długości treningów w danym okresie czasu.')"
+                    />
+                    <p>Statystyki</p>
+                </div>
+                <div class="photo">
+                    <img src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Lista.png" alt="Lista ćwiczeń" onclick="showDescription('Lista ćwiczeń', 'Lista ćwiczeń pozwoli Ci na tworzenie spersonalizowanej listy z ćwiczeniami, w której będziesz miał/a możliwość tworzyć plany na konkretne dni lub partie ciała. Oferujemy również dostęp do gotowych szablonów z planami treningowymi.')"
+                    />
+                    <p>Lista ćwiczeń</p>
+                </div>
+                <div class="photo">
+                    <img src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Powiadomienia.png" alt="Historia i powiadomienia" onclick="showDescription('Historia i powiadomienia', 'Historia i powiadomienia w dużym stopniu łączą się z kalendarzem. Dzięki tym funkcjonalnościom masz możliwość sprawdzić historię swoich treningów w danym okresie oraz ustawić konkretny czas, w którym chcesz otrzymać powiadomienie przypominające o treningu.')"
+                    />
+                    <p>Historia i powiadomienia</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Jak zacząć?</h2>
+            <div class="paragraph">
+                <p>
+                    Aby korzystać z Trainly, wystarczy założyć i zalogować się na swoje konto. Po zalogowaniu będziesz mógł tworzyć plany treningowe, dodawać ćwiczenia, monitorować postępy oraz analizować wyniki. Dzięki temu będziesz mógł skutecznie zarządzać swoimi treningami
+                    i osiągnąć zamierzone cele.
+                </p>
+                <a href="register.html">
+                    <div class="button">
+                        Zacznij trening
+                    </div>
+                </a>
+        </section>
+    </main>
+    <footer>
+        <a href="Trainly.html">
+            <img class="logo" src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png" />
+        </a>
+        <img class="media" src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png" />
+    </footer>
+
+    <script>
+        function showDescription(title, description) {
+            var overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+
+            var descriptionBox = document.createElement('div');
+            descriptionBox.classList.add('description-box');
+            descriptionBox.innerHTML = '<h3>' + title + '</h3><p>' + description + '</p>';
+
+            overlay.appendChild(descriptionBox);
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', function() {
+                overlay.remove();
+            });
+
+            overlay.style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>

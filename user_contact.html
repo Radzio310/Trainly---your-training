@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="”pl”">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Trainly - Kontakt</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-ikonka.svg"
+    />
+
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li>
+          <img
+            class="logo"
+            id="user_logo"
+            src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
+          />
+        </li>
+        <li><a href="userpage.html">Twój panel</a></li>
+        <li><a href="settings.html">Ustawienia</a></li>
+        <li><a href="user_contact.html" class="current_site">Kontakt</a></li>
+        <li><a href="Trainly.html">Wyloguj</a></li>
+      </ul>
+    </header>
+    <main>
+      <section class="Formularz_kontaktowy">
+        <form action="" method="POST">
+          <h1>Skontaktuj się z nami</h1>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Imię"
+            required
+          />
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
+          <br />
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Numer telefonu"
+            pattern="[5-9]\d{8}"
+            title="Wprowadź poprawny numer telefonu (9 cyfr bez spacji)"
+            required
+          />
+          <br />
+          <label for="attachment">Wybierz plik do załączenia:</label>
+          <input
+            type="file"
+            id="attachment"
+            name="attachment"
+            accept=".pdf, .doc, .docx"
+          />
+          <br />
+          <textarea
+            name="message"
+            id="message"
+            placeholder="Twoja wiadomość"
+            required
+          ></textarea>
+          <br />
+          <input type="submit" value="Wyślij wiadomość" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <a href="user_homepage.html">
+        <img
+          class="logo"
+          src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png"
+        />
+      </a>
+      <img
+        class="media"
+        src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
+      />
+    </footer>
+  </body>
+</html>
