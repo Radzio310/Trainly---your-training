@@ -591,3 +591,104 @@ footer .logo {
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
 }
+
+.userinfo {
+  background-image: url("Graphics\\userpage_background.jpg");
+  background-size: cover;
+  background-position: center 55%;
+  border-radius: 25px;
+}
+
+.userinfo h2 {
+  color: #d9d9d9;
+  align-items: center;
+  text-align: center;
+  font-size: 48px;
+}
+
+.userinfo p {
+  color: #d9b5a0;
+}
+
+#clock,
+#currentDate {
+  color: #734a40;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: wait;
+}
+
+#user_button {
+  width: 25vw;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 5vh;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.settings {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.settings form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings h2 {
+  color: #734a40;
+  font-size: 24px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.settings input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #bf907e;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+}
+
+.settings input[type="submit"] {
+  width: 40%;
+  background-color: #734a40;
+  color: #d9d9d9;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.settings input[type="submit"]:hover {
+  background-color: #bf907e;
+}
+
+#password_error {
+  color: red;
+  display: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+#success_message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  margin-top: 5%;
+  padding: 10px 20px;
+  z-index: 9999;
+  border-radius: 5px;
+}

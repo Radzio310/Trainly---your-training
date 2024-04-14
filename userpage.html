@@ -2,7 +2,7 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <title>Trainly - Twój trening</title>
+    <title>Trainly - Twój panel</title>
     <link
       rel="icon"
       type="image/png"
@@ -89,16 +89,29 @@
         </ul>
       </div>
       <section class="content" id="content">
-        <div id="calendar"></div>
+        <!-- Sekcja na ekranie głównym -->
+        <div class="userinfo">
+          <br />
+          <h2>
+            <bold>Witaj Radek!</bold>
+          </h2>
+          <br />
+        </div>
+        <p id="currentDate"></p>
+        <div id="clock"></div>
+        <hr />
+        <br />
+        <div class="button" id="user_button" onclick="startTraining()">
+          Zacznij trening!
+        </div>
       </section>
     </main>
     <footer>
-      <a href="user_homepage.html">
-        <img
+      <a href="user_homepage.html"
+        ><img
           class="logo"
           src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png"
-        />
-      </a>
+      /></a>
       <img
         class="media"
         src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
@@ -140,8 +153,11 @@
             );
             break;
           case "statystyki":
-            html =
-              "<h2>Statystyki</h2><p>Tutaj będzie zawartość dla Statystyk.</p>";
+            html = "<h2>Statystyki</h2>";
+            html += "<p>Całkowita liczba treningów: 20</p>";
+            html += "<p>Średni czas treningu: 45 minut</p>";
+            html += "<p>Spalone kalorie: 1500 kcal</p>";
+            html += "<p>Średnia intensywność treningu: Średnia</p>";
             document.getElementById("statystyki").classList.add("selected");
             document.getElementById("kalendarz").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
@@ -198,6 +214,51 @@
         notificationContent.style.left = "50%";
         notificationContent.style.transform = "translate(-50%, -50%)";
       }
+
+      function startTraining() {
+        // Obsługa przycisku Rozpocznij Trening
+        alert("Rozpocznij Trening");
+      }
+
+      function updateDate() {
+        var currentDate = new Date();
+        var options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("currentDate").textContent =
+          currentDate.toLocaleDateString("pl-PL", options);
+      }
+
+      // Wywołanie funkcji updateDate po załadowaniu strony
+      updateDate();
+
+      // Wywołanie funkcji updateDate co sekundę
+      setInterval(updateDate, 1000);
+
+      function updateClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // Formatowanie czasu
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // Wyświetlanie czasu w elemencie o id "clock"
+        document.getElementById("clock").textContent =
+          hours + ":" + minutes + ":" + seconds;
+      }
+
+      // Wywołanie funkcji updateClock co sekundę
+      setInterval(updateClock, 1000);
+
+      // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
+      updateClock();
     </script>
   </body>
 </html>
