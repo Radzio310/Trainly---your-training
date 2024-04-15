@@ -6,10 +6,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-width: 1200px;
 }
 
 main {
-  width: 80%;
+  width: 80vw;
   background-color: #f0f0f0;
   margin: 0 auto;
   border-radius: 25px;
@@ -19,6 +20,14 @@ main {
   color: #bf907e;
 }
 
+/* Styl dla menu */
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 a {
   color: #734a40;
   text-decoration: none;
@@ -26,6 +35,10 @@ a {
 
 main a {
   padding: 15px;
+}
+
+.logo a {
+  padding: 0;
 }
 
 h1 {
@@ -53,18 +66,19 @@ header {
   color: #734a40;
   height: 75px;
   margin: 0 auto;
-  width: 95%;
+  width: 95vw;
   border-radius: 25px;
   position: fixed;
   top: 0;
-  left: 2.5%;
+  left: 2.5vw;
   z-index: 1000;
 }
 
 .logo {
-  width: 300px;
+  width: 20vw;
   height: auto;
-  margin-right: 150px;
+  margin-left: 2vw;
+  margin-right: 10vw;
 }
 
 .logo:hover {
@@ -116,13 +130,13 @@ p {
 }
 
 .photos {
-  padding: 0 5%;
+  padding: 0 5vw;
   display: flex;
 }
 
 .photo {
   flex: 1;
-  margin-right: 2%;
+  margin-right: 2vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,8 +149,8 @@ p {
 }
 
 .photos img {
-  width: 250px;
-  height: 250px;
+  width: 15vw;
+  height: auto;
 }
 
 .photos img:hover {
@@ -216,18 +230,18 @@ footer {
   background-color: #d9d9d9;
   font-size: 32px;
   color: #734a40;
-  height: 75px;
+  height: 11.25vh;
   margin: 0 auto;
-  margin-top: 50px;
-  width: 95%;
+  margin-top: 7.5vh;
+  width: 95vw;
   border-radius: 25px;
 }
 
 footer .logo {
   width: auto;
-  height: 75px;
-  margin-top: 10px;
-  margin-left: 50px;
+  height: 10vh;
+  margin-top: 1.5vh;
+  margin-left: 2.5vw;
 }
 
 .media {
@@ -480,16 +494,16 @@ footer .logo {
 /* Dodane style dla paska nawigacyjnego po lewej stronie */
 
 .sidebar {
-  width: 5%;
+  width: 5vw;
   background-color: #bf907e;
   color: #734a40;
   font-size: 20px;
-  margin-top: 100px;
-  margin-bottom: 110px;
+  margin-top: 15vh;
+  margin-bottom: 16.5vh;
   padding-top: 25px;
   /* Wysunięcie paska nawigacyjnego pod logo */
   position: fixed;
-  left: 2.5%;
+  left: 2.5vw;
   top: 0;
   bottom: 0;
   border-radius: 25px;
@@ -739,4 +753,89 @@ hr {
   padding: 10px 20px;
   z-index: 9999;
   border-radius: 5px;
+}
+
+/* Media queries dla małych smartfonów */
+
+@media only screen and (max-width: 480px) {
+  main {
+    width: 100%;
+    /* Zmieniamy szerokość na 100% dla małych smartfonów */
+    border-radius: 0;
+    /* Usuwamy zaokrąglenie dla małych smartfonów */
+  }
+  h1 {
+    font-size: 36px;
+    /* Zmniejszamy rozmiar czcionki dla h1 */
+    padding: 20px;
+    /* Mniejszy padding dla h1 */
+  }
+  header {
+    height: auto;
+    /* Auto wysokość dla nagłówka */
+    position: static;
+    /* Usuwamy pozycję fixed */
+    border-radius: 0;
+    /* Usuwamy zaokrąglenie dla małych smartfonów */
+  }
+  .logo {
+    width: 200px;
+    /* Zmniejszamy szerokość logo dla małych smartfonów */
+    margin-right: 50px;
+    /* Mniejszy margines dla logo */
+  }
+  /* Dodatkowe zmiany dla małych smartfonów... */
+}
+
+/* Media query dla ekranów o szerokości do 768px */
+
+@media screen and (max-width: 768px) {
+  /* Ukryj listę nawigacyjną */
+  nav {
+    display: none;
+  }
+  /* Pokaż przycisk hamburgera */
+  .hamburger {
+    display: block;
+  }
+  /* Ukryj logo na mniejszych ekranach */
+  .logo {
+    display: none;
+  }
+  /* Pokaż listę nawigacyjną po kliknięciu na przycisk hamburgera */
+  .menu.active nav {
+    display: block;
+  }
+  /* Styl dla linków w menu hamburgera */
+  nav ul li {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #734a40;
+  }
+  nav ul li:last-child {
+    border-bottom: none;
+  }
+  nav ul li a {
+    color: #734a40;
+    text-decoration: none;
+    font-size: 18px;
+  }
+}
+
+/* Media queries dla tabletów */
+
+@media only screen and (max-width: 1024px) {
+  /* Dodatkowe zmiany dla tabletów... */
+}
+
+/* Media queries dla komputerów */
+
+@media only screen and (max-width: 1440px) {
+  /* Dodatkowe zmiany dla komputerów... */
+}
+
+/* Media queries dla dużych komputerów */
+
+@media only screen and (min-width: 1441px) {
+  /* Dodatkowe zmiany dla dużych komputerów... */
 }
