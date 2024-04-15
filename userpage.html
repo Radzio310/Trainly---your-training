@@ -3,11 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Trainly - Twój panel</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-ikonka.svg"
-    />
+    <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
     <meta name="author" content="Radosław Witkowicz" />
     <meta
       name="keywords"
@@ -36,19 +32,22 @@
   </head>
 
   <body>
+    <div id="overlay_notification">
+      <div id="notification-modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="notification-title"></h2>
+        <p id="notification-content"></p>
+      </div>
+    </div>
     <header>
       <ul>
         <li>
-          <img
-            class="logo"
-            id="user_logo"
-            src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo.png"
-          />
+          <img class="logo" id="user_logo" src="Graphics/Trainly-logo.png" />
         </li>
         <li><a href="userpage.html" class="current_site">Twój panel</a></li>
         <li><a href="settings.html">Ustawienia</a></li>
         <li><a href="user_contact.html">Kontakt</a></li>
-        <li><a href="Trainly.html">Wyloguj</a></li>
+        <li><a href="index.html">Wyloguj</a></li>
       </ul>
     </header>
     <main>
@@ -108,14 +107,9 @@
     </main>
     <footer>
       <a href="user_homepage.html"
-        ><img
-          class="logo"
-          src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Trainly-logo_2.png"
+        ><img class="logo" src="Graphics/Trainly-logo_2.png"
       /></a>
-      <img
-        class="media"
-        src="C:\Users\Radziulek\Desktop\Studia\HTML\Trainly\Grafiki\Media.png"
-      />
+      <img class="media" src="Graphics/Media.png" />
     </footer>
     <script>
       function showContent(section) {
@@ -132,6 +126,13 @@
             document
               .getElementById("powiadomienia")
               .classList.remove("selected");
+            // Usuwamy poprzedni kalendarz, jeśli istnieje
+            var previousCalendar = document.getElementById("calendar");
+            if (previousCalendar) {
+              previousCalendar.parentNode.removeChild(previousCalendar);
+            }
+            // Inicjalizacja kalendarza
+            // initCalendar();
             break;
           case "powiadomienia":
             document.getElementById("powiadomienia").classList.add("selected");
@@ -145,11 +146,11 @@
             );
             html += generateNotification(
               "Zacznij swój trening!",
-              "Witaj Radek!<br> Możesz już tworzyć nowe plany treningowe lub stworzyć własną listę ćwiczeń w sekcji Mój Trening lub Lista ćwiczeń<br>Sprawdź już dziś!"
+              "Witaj Radek! \n\nMożesz już tworzyć nowe plany treningowe lub stworzyć własną listę ćwiczeń w sekcji Mój Trening lub Lista ćwiczeń\nSprawdź już dziś!"
             );
             html += generateNotification(
               "Witaj Nowy Użytkowniku!",
-              "Witaj Radek!<br>Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
+              "Witaj Radek!\n\n Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
             );
             break;
           case "statystyki":
@@ -192,27 +193,41 @@
           "</strong><br><span style='display:none;'>" +
           n_content +
           "</span>";
-        // Dodajemy zdarzenie kliknięcia tylko do tytułu
-        notification.onclick = function () {
-          showNotificationContent(title, n_content);
-        };
+
         return notification.outerHTML;
       }
 
-      function showNotificationContent(title, n_content) {
-        var notificationContent = document.createElement("div");
-        notificationContent.classList.add("notificationContent"); // Użyto spójnej nazwy klasy
-        notificationContent.innerHTML =
-          "<h2>" + title + "</h2><p>" + n_content + "</p>";
-        // Dodajemy powiadomienie do sekcji content
-        var content = document.getElementById("content");
-        content.appendChild(notificationContent);
-        // Wyświetlamy powiadomienie
-        notificationContent.style.display = "block";
-        // Centrujemy powiadomienie na ekranie
-        notificationContent.style.top = "50%";
-        notificationContent.style.left = "50%";
-        notificationContent.style.transform = "translate(-50%, -50%)";
+      document
+        .getElementById("content")
+        .addEventListener("click", function (event) {
+          var target = event.target;
+
+          // Sprawdzamy czy kliknięcie dotyczyło elementu z klasą "notification"
+          if (target.classList.contains("notification")) {
+            // Pobieramy tytuł i zawartość powiadomienia
+            var title = target.querySelector("strong").textContent;
+            var content = target.querySelector("span").textContent;
+
+            // Otwieramy modal z tytułem i zawartością powiadomienia
+            openModal(title, content);
+          }
+        });
+
+      function openModal(title, content) {
+        var modal = document.getElementById("overlay_notification");
+        var modalTitle = document.getElementById("notification-title");
+        var modalContent = document.getElementById("notification-content");
+
+        modalTitle.textContent = title;
+        modalContent.innerHTML = content;
+
+        modal.style.display = "block";
+      }
+
+      // Funkcja do zamykania modalu
+      function closeModal() {
+        var modal = document.getElementById("overlay_notification");
+        modal.style.display = "none";
       }
 
       function startTraining() {
@@ -259,6 +274,28 @@
 
       // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
       updateClock();
+
+      function initCalendar() {
+        var calendarEl = document.getElementById("calendar");
+        if (calendarEl) {
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Ustawienia kalendarza
+            plugins: ["dayGrid"],
+            header: {
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            },
+            events: [
+              // Tutaj możesz dodać zdarzenia kalendarza
+              // Na razie pusta tablica
+            ],
+          });
+          calendar.render();
+        } else {
+          alert('Nie znaleziono elementu z id="calendar"');
+        }
+      }
     </script>
   </body>
 </html>
