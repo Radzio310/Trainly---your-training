@@ -74,6 +74,11 @@ header {
   z-index: 1000;
 }
 
+header ul {
+  display: flex;
+  list-style: none;
+}
+
 .logo {
   width: 20vw;
   height: auto;
@@ -83,11 +88,6 @@ header {
 
 .logo:hover {
   transform: scale(1.05);
-}
-
-header ul {
-  display: flex;
-  list-style: none;
 }
 
 li {
@@ -665,7 +665,7 @@ hr {
   align-items: center;
   justify-content: center;
   text-align: left;
-  font-size: 48px;
+  font-size: 7.5vh;
 }
 
 .userinfo p {
@@ -686,7 +686,7 @@ hr {
   cursor: pointer;
   margin-top: 5vh;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 4vh;
 }
 
 .settings {
@@ -755,87 +755,64 @@ hr {
   border-radius: 5px;
 }
 
-/* Media queries dla małych smartfonów */
+/* Dodajemy stylizację dla hamburger ikony */
 
-@media only screen and (max-width: 480px) {
-  main {
-    width: 100%;
-    /* Zmieniamy szerokość na 100% dla małych smartfonów */
-    border-radius: 0;
-    /* Usuwamy zaokrąglenie dla małych smartfonów */
-  }
-  h1 {
-    font-size: 36px;
-    /* Zmniejszamy rozmiar czcionki dla h1 */
-    padding: 20px;
-    /* Mniejszy padding dla h1 */
-  }
-  header {
-    height: auto;
-    /* Auto wysokość dla nagłówka */
-    position: static;
-    /* Usuwamy pozycję fixed */
-    border-radius: 0;
-    /* Usuwamy zaokrąglenie dla małych smartfonów */
-  }
-  .logo {
-    width: 200px;
-    /* Zmniejszamy szerokość logo dla małych smartfonów */
-    margin-right: 50px;
-    /* Mniejszy margines dla logo */
-  }
-  /* Dodatkowe zmiany dla małych smartfonów... */
+.hamburger {
+  display: none;
+  /* Ukrywamy hamburger ikonę na początku */
+  cursor: pointer;
 }
 
-/* Media query dla ekranów o szerokości do 768px */
+/* Ukrywamy standardowe menu przy szerokości ekranu poniżej 1200px */
 
-@media screen and (max-width: 768px) {
-  /* Ukryj listę nawigacyjną */
-  nav {
+@media screen and (max-width: 1200px) {
+  .menu {
     display: none;
   }
-  /* Pokaż przycisk hamburgera */
+  .menu {
+    display: none;
+    position: fixed;
+    top: 12vh;
+    right: 2.5vw;
+    width: 40vw;
+    text-align: center;
+    background-color: #d9d9d9;
+    border-radius: 25px;
+  }
+  .menu.active {
+    display: block;
+  }
+  .menu ul {
+    display: block;
+  }
+  .menu ul li:hover {
+    background-color: #d9b5a0;
+    border-radius: 25px;
+  }
   .hamburger {
     display: block;
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
   }
-  /* Ukryj logo na mniejszych ekranach */
-  .logo {
-    display: none;
+  .line {
+    width: 100%;
+    height: 3px;
+    background-color: #734a40;
+    margin: 5px 0;
+    transition: all 0.5s ease;
   }
-  /* Pokaż listę nawigacyjną po kliknięciu na przycisk hamburgera */
-  .menu.active nav {
-    display: block;
+  .clicked .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
   }
-  /* Styl dla linków w menu hamburgera */
-  nav ul li {
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #734a40;
+  .clicked .line:nth-child(2) {
+    opacity: 0;
   }
-  nav ul li:last-child {
-    border-bottom: none;
+  .clicked .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
-  nav ul li a {
-    color: #734a40;
-    text-decoration: none;
-    font-size: 18px;
-  }
-}
-
-/* Media queries dla tabletów */
-
-@media only screen and (max-width: 1024px) {
-  /* Dodatkowe zmiany dla tabletów... */
-}
-
-/* Media queries dla komputerów */
-
-@media only screen and (max-width: 1440px) {
-  /* Dodatkowe zmiany dla komputerów... */
-}
-
-/* Media queries dla dużych komputerów */
-
-@media only screen and (min-width: 1441px) {
-  /* Dodatkowe zmiany dla dużych komputerów... */
 }

@@ -33,12 +33,19 @@
         </a>
       </div>
       <nav>
-        <ul>
-          <li><a href="userpage.html">Twój panel</a></li>
-          <li><a href="settings.html" class="current_site">Ustawienia</a></li>
-          <li><a href="user_contact.html">Kontakt</a></li>
-          <li><a href="index.html">Wyloguj</a></li>
-        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="userpage.html">Twój panel</a></li>
+            <li><a href="settings.html" class="current_site">Ustawienia</a></li>
+            <li><a href="user_contact.html">Kontakt</a></li>
+            <li><a href="index.html">Wyloguj</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
     <main>
@@ -96,6 +103,20 @@
     </footer>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.querySelector(".hamburger");
+        const menu = document.querySelector(".menu");
+
+        // Dodajemy obsługę kliknięcia na hamburger
+        hamburger.addEventListener("click", function () {
+          // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+          this.classList.toggle("clicked");
+
+          // Pokazujemy/Ukrywamy menu po kliknięciu
+          menu.classList.toggle("active");
+        });
+      });
+
       function submitForm() {
         var isFormValid = validateForm();
         if (isFormValid) {
