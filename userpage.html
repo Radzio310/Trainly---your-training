@@ -96,10 +96,8 @@
           </h2>
           <br />
         </div>
-        <p id="currentDate"></p>
         <div id="clock"></div>
         <hr />
-        <br />
         <div class="button" id="user_button" onclick="startTraining()">
           Zacznij trening!
         </div>
@@ -234,24 +232,6 @@
         // Obsługa przycisku Rozpocznij Trening
         alert("Rozpocznij Trening");
       }
-
-      function updateDate() {
-        var currentDate = new Date();
-        var options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        document.getElementById("currentDate").textContent =
-          currentDate.toLocaleDateString("pl-PL", options);
-      }
-
-      // Wywołanie funkcji updateDate po załadowaniu strony
-      updateDate();
-
-      // Wywołanie funkcji updateDate co sekundę
-      setInterval(updateDate, 1000);
 
       function updateClock() {
         var now = new Date();
