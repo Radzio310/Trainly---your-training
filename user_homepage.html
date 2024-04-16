@@ -65,24 +65,57 @@
             </div>
             <div class="photos">
                 <div class="photo">
-                    <img src="Graphics/Kalendarz.png" alt="Kalendarz" onclick="showDescription('Kalendarz', 'Kalendarz pozwoli Ci na planowanie i zapisywanie treningów, dzięki czemu z pewnością nie zapomnisz o treningu i w bardzo szybki sposób sprawdzisz go z poziomu swojego konta.')"
-                    />
-                    <p>Kalendarz</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="Graphics/Kalendarz.png" alt="Kalendarz" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Kalendarz</h2>
+                                <p>Kalendarz pozwoli Ci na planowanie i zapisywanie treningów, dzięki czemu z pewnością nie zapomnisz o treningu i w bardzo szybki sposób sprawdzisz go z poziomu swojego konta.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="photo">
-                    <img src="Graphics/Statystyki.png" alt="Statystyki" onclick="showDescription('Statystyki', 'Statystyki będą szczególnie przydatne, gdy będziesz chciał/a śledzić swoje postępy i osiągnięcia. Możesz tu obserwować zmianę swoich parametrów ciała oraz częstotliwość i długości treningów w danym okresie czasu.')"
-                    />
-                    <p>Statystyki</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="Graphics/Statystyki.png" alt="Statystyki" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Statystyki</h2>
+                                <p>Statystyki będą szczególnie przydatne, gdy będziesz chciał/a śledzić swoje postępy i osiągnięcia.</p>
+                                <p>Możesz tu obserwować zmianę swoich parametrów ciała oraz częstotliwość i długości treningów w danym okresie czasu.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="photo">
-                    <img src="Graphics/Lista.png" alt="Lista ćwiczeń" onclick="showDescription('Lista ćwiczeń', 'Lista ćwiczeń pozwoli Ci na tworzenie spersonalizowanej listy z ćwiczeniami, w której będziesz miał/a możliwość tworzyć plany na konkretne dni lub partie ciała. Oferujemy również dostęp do gotowych szablonów z planami treningowymi.')"
-                    />
-                    <p>Lista ćwiczeń</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="Graphics/Lista.png" alt="Lista ćwiczeń" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Lista ćwiczeń</h2>
+                                <p>Lista ćwiczeń pozwoli Ci na tworzenie spersonalizowanej listy z ćwiczeniami, w której będziesz miał/a możliwość tworzyć plany na konkretne dni lub partie ciała. Oferujemy również dostęp do gotowych szablonów z planami treningowymi.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="photo">
-                    <img src="Graphics/Powiadomienia.png" alt="Historia i powiadomienia" onclick="showDescription('Historia i powiadomienia', 'Historia i powiadomienia w dużym stopniu łączą się z kalendarzem. Dzięki tym funkcjonalnościom masz możliwość sprawdzić historię swoich treningów w danym okresie oraz ustawić konkretny czas, w którym chcesz otrzymać powiadomienie przypominające o treningu.')"
-                    />
-                    <p>Historia i powiadomienia</p>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="Graphics/Powiadomienia.png" alt="Historia i powiadomienia" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Historia i powiadomienia</h2>
+                                <p>Dzięki tym funkcjonalnościom masz możliwość sprawdzić historię swoich treningów w danym okresie oraz ustawić konkretny czas, w którym chcesz otrzymać powiadomienie przypominające o treningu.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -121,24 +154,6 @@
                 menu.classList.toggle('active');
             });
         });
-
-        function showDescription(title, description) {
-            var overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-
-            var descriptionBox = document.createElement('div');
-            descriptionBox.classList.add('description-box');
-            descriptionBox.innerHTML = '<h3>' + title + '</h3><p>' + description + '</p>';
-
-            overlay.appendChild(descriptionBox);
-            document.body.appendChild(overlay);
-
-            overlay.addEventListener('click', function() {
-                overlay.remove();
-            });
-
-            overlay.style.display = 'flex';
-        }
     </script>
 </body>
 
