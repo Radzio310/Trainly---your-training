@@ -109,6 +109,10 @@ li {
   align-content: center;
 }
 
+li:hover {
+  color: #bf907e;
+}
+
 .hero {
   padding-top: 75px;
   background-image: url("Graphics/Trainly_hero.png");
@@ -171,6 +175,7 @@ p {
   font-size: 24px;
   font-weight: bolder;
   text-align: center;
+  margin-left: -1.5vw;
 }
 
 .flip-card p {
