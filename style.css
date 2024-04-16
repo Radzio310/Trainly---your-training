@@ -236,11 +236,6 @@ p {
   height: auto;
 }
 
-.photos img:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
 .photo p {
   align-items: center;
 }
