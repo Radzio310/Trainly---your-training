@@ -151,6 +151,12 @@
         // Pokazujemy/Ukrywamy menu po kliknięciu
         menu.classList.toggle("active");
       });
+
+      // Obsługa kliknięcia na krzyżyk w oknie modalnym
+      document.getElementsByClassName("close")[0].onclick = function () {
+        // Przenieś użytkownika na stronę logowania
+        window.location.href = "login.html";
+      };
     });
 
     document

@@ -662,6 +662,29 @@ footer .logo {
   margin-left: 12.5vw;
 }
 
+/* Dodatkowy styl dla powiadomienia w settings.html */
+
+.success_notification {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  border: 1px solid #bf907e;
+  margin-top: 15vh;
+  padding: 15px;
+  z-index: 9999;
+  display: none;
+  width: auto;
+  text-align: center;
+}
+
+#success_message {
+  color: #d9b5a0;
+  font-weight: bold;
+}
+
 .notification:hover {
   background-color: #e9e9e9;
 }
@@ -816,21 +839,6 @@ hr {
   display: none;
   font-weight: bold;
   text-align: center;
-}
-
-#success_message {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #4caf50;
-  color: white;
-  text-align: center;
-  margin-top: 5%;
-  padding: 10px 20px;
-  z-index: 9999;
-  border-radius: 5px;
 }
 
 /* Dodajemy stylizację dla hamburger ikony */

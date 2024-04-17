@@ -61,7 +61,7 @@
         <br />
         <h2>Ustawienia konta</h2>
         <br />
-        <form id="settingsForm" onsubmit="return submitForm()">
+        <form id="settingsForm" onsubmit="return submitForm(event)">
           <input
             type="text"
             id="username"
@@ -97,18 +97,22 @@
             required
           />
           <div id="password_error">Hasła nie są identyczne.</div>
-          <div id="success_message">Zmiany zostały zapisane poprawnie!</div>
           <hr />
           <input type="submit" value="Zapisz zmiany" />
         </form>
       </div>
     </main>
     <footer>
-      <a href="user_homepage.html"
-        ><img class="logo" src="Graphics/Trainly-logo_2.png"
-      /></a>
+      <a href="user_homepage.html">
+        <img class="logo" src="Graphics/Trainly-logo_2.png" />
+      </a>
       <img class="media" src="Graphics/Media.png" />
     </footer>
+
+    <!-- Div dla powiadomienia -->
+    <div class="success_notification" id="success_notification">
+      <span id="success_message">Zmiany zostały zapisane poprawnie!</span>
+    </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -123,18 +127,26 @@
           // Pokazujemy/Ukrywamy menu po kliknięciu
           menu.classList.toggle("active");
         });
+
+        // Ukryj domyślnie powiadomienie po załadowaniu strony
+        hideNotification();
       });
 
-      function submitForm() {
+      function submitForm(event) {
+        event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
         var isFormValid = validateForm();
         if (isFormValid) {
+          // Wyświetlanie powiadomienia o sukcesie
+          var successNotification = document.getElementById(
+            "success_notification"
+          );
+          successNotification.style.display = "block";
           setTimeout(function () {
-            // Czyścimy pola formularza po 2 sekundach
-            document.getElementById("username").value = "";
-            document.getElementById("email").value = "";
+            successNotification.style.display = "none";
+            // Wyczyść pola z hasłem i powtórzeniem hasła
             document.getElementById("password").value = "";
             document.getElementById("confirm_password").value = "";
-          }, 2000);
+          }, 3000);
         }
         return isFormValid;
       }
@@ -150,17 +162,15 @@
           return false;
         } else {
           password_error.style.display = "none";
-          showSuccessMessage();
           return true;
         }
       }
 
-      function showSuccessMessage() {
-        var successMessage = document.getElementById("success_message");
-        successMessage.style.display = "block";
-        setTimeout(function () {
-          successMessage.style.display = "none";
-        }, 3000);
+      function hideNotification() {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        successNotification.style.display = "none";
       }
     </script>
   </body>

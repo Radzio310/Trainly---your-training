@@ -54,7 +54,7 @@
     </header>
     <main>
       <section class="Formularz_kontaktowy">
-        <form action="" method="POST">
+        <form action="" method="POST" onsubmit="return submitForm(event)">
           <h1>Skontaktuj się z nami</h1>
           <input
             type="text"
@@ -107,6 +107,10 @@
       </a>
       <img class="media" src="Graphics/Media.png" />
     </footer>
+    <!-- Div dla powiadomienia -->
+    <div class="success_notification" id="success_notification">
+      <span id="success_message">Wiadomość została wysłana!</span>
+    </div>
   </body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -122,5 +126,21 @@
         menu.classList.toggle("active");
       });
     });
+
+    function submitForm(event) {
+      event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+      // Wyświetlanie powiadomienia o sukcesie
+      var successNotification = document.getElementById("success_notification");
+      successNotification.style.display = "block";
+      setTimeout(function () {
+        successNotification.style.display = "none";
+      }, 3000);
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("attachment").value = "";
+      document.getElementById("message").value = "";
+      return isFormValid;
+    }
   </script>
 </html>
