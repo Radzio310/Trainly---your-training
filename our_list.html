@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Trainly - Listy ćwiczeń</title>
+    <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta
+      name="keywords"
+      content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami"
+    />
+    <meta
+      name="description"
+      content="Trainly - aplikacja do zarządzania treningami"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
+  </head>
+
+  <body>
+    <div id="overlay_notification">
+      <div id="notification-modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="notification-title"></h2>
+        <p id="notification-content"></p>
+      </div>
+    </div>
+    <header>
+      <div class="container">
+        <img class="logo" src="Graphics/Trainly-logo.png" />
+      </div>
+      <nav>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="menu">
+          <ul>
+            <a href="userpage.html">
+              <li>Twój panel</li>
+            </a>
+            <a href="settings.html">
+              <li>Ustawienia</li>
+            </a>
+            <a href="user_contact.html">
+              <li>Kontakt</li>
+            </a>
+            <a href="index.html">
+              <li>Wyloguj</li>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main></main>
+    <footer>
+      <a href="user_homepage.html"
+        ><img class="logo" src="Graphics/Trainly-logo_2.png"
+      /></a>
+      <img class="media" src="Graphics/Media.png" />
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.querySelector(".hamburger");
+        const menu = document.querySelector(".menu");
+
+        // Dodajemy obsługę kliknięcia na hamburger
+        hamburger.addEventListener("click", function () {
+          // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+          this.classList.toggle("clicked");
+
+          // Pokazujemy/Ukrywamy menu po kliknięciu
+          menu.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
