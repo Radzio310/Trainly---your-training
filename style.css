@@ -297,10 +297,6 @@ p {
   color: #bf907e;
 }
 
-.content {
-  flex: 1;
-}
-
 footer {
   display: flex;
   justify-content: space-between;
@@ -633,6 +629,7 @@ footer .logo {
 }
 
 .content {
+  flex: 1;
   margin-top: 2.5%;
   padding: 20px;
   width: 95%;
@@ -753,7 +750,7 @@ footer .logo {
   background-size: contain;
   background-position: center bottom;
   border-radius: 25px;
-  height: 48vh;
+  height: 47vh;
   margin-left: 1vw;
 }
 
@@ -900,5 +897,98 @@ hr {
   }
   .clicked .line:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Lista ćwiczeń */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three columns of equal width */
+
+/* Style the list */
+
+.opcje_listy {
+  list-style-type: none;
+  border: 2px solid #734a40;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.25s;
+  border-radius: 25px;
+  text-align: center;
+  width: 25%;
+  margin-left: 2.5vw;
+  background: url("Graphics/Twoja_lista.png");
+  display: inline-block;
+}
+
+/* Add shadows on hover */
+
+.opcje_listy:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Pricing header */
+
+.opcje_listy .header {
+  background-color: #734a40;
+  color: #d9b5a0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  height: 10vh;
+}
+
+.opcje_listy h2 {
+  font-size: 5vh;
+  justify-content: center;
+  text-align: center;
+  padding-left: 0;
+  padding-top: 0;
+}
+
+/* List items */
+
+.opcje_listy li {
+  margin-right: 0;
+  text-align: center;
+  align-items: center;
+}
+
+.your_list {
+  background-image: url("Graphics/Twoja_lista.png");
+  min-height: 25vh;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-size: cover;
+  background-position: center;
+}
+
+.create_list {
+  background-image: url("Graphics/Create_list.png");
+  min-height: 25vh;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-size: cover;
+  background-position: center;
+}
+
+.our_list {
+  background-image: url("Graphics/Our_list.png");
+  min-height: 25vh;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Change the width of the three columns to 100%
+(to stack horizontally on small screens) */
+
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
   }
 }
