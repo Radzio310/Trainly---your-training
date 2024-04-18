@@ -141,6 +141,35 @@
         });
       });
 
+      function planTraining() {
+        alert("Zaplanuj trening");
+      }
+
+      function plan(dayId) {
+        document.getElementById("startTraining").style.display = "none";
+        document.getElementById("planTraining").style.display = "block";
+        handleDayClick(dayId);
+      }
+
+      function start(dayID) {
+        document.getElementById("planTraining").style.display = "none";
+        document.getElementById("startTraining").style.display = "block";
+        handleDayClick(null);
+      }
+
+      function handleDayClick(dayId) {
+        var clickedDay = document.getElementById(dayId); // Pobierz kliknięty dzień na podstawie jego ID
+
+        // Usuń klasę "last-clicked" ze wszystkich dni w kalendarzu
+        var allDays = document.querySelectorAll(".days li span");
+        allDays.forEach(function (day) {
+          day.classList.remove("last-clicked");
+        });
+
+        // Dodaj klasę "last-clicked" tylko do klikniętego dnia
+        clickedDay.classList.add("last-clicked");
+      }
+
       function showContent(section) {
         var content = document.getElementById("content");
         var html = "";
@@ -166,7 +195,7 @@
             var monthIndex = currentDate.getMonth();
             var year = currentDate.getFullYear();
             var activeDay = currentDate.getDate();
-            html = '<div class="calendar"><div class="month"><ul><li><h2>';
+            var html = '<div class="calendar"><div class="month"><ul><li><h2>';
             html += monthNames[monthIndex];
             html += "<span> ";
             html += year;
@@ -179,13 +208,28 @@
 
             for (var i = 1; i <= daysInMonth; i++) {
               if (i === activeDay) {
-                html += '<li><span class="active">' + i + "</span></li>";
+                html +=
+                  '<li><span class="active" onclick="start(this.id)">' +
+                  i +
+                  "</span></li>";
               } else {
-                html += '<li><span class="inactive">' + i + "</span></li>";
+                html +=
+                  '<li><span class="inactive" onclick="plan(this.id)" id="day_' +
+                  i +
+                  '">' +
+                  i +
+                  "</span></li>";
               }
             }
 
-            html += "</ul></div>";
+            html += "</ul>";
+            // Dodajemy przycisk "Zaplanuj trening" i "Rozpocznij trening"
+            html +=
+              '<button class="button" id="startTraining" onclick="startTraining()">Rozpocznij trening</button>';
+            html +=
+              '<button class="button" id="planTraining" onclick="planTraining()">Zaplanuj trening</button>';
+            html += "</div>";
+            html += "</div>";
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
@@ -193,6 +237,7 @@
               .getElementById("powiadomienia")
               .classList.remove("selected");
             break;
+
           case "powiadomienia":
             document.getElementById("powiadomienia").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
