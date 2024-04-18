@@ -148,20 +148,50 @@
         // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
         switch (section) {
           case "kalendarz":
-            html = "<h2>Kalendarz</h2><div id='calendar'></div>";
+            var currentDate = new Date();
+            var monthNames = [
+              "STYCZEŃ",
+              "LUTY",
+              "MARZEC",
+              "KWIECIEŃ",
+              "MAJ",
+              "CZERWIEC",
+              "LIPIEC",
+              "SIERPIEŃ",
+              "WRZESIEŃ",
+              "PAŹDZIERNIK",
+              "LISTOPAD",
+              "GRUDZIEŃ",
+            ];
+            var monthIndex = currentDate.getMonth();
+            var year = currentDate.getFullYear();
+            var activeDay = currentDate.getDate();
+            html = '<div class="calendar"><div class="month"><ul><li><h2>';
+            html += monthNames[monthIndex];
+            html += "<span> ";
+            html += year;
+            html += "</span></h2></li></ul></div>";
+            html +=
+              '<ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>';
+            html += '<ul class="days">';
+            // Pobieramy liczbę dni w danym miesiącu
+            var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+            for (var i = 1; i <= daysInMonth; i++) {
+              if (i === activeDay) {
+                html += '<li><span class="active">' + i + "</span></li>";
+              } else {
+                html += '<li><span class="inactive">' + i + "</span></li>";
+              }
+            }
+
+            html += "</ul></div>";
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
             document
               .getElementById("powiadomienia")
               .classList.remove("selected");
-            // Usuwamy poprzedni kalendarz, jeśli istnieje
-            var previousCalendar = document.getElementById("calendar");
-            if (previousCalendar) {
-              previousCalendar.parentNode.removeChild(previousCalendar);
-            }
-            // Inicjalizacja kalendarza
-            // initCalendar();
             break;
           case "powiadomienia":
             document.getElementById("powiadomienia").classList.add("selected");
@@ -295,28 +325,6 @@
 
       // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
       updateClock();
-
-      function initCalendar() {
-        var calendarEl = document.getElementById("calendar");
-        if (calendarEl) {
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-            // Ustawienia kalendarza
-            plugins: ["dayGrid"],
-            header: {
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            },
-            events: [
-              // Tutaj możesz dodać zdarzenia kalendarza
-              // Na razie pusta tablica
-            ],
-          });
-          calendar.render();
-        } else {
-          alert('Nie znaleziono elementu z id="calendar"');
-        }
-      }
     </script>
   </body>
 </html>
