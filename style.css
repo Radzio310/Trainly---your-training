@@ -115,12 +115,12 @@ li:hover {
 }
 
 .hero {
-  padding-top: 75px;
+  padding-top: 15vh;
   background-image: url("Graphics/Trainly_hero.png");
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
 }
 
 .hero h1 {
@@ -286,7 +286,7 @@ p {
   padding: 10px 20px;
   border-radius: 25px;
   margin-top: 20px;
-  width: 250px;
+  width: 25vw;
   text-align: center;
   align-content: center;
   margin: 0 auto;
@@ -296,6 +296,9 @@ p {
 .button:hover {
   background-color: #734a40;
   color: #bf907e;
+  cursor: pointer;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
 }
 
 footer {
@@ -691,6 +694,7 @@ footer img {
 
 .notification:hover {
   background-color: #e9e9e9;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
 #overlay_notification {
@@ -1146,4 +1150,153 @@ hr {
   .columns {
     width: 100%;
   }
+}
+
+/* create_list.html */
+
+/* Include the padding and border in an element's total width and height */
+
+.myDIV,
+.myUL {
+  box-sizing: border-box;
+  min-height: 50vh;
+}
+
+/* Remove margins and padding from the list */
+
+#myUL ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+
+#myUL li {
+  list-style-type: none;
+  width: 50%;
+  left: 23%;
+  position: relative;
+  padding: 12px;
+  background: #d9b5a0;
+  font-size: 3vh;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  color: #734a40;
+  font-weight: bolder;
+  border-radius: 25px;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+
+#myUL li:nth-child(odd) {
+  background: #bf907e;
+}
+
+/* Darker background-color on hover */
+
+#myUL li:hover {
+  box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.5);
+  color: rgba(65, 31, 3, 0.3);
+}
+
+/* Style the close button */
+
+.delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #d9d9d9;
+}
+
+.delete:hover {
+  color: red;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#konto .delete {
+  display: none;
+}
+
+/* Style the header */
+
+.create {
+  background-color: #734a40;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+
+.create:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+
+#myInput {
+  margin: 0;
+  margin-left: 25%;
+  border: none;
+  border-radius: 25px;
+  width: 40%;
+  padding: 10px;
+  float: center;
+  font-size: 3vh;
+  text-align: center;
+}
+
+/* Style the "Add" button */
+
+.addBtn {
+  padding: 10px;
+  margin-left: 2.5vw;
+  margin-right: 5vw;
+  width: 15%;
+  background: #d9d9d9;
+  color: #734a40;
+  float: right;
+  text-align: center;
+  font-size: 3vh;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 25px;
+  font-weight: bolder;
+}
+
+.addBtn:hover {
+  background-color: #d9b5a0;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+#save-list {
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
+  background-color: #734a40;
+  color: #d9d9d9;
+}
+
+#save-list:hover {
+  color: #d9b5a0;
+}
+
+#listNameInput {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #bf907e;
+  border-radius: 5px;
+  font-size: 1vw;
+  resize: none;
 }
