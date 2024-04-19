@@ -1496,3 +1496,12 @@ hr {
   box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.5);
   color: rgba(65, 31, 3, 0.3);
 }
+
+#myModal .create {
+  border-radius: 25px;
+  padding: 5px;
+}
+
+#myModal .close {
+  margin-right: 2.5%;
+}
