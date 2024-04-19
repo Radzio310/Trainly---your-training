@@ -51,7 +51,7 @@
         </div>
         <div class="menu">
           <ul>
-            <a href="userpage.html">
+            <a href="userpage.html?show_lists=true">
               <li>Twój panel</li>
             </a>
             <a href="settings.html">
@@ -67,7 +67,45 @@
         </div>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <div class="sidebar">
+        <ul>
+          <li id="konto">
+            <img
+              src="Graphics\Kalendarz.png"
+              alt="Kalendarz"
+              onclick="sidebar('show_calendar')"
+              id="kalendarz"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Powiadomienia.png"
+              alt="Historia i powiadomienia"
+              onclick="sidebar('show_notes')"
+              id="powiadomienia"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Statystyki.png"
+              alt="Statystyki"
+              onclick="sidebar('show_stats')"
+              id="statystyki"
+            />
+          </li>
+          <li id="konto">
+            <img
+              class="selected"
+              src="Graphics\Lista.png"
+              alt="Lista ćwiczeń"
+              onclick="sidebar('show_lists')"
+              id="lista"
+            />
+          </li>
+        </ul>
+      </div>
+    </main>
     <footer>
       <a href="user_homepage.html"
         ><img class="logo" src="Graphics/Trainly-logo_2.png"
@@ -88,6 +126,10 @@
           menu.classList.toggle("active");
         });
       });
+
+      function sidebar(where) {
+        window.location.href = "userpage.html?" + where + "=true";
+      }
     </script>
   </body>
 </html>

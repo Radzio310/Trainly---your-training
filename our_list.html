@@ -51,23 +51,111 @@
         </div>
         <div class="menu">
           <ul>
-            <a href="userpage.html">
-              <li>Twój panel</li>
+            <a href="userpage.html?show_lists=true">
+              <li id="konto">Twój panel</li>
             </a>
             <a href="settings.html">
-              <li>Ustawienia</li>
+              <li id="konto">Ustawienia</li>
             </a>
             <a href="user_contact.html">
-              <li>Kontakt</li>
+              <li id="konto">Kontakt</li>
             </a>
             <a href="index.html">
-              <li>Wyloguj</li>
+              <li id="konto">Wyloguj</li>
             </a>
           </ul>
         </div>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <div class="sidebar">
+        <ul>
+          <li id="konto">
+            <img
+              src="Graphics\Kalendarz.png"
+              alt="Kalendarz"
+              onclick="sidebar('show_calendar')"
+              id="kalendarz"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Powiadomienia.png"
+              alt="Historia i powiadomienia"
+              onclick="sidebar('show_notes')"
+              id="powiadomienia"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Statystyki.png"
+              alt="Statystyki"
+              onclick="sidebar('show_stats')"
+              id="statystyki"
+            />
+          </li>
+          <li id="konto">
+            <img
+              class="selected"
+              src="Graphics\Lista.png"
+              alt="Lista ćwiczeń"
+              onclick="sidebar('show_lists')"
+              id="lista"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <ul class="nasze-listy">
+        <li onclick="openModal()">
+          <h3>"Zbuduj ciało niczym szafa"</h3>
+          <p>klata + triceps</p>
+          <span class="badge">12</span>
+        </li>
+        <li onclick="openModal()">
+          <h3>Nie przejdziesz przez framugę"</h3>
+          <p>barki + ramiona</p>
+          <span class="badge">10</span>
+        </li>
+        <li onclick="openModal()">
+          <h3>"Worki z ziemniakami Ci nie straszne"</h3>
+          <p>plecy + biceps</p>
+          <span class="badge">9</span>
+        </li>
+        <li onclick="openModal()">
+          <h3>"Po tym nie wstaniesz z łóżka"</h3>
+          <p>nogi</p>
+          <span class="badge">8</span>
+        </li>
+        <li onclick="openModal()">
+          <h3>"Czas na wymianę bojlera"</h3>
+          <p>brzuch + cardio</p>
+          <span class="badge">10</span>
+        </li>
+        <li onclick="openModal()">
+          <h3>"Zaraz muszę biec na uczelnię"</h3>
+          <p>całe ciało</p>
+          <span class="badge">12</span>
+        </li>
+      </ul>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div id="create-list" class="create">
+            <h3>Tu możesz edytować naszą listę</h3>
+            <input type="text" id="myInput" placeholder="Nazwa ćwiczenia..." />
+            <span onclick="newElement()" class="addBtn">Dodaj</span>
+          </div>
+          <ul id="our_addEx">
+            <li>Przykładowe ćwiczenie nr 1</li>
+            <li>Przykładowe ćwiczenie nr 2</li>
+            <li>Przykładowe ćwiczenie nr 3</li>
+          </ul>
+          <div class="button" onclick="saveList()">Dodaj do Twoich list</div>
+        </div>
+      </div>
+    </main>
     <footer>
       <a href="user_homepage.html"
         ><img class="logo" src="Graphics/Trainly-logo_2.png"
@@ -88,6 +176,68 @@
           menu.classList.toggle("active");
         });
       });
+
+      // Create a "close" button and append it to each list item
+      var myNodelist = document.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "delete";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+      }
+
+      // Click on a close button to hide the current list item
+      var close = document.getElementsByClassName("delete");
+      for (var i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.display = "none";
+        };
+      }
+
+      // Create a new list item when clicking on the "Add" button
+      function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === "") {
+          alert("You must write something!");
+        } else {
+          document.getElementById("our_addEx").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "delete";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (var i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          };
+        }
+      }
+
+      // Modal functions
+      function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      function sidebar(where) {
+        window.location.href = "userpage.html?" + where + "=true";
+      }
     </script>
   </body>
 </html>

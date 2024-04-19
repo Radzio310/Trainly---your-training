@@ -1385,3 +1385,114 @@ hr {
   font-size: 1vw;
   resize: none;
 }
+
+/* Our_list.html */
+
+.nasze-listy {
+  width: 100%;
+  display: inline-block;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-top: 15vh;
+}
+
+.nasze-listy h3 {
+  font-size: 3vh;
+  color: #734a40;
+}
+
+.nasze-listy p {
+  font-size: 3vh;
+  color: #0d0907;
+}
+
+.nasze-listy ul {
+  margin: 0;
+  padding: 0;
+}
+
+.nasze-listy li {
+  align-items: center;
+  justify-content: center;
+  background-image: url("Graphics/Our_lists_choice.png");
+  background-size: cover;
+  background-position: center;
+  color: #d9b5a0;
+  list-style-type: none;
+  padding: 1vh;
+  text-align: center;
+  width: 25%;
+  display: inline-block;
+  border-radius: 25px;
+  margin-bottom: 2.5vh;
+  font-weight: bolder;
+  border: 2px solid #734a40;
+}
+
+.nasze-listy li:hover {
+  background-color: #bf907e;
+  color: #734a40;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  .badge {
+    background-color: #d9b5a0;
+    color: #734a40;
+  }
+}
+
+.badge {
+  background-color: #734a40;
+  color: #d9d9d9;
+  border-radius: 50%;
+  padding: 5px;
+  text-align: center;
+  margin-left: 5px;
+  font-size: 2.5vh;
+}
+
+#our_addEx {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+
+#our_addEx ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+
+#our_addEx li {
+  border: 1px solid #734a40;
+  list-style-type: none;
+  width: 80%;
+  left: 7.5%;
+  position: relative;
+  padding: 12px;
+  background: #d9b5a0;
+  font-size: 3vh;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  color: #734a40;
+  font-weight: bolder;
+  border-radius: 25px;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+
+#our_addEx li:nth-child(odd) {
+  background: #bf907e;
+}
+
+/* Darker background-color on hover */
+
+#our_addEx li:hover {
+  box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.5);
+  color: rgba(65, 31, 3, 0.3);
+}

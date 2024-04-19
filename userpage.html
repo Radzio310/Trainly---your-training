@@ -145,10 +145,25 @@
         // Sprawdź czy parametr "show_lists" jest obecny w adresie URL
         var urlParams = new URLSearchParams(window.location.search);
         var showLists = urlParams.get("show_lists");
+        var showCalendar = urlParams.get("show_calendar");
+        var showStats = urlParams.get("show_stats");
+        var showNotes = urlParams.get("show_notes");
 
         if (showLists === "true") {
           // Wyświetl sekcję z listami ćwiczeń
           showContent("lista");
+        }
+        if (showCalendar === "true") {
+          // Wyświetl sekcję z kalendarzem
+          showContent("kalendarz");
+        }
+        if (showStats === "true") {
+          // Wyświetl sekcję ze statystykami
+          showContent("statystyki");
+        }
+        if (showNotes === "true") {
+          // Wyświetl sekcję z powiadomieniami
+          showContent("powiadoemienia");
         }
       });
 

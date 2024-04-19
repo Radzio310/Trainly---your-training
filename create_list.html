@@ -68,6 +68,43 @@
       </nav>
     </header>
     <main>
+      <div class="sidebar">
+        <ul>
+          <li id="konto">
+            <img
+              src="Graphics\Kalendarz.png"
+              alt="Kalendarz"
+              onclick="sidebar('show_calendar')"
+              id="kalendarz"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Powiadomienia.png"
+              alt="Historia i powiadomienia"
+              onclick="sidebar('show_notes')"
+              id="powiadomienia"
+            />
+          </li>
+          <li id="konto">
+            <img
+              src="Graphics\Statystyki.png"
+              alt="Statystyki"
+              onclick="sidebar('show_stats')"
+              id="statystyki"
+            />
+          </li>
+          <li id="konto">
+            <img
+              class="selected"
+              src="Graphics\Lista.png"
+              alt="Lista ćwiczeń"
+              onclick="sidebar('show_lists')"
+              id="lista"
+            />
+          </li>
+        </ul>
+      </div>
       <div id="create-list" class="create">
         <h2>Stwórz listę ćwiczeń</h2>
         <input type="text" id="myInput" placeholder="Nazwa ćwiczenia..." />
@@ -183,6 +220,10 @@
           // After saving, you can redirect the user to userpage.html
           window.location.href = "userpage.html?show_lists=true";
         }
+      }
+
+      function sidebar(where) {
+        window.location.href = "userpage.html?" + where + "=true";
       }
     </script>
   </body>
