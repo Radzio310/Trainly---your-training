@@ -334,6 +334,11 @@ footer img {
   margin-right: 50px;
 }
 
+input[type="submit"]:hover {
+  transition: 0.3s;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
 /* Contact.html */
 
 .Formularz_kontaktowy {
@@ -402,18 +407,18 @@ footer img {
 
 .Logowanie h1 {
   color: #734a40;
-  font-size: 24px;
+  font-size: 3vh;
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
 .Logowanie input {
-  width: 100%;
+  width: 75%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #bf907e;
   border-radius: 5px;
-  font-size: 1.5vw;
+  font-size: 1.25vw;
   resize: none;
 }
 
@@ -437,7 +442,7 @@ footer img {
   background-color: #bf907e;
   padding: 10px;
   text-decoration: none;
-  font-size: 1.5vw;
+  font-size: 1.25vw;
   border-radius: 5px;
 }
 
@@ -472,7 +477,7 @@ footer img {
   margin-bottom: 20px;
   border: 1px solid #bf907e;
   border-radius: 5px;
-  font-size: 1.5vw;
+  font-size: 1.25vw;
   resize: none;
 }
 
@@ -881,7 +886,9 @@ hr {
   }
   .menu ul li:hover {
     background-color: #d9b5a0;
+    color: #734a40;
     border-radius: 25px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
   }
   .hamburger {
     display: block;
@@ -1156,22 +1163,22 @@ hr {
 
 /* Include the padding and border in an element's total width and height */
 
-.myDIV,
-.myUL {
+#addEx {
   box-sizing: border-box;
-  min-height: 50vh;
+  min-height: 27.5vh;
 }
 
 /* Remove margins and padding from the list */
 
-#myUL ul {
+#addEx ul {
   margin: 0;
   padding: 0;
 }
 
 /* Style the list items */
 
-#myUL li {
+#addEx li {
+  border: 1px solid #734a40;
   list-style-type: none;
   width: 50%;
   left: 23%;
@@ -1193,13 +1200,13 @@ hr {
 
 /* Set all odd list items to a different color (zebra-stripes) */
 
-#myUL li:nth-child(odd) {
+#addEx li:nth-child(odd) {
   background: #bf907e;
 }
 
 /* Darker background-color on hover */
 
-#myUL li:hover {
+#addEx li:hover {
   box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.5);
   color: rgba(65, 31, 3, 0.3);
 }

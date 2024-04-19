@@ -68,18 +68,16 @@
       </nav>
     </header>
     <main>
-      <div id="myDIV" class="create">
+      <div id="create-list" class="create">
         <h2>Stwórz listę ćwiczeń</h2>
         <input type="text" id="myInput" placeholder="Nazwa ćwiczenia..." />
         <span onclick="newElement()" class="addBtn">Dodaj</span>
       </div>
 
-      <ul id="myUL">
+      <ul id="addEx">
         <li>Przykładowe ćwiczenie nr 1</li>
         <li>Przykładowe ćwiczenie nr 2</li>
         <li>Przykładowe ćwiczenie nr 3</li>
-        <li>Przykładowe ćwiczenie nr 4</li>
-        <li>Przykładowe ćwiczenie nr 5</li>
       </ul>
 
       <div class="button" id="save-list" onclick="openModal()">
@@ -147,7 +145,7 @@
         if (inputValue === "") {
           alert("You must write something!");
         } else {
-          document.getElementById("myUL").appendChild(li);
+          document.getElementById("addEx").appendChild(li);
         }
         document.getElementById("myInput").value = "";
 
