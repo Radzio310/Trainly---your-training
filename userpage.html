@@ -156,6 +156,28 @@
         alert("Zaplanuj trening");
       }
 
+      function startTraining() {
+        // Wyświetlenie alertu informującego o rozpoczęciu treningu
+        alert("Rozpoczęto trening!");
+
+        // Pobierz dzień "active" z kalendarza
+        var activeDay = document.querySelector(".active");
+
+        // Sprawdź, czy jest wybrany dzień
+        if (activeDay) {
+          // Pobierz numer dnia
+          var dayNumber = parseInt(activeDay.textContent);
+
+          // Oznacz ten dzień jako dzień treningowy
+          markTrainingDay(dayNumber);
+
+          // Zaktualizuj statystyki
+          updateStatistics();
+        } else {
+          alert("Najpierw wybierz dzień treningu z kalendarza!");
+        }
+      }
+
       function plan(dayId) {
         document.getElementById("startTraining").style.display = "none";
         document.getElementById("planTraining").style.display = "block";
@@ -179,6 +201,12 @@
 
         // Dodaj klasę "last-clicked" tylko do klikniętego dnia
         clickedDay.classList.add("last-clicked");
+      }
+
+      function getDaysInMonth(month, year) {
+        // Użyjemy miesiąca następnego, aby ustalić datę ostatniego dnia bieżącego miesiąca
+        // Ponieważ dzień 0 zawsze oznacza ostatni dzień poprzedniego miesiąca
+        return new Date(year, month + 1, 0).getDate();
       }
 
       function showContent(section) {
@@ -269,11 +297,16 @@
             );
             break;
           case "statystyki":
-            html = "<h2>Statystyki</h2>";
-            html += "<p>Całkowita liczba treningów: 20</p>";
-            html += "<p>Średni czas treningu: 45 minut</p>";
-            html += "<p>Spalone kalorie: 1500 kcal</p>";
-            html += "<p>Średnia intensywność treningu: Średnia</p>";
+            html = "<h2>Statystyki</h2><div class='statystyki'>";
+            html +=
+              '<h3>Całkowita liczba treningów w miesiącu</h3><div class="statistics"><div class="training">13</div></div>';
+            html +=
+              '<h3>Średni czas treningu</h3><div class="statistics"><div class="time">57 min</div></div>';
+            html +=
+              '<h3>Spalone kalorie</h3><div class="statistics"><div class="calories">1259 kcal</div></div>';
+            html +=
+              '<h3>Średnia intensywność treningu</h3><div class="statistics"><div class="intensitivity">Powyżej przeciętnej</div></div></div>';
+
             document.getElementById("statystyki").classList.add("selected");
             document.getElementById("kalendarz").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
@@ -281,6 +314,7 @@
               .getElementById("powiadomienia")
               .classList.remove("selected");
             break;
+
           case "lista":
             html = '<h2>Listy ćwiczeń</h2><div class="columns">';
             html +=
@@ -301,6 +335,7 @@
               .getElementById("powiadomienia")
               .classList.remove("selected");
             break;
+
           default:
             html = "<p>Nieznany dział</p>";
         }
@@ -355,11 +390,6 @@
         modal.style.display = "none";
       }
 
-      function startTraining() {
-        // Obsługa przycisku Rozpocznij Trening
-        alert("Rozpocznij Trening");
-      }
-
       function updateClock() {
         var now = new Date();
         var hours = now.getHours();
@@ -381,6 +411,22 @@
 
       // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
       updateClock();
+
+      // Tutaj dodajemy przypisanie szerokości dla klasy .training
+      var numberOfTrainingDays = 7;
+
+      var currentDate = new Date();
+      var currentMonth = currentDate.getMonth();
+      var currentYear = currentDate.getFullYear();
+      var totalDaysInMonth = getDaysInMonth(currentMonth, currentYear);
+
+      // Oblicz szerokość dla sekcji .training na podstawie liczby dni treningowych i całkowitej liczby dni w miesiącu
+      var trainingWidth = (numberOfTrainingDays / totalDaysInMonth) * 100;
+      // Ustaw szerokość dla sekcji .training
+      document.documentElement.style.setProperty(
+        "--training-width",
+        dayWidth + "%"
+      );
     </script>
   </body>
 </html>

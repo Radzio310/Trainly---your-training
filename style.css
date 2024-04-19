@@ -1078,6 +1078,80 @@ hr {
   border-radius: 25%;
 }
 
+/* Statystyki */
+
+.statystyki h3 {
+  margin: 0;
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
+  align-items: center;
+}
+
+.statistics {
+  width: 80%;
+  margin-left: 10%;
+  background-color: #d9d9d9;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.statistics:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+.training {
+  background-color: #734a40;
+  text-align: right;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  color: #d9b5a0;
+  font-weight: bold;
+  border-radius: 50px;
+  width: 43.4%;
+  /*var(--training-width);*/
+}
+
+.time {
+  background-color: #734a40;
+  text-align: right;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  color: #d9b5a0;
+  font-weight: bold;
+  border-radius: 50px;
+  width: 47.5%;
+}
+
+.calories {
+  background-color: #734a40;
+  text-align: right;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  color: #d9b5a0;
+  font-weight: bold;
+  border-radius: 50px;
+  width: 82%;
+}
+
+.intensitivity {
+  background-color: #734a40;
+  text-align: right;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  color: #d9b5a0;
+  font-weight: bold;
+  border-radius: 50px;
+  width: 73%;
+}
+
 /* Style the list */
 
 .opcje_listy {
