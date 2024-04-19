@@ -107,33 +107,33 @@
       </div>
 
       <ul class="nasze-listy">
-        <li onclick="openModal()">
+        <li onclick="openModal('klata_triceps')">
           <h3>"Zbuduj ciało niczym szafa"</h3>
           <p>klata + triceps</p>
           <span class="badge">12</span>
         </li>
-        <li onclick="openModal()">
+        <li onclick="openModal('barki_ramiona')">
           <h3>Nie przejdziesz przez framugę"</h3>
           <p>barki + ramiona</p>
           <span class="badge">10</span>
         </li>
-        <li onclick="openModal()">
+        <li onclick="openModal('plecy_biceps')">
           <h3>"Worki z ziemniakami Ci nie straszne"</h3>
           <p>plecy + biceps</p>
           <span class="badge">9</span>
         </li>
-        <li onclick="openModal()">
+        <li onclick="openModal('nogi')">
           <h3>"Po tym nie wstaniesz z łóżka"</h3>
           <p>nogi</p>
           <span class="badge">8</span>
         </li>
-        <li onclick="openModal()">
-          <h3>"Czas na wymianę bojlera"</h3>
+        <li onclick="openModal('brzuch_cardio')">
+          <h3>"Czas na wymianę bojlera "</h3>
           <p>brzuch + cardio</p>
           <span class="badge">10</span>
         </li>
-        <li onclick="openModal()">
-          <h3>"Zaraz muszę biec na uczelnię"</h3>
+        <li onclick="openModal('cale_cialo')">
+          <h3>"Zaraz muszę biec na uczelnię "</h3>
           <p>całe ciało</p>
           <span class="badge">12</span>
         </li>
@@ -147,11 +147,7 @@
             <input type="text" id="myInput" placeholder="Nazwa ćwiczenia..." />
             <span onclick="newElement()" class="addBtn">Dodaj</span>
           </div>
-          <ul id="our_addEx">
-            <li>Przykładowe ćwiczenie nr 1</li>
-            <li>Przykładowe ćwiczenie nr 2</li>
-            <li>Przykładowe ćwiczenie nr 3</li>
-          </ul>
+          <ul id="our_addEx"></ul>
           <div class="button" onclick="saveList()">Dodaj do Twoich list</div>
         </div>
       </div>
@@ -167,17 +163,12 @@
         const hamburger = document.querySelector(".hamburger");
         const menu = document.querySelector(".menu");
 
-        // Dodajemy obsługę kliknięcia na hamburger
         hamburger.addEventListener("click", function () {
-          // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
           this.classList.toggle("clicked");
-
-          // Pokazujemy/Ukrywamy menu po kliknięciu
           menu.classList.toggle("active");
         });
       });
 
-      // Create a "close" button and append it to each list item
       var myNodelist = document.getElementsByTagName("LI");
       var i;
       for (i = 0; i < myNodelist.length; i++) {
@@ -188,7 +179,6 @@
         myNodelist[i].appendChild(span);
       }
 
-      // Click on a close button to hide the current list item
       var close = document.getElementsByClassName("delete");
       for (var i = 0; i < close.length; i++) {
         close[i].onclick = function () {
@@ -197,7 +187,6 @@
         };
       }
 
-      // Create a new list item when clicking on the "Add" button
       function newElement() {
         var li = document.createElement("li");
         var inputValue = document.getElementById("myInput").value;
@@ -224,9 +213,45 @@
         }
       }
 
-      // Modal functions
-      function openModal() {
+      function openModal(listType) {
         var modal = document.getElementById("myModal");
+        var listElements = {
+          klata_triceps: [
+            "Pompki",
+            "Wyciskanie sztangi",
+            "Rozpiętki",
+            "Prostownie ramion",
+          ],
+          barki_ramiona: [
+            "Podciąganie sztangi do brody",
+            "Podciąganie hantli",
+            "Wyciskanie hantli nad głowę",
+          ],
+          plecy_biceps: [
+            "Podciąganie na drążku",
+            "Martwy ciąg",
+            "Uginanie ramion ze sztangą",
+          ],
+          nogi: [
+            "Przysiady",
+            "Wykroki",
+            "Martwy ciąg",
+            "Prostowanie nóg na maszynie",
+          ],
+          brzuch_cardio: ["Plank", "Mountain climbers", "Bieganie"],
+          cale_cialo: ["Płaski wycisk", "Pompki", "Martwy ciąg", "Bieganie"],
+        };
+
+        var listContainer = document.getElementById("our_addEx");
+        listContainer.innerHTML = "";
+
+        var exercises = listElements[listType];
+        exercises.forEach(function (exercise) {
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(exercise));
+          listContainer.appendChild(li);
+        });
+
         modal.style.display = "block";
       }
 
