@@ -141,6 +141,17 @@
         });
       });
 
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sprawdź czy parametr "show_lists" jest obecny w adresie URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var showLists = urlParams.get("show_lists");
+
+        if (showLists === "true") {
+          // Wyświetl sekcję z listami ćwiczeń
+          showContent("lista");
+        }
+      });
+
       function planTraining() {
         alert("Zaplanuj trening");
       }
