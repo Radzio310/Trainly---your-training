@@ -1505,4 +1505,23 @@ hr {
 
 #myModal .close {
   margin-right: 2.5%;
+  color: #bf907e;
+}
+
+#myModal .close:hover {
+  color: #0d0907;
+}
+
+.closing {
+  color: #d9d9d9;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closing:hover,
+.closing:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
 }

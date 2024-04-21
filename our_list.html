@@ -151,6 +151,15 @@
           <div class="button" onclick="saveList()">Dodaj do Twoich list</div>
         </div>
       </div>
+      <!-- Modal -->
+      <div id="nameList" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModalNameList()">&times;</span>
+          <h3>Nadaj nazwę Twojej liście</h3>
+          <input type="text" id="listNameInput" placeholder="Nazwa listy..." />
+          <div class="button" onclick="nameList('listNameInput')">Zapisz</div>
+        </div>
+      </div>
     </main>
     <footer>
       <a href="user_homepage.html"
@@ -174,7 +183,7 @@
       for (i = 0; i < myNodelist.length; i++) {
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
-        span.className = "delete";
+        span.className = "delete close";
         span.appendChild(txt);
         myNodelist[i].appendChild(span);
       }
@@ -199,18 +208,22 @@
         }
         document.getElementById("myInput").value = "";
 
+        // Dodajemy klasę "delete" do elementu listy
+        li.classList.add("delete");
+
+        // Dodajemy krzyżyk do usuwania elementu z listy
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
-        span.className = "delete";
+        span.className = "closing";
+        span.setAttribute("data-added-by-user", "true"); // Dodajemy atrybut dla krzyżyka
         span.appendChild(txt);
         li.appendChild(span);
 
-        for (var i = 0; i < close.length; i++) {
-          close[i].onclick = function () {
-            var div = this.parentElement;
-            div.style.display = "none";
-          };
-        }
+        // Dodajemy obsługę zdarzenia do nowego krzyżyka
+        span.onclick = function () {
+          var listItem = this.parentElement;
+          listItem.style.display = "none";
+        };
       }
 
       function openModal(listType) {
@@ -249,7 +262,27 @@
         exercises.forEach(function (exercise) {
           var li = document.createElement("li");
           li.appendChild(document.createTextNode(exercise));
+
+          // Dodajemy klasę "delete" do elementu listy
+          li.classList.add("delete");
+
+          // Dodajemy krzyżyk do usuwania elementu z listy
+          var span = document.createElement("SPAN");
+          var txt = document.createTextNode("\u00D7");
+          span.className = "closing";
+          span.appendChild(txt);
+          li.appendChild(span);
+
           listContainer.appendChild(li);
+        });
+
+        // Pobieramy wszystkie krzyżyki i dodajemy obsługę zdarzenia dla każdego z nich
+        var closeButtons = document.querySelectorAll(".closing");
+        closeButtons.forEach(function (button) {
+          button.onclick = function () {
+            var listItem = this.parentElement;
+            listItem.style.display = "none";
+          };
         });
 
         modal.style.display = "block";
@@ -260,8 +293,29 @@
         modal.style.display = "none";
       }
 
+      function closeModalNameList() {
+        var modal = document.getElementById("nameList");
+        modal.style.display = "none";
+      }
+
       function sidebar(where) {
         window.location.href = "userpage.html?" + where + "=true";
+      }
+
+      function nameList(listID) {
+        var listName = document.getElementById(listID).value;
+        if (listName.trim() === "") {
+          alert("Podaj poprawną nazwę listy ćwiczeń!");
+        } else {
+          // Do whatever you want with the list name, e.g., save it
+          // After saving, you can redirect the user to userpage.html
+          window.location.href = "userpage.html?show_lists=true";
+        }
+      }
+
+      function saveList() {
+        var modal = document.getElementById("nameList");
+        modal.style.display = "block";
       }
     </script>
   </body>
