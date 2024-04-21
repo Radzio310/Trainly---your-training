@@ -683,6 +683,32 @@ input[type="submit"]:hover {
   margin-left: 12.5vw;
 }
 
+.notification_visible {
+  max-height: 60%;
+  overflow-y: auto;
+}
+
+/* pasek przewijania */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d9b5a0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #734a40;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bf907e;
+  cursor: grab;
+}
+
 /* Dodatkowy styl dla powiadomienia w settings.html */
 
 .success_notification {

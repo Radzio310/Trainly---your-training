@@ -110,32 +110,32 @@
         <li onclick="openModal('klata_triceps')">
           <h3>"Zbuduj ciało niczym szafa"</h3>
           <p>klata + triceps</p>
-          <span class="badge">12</span>
+          <span id="exercise-count" class="badge">9</span>
         </li>
         <li onclick="openModal('barki_ramiona')">
           <h3>Nie przejdziesz przez framugę"</h3>
           <p>barki + ramiona</p>
-          <span class="badge">10</span>
+          <span id="exercise-count" class="badge">10</span>
         </li>
         <li onclick="openModal('plecy_biceps')">
           <h3>"Worki z ziemniakami Ci nie straszne"</h3>
           <p>plecy + biceps</p>
-          <span class="badge">9</span>
+          <span id="exercise-count" class="badge">8</span>
         </li>
         <li onclick="openModal('nogi')">
           <h3>"Po tym nie wstaniesz z łóżka"</h3>
           <p>nogi</p>
-          <span class="badge">8</span>
+          <span id="exercise-count" class="badge">7</span>
         </li>
         <li onclick="openModal('brzuch_cardio')">
           <h3>"Czas na wymianę bojlera "</h3>
           <p>brzuch + cardio</p>
-          <span class="badge">10</span>
+          <span id="exercise-count" class="badge">10</span>
         </li>
         <li onclick="openModal('cale_cialo')">
           <h3>"Zaraz muszę biec na uczelnię "</h3>
           <p>całe ciało</p>
-          <span class="badge">12</span>
+          <span id="exercise-count" class="badge">9</span>
         </li>
       </ul>
 
@@ -230,29 +230,70 @@
         var modal = document.getElementById("myModal");
         var listElements = {
           klata_triceps: [
-            "Pompki",
-            "Wyciskanie sztangi",
-            "Rozpiętki",
-            "Prostownie ramion",
+            "Zgięcia nóg na maszynie",
+            "Rozciąganie klaty na maszynie przodem",
+            "Wyciąg górny na klatę z dwóch stron",
+            "Triceps deep (podciąganie)",
+            "Wyciskanie hantli na ławce poziomej",
+            "Triceps press",
+            "Ugięcia ramienia za głową (triceps)",
+            "Uginanie ramion ze sztangą stojąc",
+            "Wyprosty ramion z wyciągu górnego",
           ],
           barki_ramiona: [
-            "Podciąganie sztangi do brody",
-            "Podciąganie hantli",
-            "Wyciskanie hantli nad głowę",
+            "Wspięcia na palce na maszynie siedząc",
+            "Wyciąg dolny na klatę z dwóch stron",
+            "Ściąganie drążka do klatki piersiowej (szeroko)",
+            "Wyciskanie żołnierskie",
+            "Wypychanie klato-ramienne na maszynie",
+            "Wznosy ramion z hantlami na boki",
+            "Arnoldki siedząc",
+            "Wyciskanie hantli w górę siedząc",
+            "Deltoidy stojąc",
+            "Ugięcia ramion z hantlami podchwytem",
           ],
           plecy_biceps: [
-            "Podciąganie na drążku",
-            "Martwy ciąg",
-            "Uginanie ramion ze sztangą",
+            "Zgięcia na łydkę maszyna",
+            "Podciąganie na drążku szerokim uchwytem",
+            "Wiosłowanie sztangą w opadzie tułowia",
+            "Ugięcia ramion z hantlami ciągłe 3x8",
+            "Wiosłowanie hantlami na ławce skośnej",
+            "Wyciskanie sztangi na modlitewniku",
+            "Wioślarz na maszynie",
+            "Uginanie ramion ze sztangą stojąc",
           ],
           nogi: [
-            "Przysiady",
-            "Wykroki",
-            "Martwy ciąg",
-            "Prostowanie nóg na maszynie",
+            "Wypychanie nóg na suwnicy",
+            "Skręty tułowia na kółku",
+            "Przysiady z kettlem",
+            "Podciąganie nóg do klatki piersiowej",
+            "Spacer z wykrokami",
+            "Wspięcia na palce jednonóż",
+            "Marsz pod górkę >15min",
           ],
-          brzuch_cardio: ["Plank", "Mountain climbers", "Bieganie"],
-          cale_cialo: ["Płaski wycisk", "Pompki", "Martwy ciąg", "Bieganie"],
+          brzuch_cardio: [
+            "Trucht >15min",
+            "Heel touch",
+            "Brzuszki",
+            "Plank",
+            "Mountain climbers",
+            "Burpees",
+            "V-UP",
+            "Right side plank",
+            "Left side plank",
+            "Rowerek / schodki >20min",
+          ],
+          cale_cialo: [
+            "Wspięcia na palce na maszynie siedząc",
+            "Wyciąg górny na klatę z dwóch stron",
+            "Wyciskanie żołnierskie",
+            "Wyciskanie sztangi na ławce ujemnej",
+            "Podciąganie na drążku szerokim uchwytem",
+            "Brzuszki na ławce ujemnej",
+            "Wznosy ramion z hantlami na boki",
+            "Uginanie ramion ze sztangą stojąc",
+            "Wyprosty ramion z wyciągu górnego",
+          ],
         };
 
         var listContainer = document.getElementById("our_addEx");

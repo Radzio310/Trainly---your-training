@@ -239,7 +239,6 @@
       function showContent(section) {
         var content = document.getElementById("content");
         var html = "";
-
         // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
         switch (section) {
           case "kalendarz":
@@ -309,7 +308,19 @@
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
             document.getElementById("kalendarz").classList.remove("selected");
-            html = "<h2>Powiadomienia</h2>";
+            html = "<h2>Powiadomienia</h2><div class='notification_visible'>";
+            html += generateNotification(
+              "ZMIANY, IDĄ ZMIANY!",
+              "Już za kilka chwil na naszej platformie pojawią się nowe funkcje, które ułatwią Ci zarządzanie treningami! W planach kilka drobiazgów technicznych i nowości, które z pewnością Ci się spodobają!"
+            );
+            html += generateNotification(
+              "Dodaliśmy nowe listy ćwiczeń!",
+              "Sprawdź nowe listy ćwiczeń, które dodaliśmy do naszej bazy. Możesz je dodać do swoich list w sekcji Lista ćwiczeń!"
+            );
+            html += generateNotification(
+              "Sekcja kalendarza już dostępna!",
+              "Odblokowaliśmy dla Ciebie sekcję Kalendarz, w której możesz planować swoje treningi na cały miesiąc i obserwować swoją regularność treningów!"
+            );
             html += generateNotification(
               "Zobacz swoje statystyki za marzec",
               "W sekcji Statystyki są już dostępne Twoje wyniki i osiągnięcia w miesiącu MARZEC!<br>Sprawdź już teraz, aby poprawić jakość swoich treningów"
@@ -322,6 +333,7 @@
               "Witaj Nowy Użytkowniku!",
               "Witaj Radek!\n\n Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
             );
+            html += "</div>";
             break;
           case "statystyki":
             html = "<h2>Statystyki</h2><div class='statystyki'>";
