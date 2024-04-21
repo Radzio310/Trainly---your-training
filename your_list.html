@@ -2,7 +2,7 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
-    <title>Trainly - Twoje listy</title>
+    <title>Trainly - Listy ćwiczeń</title>
     <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
     <meta name="author" content="Radosław Witkowicz" />
     <meta
@@ -105,6 +105,26 @@
           </li>
         </ul>
       </div>
+      <div class="Twoje">
+        <h2>Twoje listy ćwiczeń</h2>
+        <div class="Widok_list">
+          <ul class="twoje-listy">
+            <li onclick="openModal('plecy_biceps')">
+              <h3>"Biegneeee już"</h3>
+            </li>
+            <li onclick="openModal('nogi')">
+              <h3>"Ała, ała, ała"</h3>
+            </li>
+            <li onclick="openModal('brzuch_cardio')">
+              <h3>"Brzuch mnie pali"</h3>
+            </li>
+            <li onclick="openModal('cale_cialo')">
+              <h3>"MEGA BICEPS"</h3>
+            </li>
+          </ul>
+        </div>
+        <a class="button" href="create_list.html"> Stwórz nową listę </a>
+      </div>
     </main>
     <footer>
       <a href="user_homepage.html"
@@ -117,15 +137,22 @@
         const hamburger = document.querySelector(".hamburger");
         const menu = document.querySelector(".menu");
 
-        // Dodajemy obsługę kliknięcia na hamburger
         hamburger.addEventListener("click", function () {
-          // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
           this.classList.toggle("clicked");
-
-          // Pokazujemy/Ukrywamy menu po kliknięciu
           menu.classList.toggle("active");
         });
       });
+
+      function openModal(listType) {
+        var modal = document.getElementById("myModal");
+
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
 
       function sidebar(where) {
         window.location.href = "userpage.html?" + where + "=true";
