@@ -375,6 +375,10 @@ input[type="submit"]:hover {
   resize: none;
 }
 
+.Formularz_kontaktowy textarea {
+  height: 15vh;
+}
+
 .Formularz_kontaktowy input[type="file"] {
   width: auto;
   margin-top: 10px;
