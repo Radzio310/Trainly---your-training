@@ -200,26 +200,28 @@
         }
       }
 
-      // Modal functions
+      // Funkcja otwierająca modal z nazwą listy
       function openModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "block";
       }
 
-      function closeModal() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "none";
-      }
-
+      // Funkcja zapisująca listę
       function saveList() {
         var listName = document.getElementById("listNameInput").value;
         if (listName.trim() === "") {
           alert("Podaj poprawną nazwę listy ćwiczeń!");
         } else {
-          // Do whatever you want with the list name, e.g., save it
-          // After saving, you can redirect the user to userpage.html
-          window.location.href = "userpage.html?show_lists=true";
+          // Przenosimy użytkownika do strony userpage.html z odpowiednim komunikatem w adresie URL
+          window.location.href =
+            "userpage.html?show_lists=true&create_list=true&list_name=" +
+            listName;
         }
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
       }
 
       function sidebar(where) {

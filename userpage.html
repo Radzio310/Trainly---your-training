@@ -148,6 +148,8 @@
         var showCalendar = urlParams.get("show_calendar");
         var showStats = urlParams.get("show_stats");
         var showNotes = urlParams.get("show_notes");
+        var createList = urlParams.get("create_list");
+        var addList = urlParams.get("add_list");
 
         if (showLists === "true") {
           // Wyświetl sekcję z listami ćwiczeń
@@ -163,7 +165,17 @@
         }
         if (showNotes === "true") {
           // Wyświetl sekcję z powiadomieniami
-          showContent("powiadoemienia");
+          showContent("powiadomienia");
+        }
+        if (createList === "true") {
+          var listName = urlParams.get("list_name");
+          showSuccessNotification("Lista " + listName + " została utworzona!");
+        }
+        if (addList === "true") {
+          var listName = urlParams.get("list_name");
+          showSuccessNotification(
+            "Lista " + listName + " została dodana do Twoich list!"
+          );
         }
       });
 
@@ -342,7 +354,8 @@
               '<a href="our_list.html"><ul class="opcje_listy"><li class="header"><h2>Nasze listy<h2></li>';
             html += "<li class='our_list'></li></ul></a>";
             html += "</div>"; //class columns
-
+            html +=
+              '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
             document.getElementById("lista").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("kalendarz").classList.remove("selected");
@@ -442,6 +455,23 @@
         "--training-width",
         dayWidth + "%"
       );
+
+      // Funkcja wyświetlająca powiadomienie o sukcesie
+      function showSuccessNotification(message) {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        var successMessage = document.getElementById("success_message");
+        successMessage.innerText = message; // Ustawiamy treść powiadomienia
+
+        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+        // Ukrywamy powiadomienie po 3 sekundach
+        setTimeout(function () {
+          successNotification.style.display = "none";
+          showContent("lista");
+        }, 3000);
+      }
     </script>
   </body>
 </html>
