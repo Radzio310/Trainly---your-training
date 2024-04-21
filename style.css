@@ -1600,7 +1600,7 @@ hr {
 .twoje-listy li {
   align-items: center;
   justify-content: center;
-  background-image: url("Graphics/Your_lists_choice.png");
+  background-image: url("Graphics/Your_list_choice.png");
   background-size: cover;
   background-position: center;
   color: #d9b5a0;
@@ -1626,10 +1626,30 @@ hr {
   }
 }
 
+.twoje-listy h3 {
+  background-color: #734a40;
+  color: #d9b5a0;
+  border-radius: 25px;
+}
+
 .Widok_list {
   height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 7.5vh;
   padding: 10px;
+}
+
+#exercise-list li {
+  list-style-type: none;
+  color: #734a40;
+  font-weight: bolder;
+  padding: 5px;
+  border-radius: 25px;
+  border: 1px solid #734a40;
+}
+
+#exercise-list li:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  background-color: #d9b5a0;
 }

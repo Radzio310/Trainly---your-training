@@ -109,21 +109,30 @@
         <h2>Twoje listy ćwiczeń</h2>
         <div class="Widok_list">
           <ul class="twoje-listy">
-            <li onclick="openModal('plecy_biceps')">
+            <li onclick="openModal('Biegneeee_juz')">
               <h3>"Biegneeee już"</h3>
             </li>
-            <li onclick="openModal('nogi')">
+            <li onclick="openModal('Ala_ala_ala')">
               <h3>"Ała, ała, ała"</h3>
             </li>
-            <li onclick="openModal('brzuch_cardio')">
+            <li onclick="openModal('Brzuch_mnie_pali')">
               <h3>"Brzuch mnie pali"</h3>
             </li>
-            <li onclick="openModal('cale_cialo')">
+            <li onclick="openModal('MEGA_BICEPS')">
               <h3>"MEGA BICEPS"</h3>
             </li>
           </ul>
         </div>
         <a class="button" href="create_list.html"> Stwórz nową listę </a>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <ul id="exercise-list"></ul>
+          <button class="button" onclick="startTraining()">
+            Rozpocznij trening
+          </button>
+        </div>
       </div>
     </main>
     <footer>
@@ -145,6 +154,20 @@
 
       function openModal(listType) {
         var modal = document.getElementById("myModal");
+        var exerciseList = document.getElementById("exercise-list");
+
+        // Czyść listę ćwiczeń
+        exerciseList.innerHTML = "";
+
+        // Pobierz listę ćwiczeń dla danego rodzaju treningu
+        var exercises = getExerciseList(listType);
+
+        // Wyświetl listę ćwiczeń w modalu
+        exercises.forEach(function (exercise) {
+          var li = document.createElement("li");
+          li.textContent = exercise;
+          exerciseList.appendChild(li);
+        });
 
         modal.style.display = "block";
       }
@@ -152,6 +175,54 @@
       function closeModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
+      }
+
+      function startTraining() {
+        alert("Rozpoczęto trening!");
+        window.location.href = "your_list.html";
+      }
+
+      // Funkcja do pobierania listy ćwiczeń dla danego rodzaju treningu
+      function getExerciseList(listType) {
+        // Tutaj możesz zwrócić odpowiednią listę ćwiczeń na podstawie listType
+        // Na razie zwrócę przykładową listę, aby pokazać działanie
+        var exerciseLists = {
+          Biegneeee_juz: [
+            "Trucht >15min",
+            "Heel touch",
+            "Mountain climbers",
+            "Burpees",
+            "V-UP",
+            "Rowerek / schodki >20min",
+            "Interwały 10x2min",
+          ],
+          Ala_ala_ala: [
+            "Wypychanie nóg na suwnicy",
+            "Przysiady z kettlem",
+            "Podciąganie nóg do klatki piersiowej",
+            "Spacer z wykrokami",
+            "Wspięcia na palce jednonóż",
+          ],
+          Brzuch_mnie_pali: [
+            "Heel touch",
+            "Brzuszki",
+            "Plank",
+            "Mountain climbers",
+            "Burpees",
+            "V-UP",
+            "Right side plank",
+            "Left side plank",
+          ],
+          MEGA_BICEPS: [
+            "Podciąganie na drążku",
+            "Ugięcia ramion z hantlami ciągłe 3x8",
+            "Wiosłowanie hantlami na ławce skośnej",
+            "Wyciskanie sztangi na modlitewniku",
+            "Uginanie ramion ze sztangą stojąc",
+          ],
+        };
+
+        return exerciseLists[listType] || [];
       }
 
       function sidebar(where) {
