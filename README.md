@@ -21,6 +21,9 @@ Trainly oferuje wiele przydatnych funkcji, dzięki którym będziesz mógł/a ef
 Trainly jest dostępny na licencji MIT. Więcej informacji na temat licencji znajduje się w pliku LICENSE.
 ---
 ## Zrzuty ekranu
-![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/0f0d2b61-aff1-4917-a23f-5f3ddd46e042)
-![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/f829126e-a07c-4c6d-9405-67706fa8769a)
+![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/f61c0ffd-a104-47e0-9659-0ba526044365)
+![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/658f04bf-161a-46cb-9631-97ae067fa019)
+![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/c3d6d623-bb1a-40e2-9b5d-78906b8184ab)
+![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/130401df-bfdd-4fd7-bade-1e51726b646b)
+![image](https://github.com/Radzio310/Trainly---your-training/assets/146724612/9a2d711f-e658-4c96-8d42-864b9295d216)
 
