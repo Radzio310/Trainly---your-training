@@ -81,7 +81,7 @@ main a {
 
 h1 {
   color: #d9b5a0;
-  font-size: 64px;
+  font-size: 5vw;
   font-weight: bold;
   text-align: center;
   padding: 50px;
@@ -89,7 +89,7 @@ h1 {
 
 h2 {
   color: #bf907e;
-  font-size: 36px;
+  font-size: 3vw;
   font-weight: bold;
   padding-left: 25px;
   padding-top: 40px;
@@ -163,7 +163,7 @@ li:hover {
 
 p {
   font-family: "Lato", sans-serif;
-  font-size: 24px;
+  font-size: 2vw;
   color: #0d0907;
 }
 
@@ -198,14 +198,14 @@ p {
 }
 
 .flip-card h2 {
-  font-size: 24px;
+  font-size: 1.75vw;
   font-weight: bolder;
   text-align: center;
   margin-left: -1.5vw;
 }
 
 .flip-card p {
-  font-size: 20px;
+  font-size: 1.25vw;
 }
 
 /* This container is needed to position the front and back side */
@@ -367,6 +367,46 @@ footer img {
 input[type="submit"]:hover {
   transition: 0.3s;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Media query dla tabletów */
+
+@media only screen and (max-width: 1024px) {
+  /* Tutaj dodaj style dla tabletów */
+  body {
+    left: 0;
+  }
+}
+
+/* Media query dla smartfonów */
+
+@media only screen and (max-width: 600px) {
+  /* Tutaj dodaj style dla smartfonów */
+  body {
+    left: 0;
+  }
+  header {
+    font-size: 24px;
+  }
+  .hero {
+    height: 50vh;
+    background-size: cover;
+    background-position: bottom;
+    margin-top: 10vh;
+  }
+  .logo {
+    width: 40%;
+  }
+  .button {
+    font-size: 2vw;
+    width: 50%;
+  }
+  footer {
+    font-size: 24px;
+  }
+  footer .logo {
+    margin-left: 2vw;
+  }
 }
 
 /* Contact.html */
