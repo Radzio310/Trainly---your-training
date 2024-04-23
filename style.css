@@ -391,28 +391,34 @@ input[type="submit"]:hover {
   }
   body {
     left: 0;
+    margin: 0;
     overflow-x: hidden;
+    height: 150%;
   }
   main {
-    width: 90vw;
-    margin-left: 5vw;
+    width: 90%;
+    height: 145%;
+    margin-left: 5%;
   }
   header {
     font-size: 3vw;
-    width: 95vw;
-    left: 2.5vw;
+    height: 10%;
+    width: 95%;
+    left: 2.5%;
+    position: fixed;
+    top: 0;
   }
   h2 {
-    font-size: 7vw;
+    font-size: 25vw;
     text-align: center;
     margin-bottom: 2.5vw;
     width: 100%;
     margin-left: -2.5vw;
   }
   p {
-    font-size: 5vw;
-    width: 95%;
-    margin-left: 2.5%;
+    font-size: 15vw;
+    width: 90%;
+    margin-left: 5%;
     margin-bottom: 3.5vw;
     text-align: center;
   }
@@ -421,21 +427,27 @@ input[type="submit"]:hover {
     font-size: 4vw;
   }
   .hero {
-    margin-top: 20vw;
-    height: 180vw;
+    margin-top: 7.5%;
+    height: 31%;
     width: auto;
     background-image: url("Graphics/Trainly_mobile_hero.png");
     background-position: center;
     background-size: cover;
   }
   .logo {
-    width: 40%;
+    width: auto;
+    height: 90%;
+    margin-left: 5%;
   }
   .photos {
+    margin-top: 5%;
     flex-direction: column;
   }
+  .photo {
+    margin-bottom: 35%;
+  }
   .flip-card-front img {
-    border: 5px solid #734a40;
+    border: 10px solid #734a40;
     width: 50%;
     padding: 5%;
     border-radius: 25px;
@@ -446,30 +458,35 @@ input[type="submit"]:hover {
     margin-bottom: 5vw;
   }
   .flip-card h2 {
-    font-size: 5vw;
+    font-size: 25vw;
   }
   .flip-card p {
-    font-size: 4vw;
+    font-size: 14vw;
   }
   #how_to_start {
-    margin-top: 5vw;
+    margin-top: 10%;
   }
   .button {
-    font-size: 4vw;
+    margin-top: 10%;
+    font-size: 15vw;
     width: 65%;
   }
   footer {
+    margin-top: 210%;
+    width: 95%;
     font-size: 4vw;
-    margin-left: 2.5vw;
+    margin-left: 2.5%;
+    height: 5%;
   }
   footer .logo {
-    margin-left: 2vw;
+    margin-left: 5%;
+    height: 25vw;
+    width: auto;
   }
   .icon {
     height: auto;
-    width: 10vw;
+    width: 25vw;
     margin: 0;
-    margin-top: 25%;
   }
 }
 
@@ -1010,23 +1027,25 @@ hr {
 
 @media screen and (max-width: 1200px) {
   .menu {
-    display: none;
-  }
-  .menu {
-    display: none;
     position: fixed;
-    top: 12vh;
-    right: 2.5vw;
-    width: 40vw;
+    display: none;
+    margin-top: 10%;
+    right: 5%;
+    width: 60%;
     text-align: center;
     background-color: #d9d9d9;
-    border-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
   }
   .menu.active {
     display: block;
   }
   .menu ul {
     display: block;
+  }
+  .menu ul li {
+    font-size: 20vw;
+    width: 100%;
   }
   .menu ul li:hover {
     background-color: #d9b5a0;
@@ -1036,29 +1055,29 @@ hr {
   }
   .hamburger {
     display: block;
-    width: 30px;
-    height: 20px;
+    width: 10%;
+    height: 50%;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 35%;
+    right: 7.5%;
     cursor: pointer;
     z-index: 1000;
   }
   .line {
     width: 100%;
-    height: 3px;
+    height: 10%;
     background-color: #734a40;
-    margin: 5px 0;
+    margin: 10% 0;
     transition: all 0.5s ease;
   }
   .clicked .line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(22.5px) rotate(45deg);
   }
   .clicked .line:nth-child(2) {
     opacity: 0;
   }
   .clicked .line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-22.5px) rotate(-45deg);
   }
 }
 
@@ -1375,12 +1394,6 @@ hr {
 
 /* Change the width of the three columns to 100%
 (to stack horizontally on small screens) */
-
-@media only screen and (max-width: 600px) {
-  .columns {
-    width: 100%;
-  }
-}
 
 /* create_list.html */
 
