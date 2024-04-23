@@ -354,9 +354,9 @@ footer img {
 }
 
 .social-media-icons {
-  height: 75px;
+  height: 10vh;
   width: auto;
-  margin-right: 50px;
+  margin-right: 6.5vh;
 }
 
 .icon:hover {
@@ -372,40 +372,186 @@ input[type="submit"]:hover {
 /* Media query dla tabletów */
 
 @media only screen and (max-width: 1024px) {
-  /* Tutaj dodaj style dla tabletów */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   body {
     left: 0;
+    max-width: 600px;
+    overflow-x: hidden;
+  }
+  main {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+  header {
+    font-size: 3vh;
+    width: 95vw;
+    left: 2.5vw;
+  }
+  h2 {
+    font-size: 4vh;
+    text-align: center;
+    margin-bottom: 2.5vh;
+    width: 100%;
+    margin-left: -2.5vw;
+  }
+  p {
+    font-size: 3vh;
+    width: 85%;
+    margin-left: 7.5%;
+    margin-bottom: 3vh;
+    text-align: center;
+  }
+  .menu ul li {
+    width: 100%;
+    font-size: 3vh;
+  }
+  .hero {
+    margin-top: 10vh;
+    height: 90vh;
+    width: auto;
+    background-image: url("Graphics/Trainly_mobile_hero.png");
+    background-position: center;
+    background-size: cover;
+  }
+  .logo {
+    width: 40%;
+  }
+  .photos {
+    flex-direction: column;
+  }
+  .flip-card-front img {
+    border: 5px solid #734a40;
+    width: 50%;
+    padding: 5%;
+    border-radius: 25px;
+    background-color: #d9b5a0;
+  }
+  .flip-card {
+    width: 100%;
+    margin-bottom: 5vh;
+  }
+  .flip-card h2 {
+    font-size: 4vh;
+  }
+  .flip-card p {
+    font-size: 2vh;
+  }
+  #how_to_start {
+    margin-top: 5vh;
+  }
+  .button {
+    font-size: 4vw;
+    width: 65%;
+  }
+  footer {
+    font-size: 3vh;
+    margin-left: 2.5vw;
+  }
+  footer .logo {
+    margin-left: 2vw;
+  }
+  .icon {
+    height: auto;
+    width: 10vw;
+    margin: 0;
+    margin-top: 25%;
   }
 }
 
 /* Media query dla smartfonów */
 
 @media only screen and (max-width: 600px) {
-  /* Tutaj dodaj style dla smartfonów */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   body {
     left: 0;
+    max-width: 600px;
+    overflow-x: hidden;
+  }
+  main {
+    width: 90vw;
+    margin-left: 5vw;
   }
   header {
-    font-size: 24px;
+    font-size: 3vh;
+    width: 95vw;
+    left: 2.5vw;
+  }
+  h2 {
+    font-size: 4vh;
+    text-align: center;
+    margin-bottom: 2.5vh;
+    width: 100%;
+    margin-left: -2.5vw;
+  }
+  p {
+    font-size: 3vh;
+    width: 85%;
+    margin-left: 7.5%;
+    margin-bottom: 3vh;
+    text-align: center;
+  }
+  .menu ul li {
+    width: 100%;
+    font-size: 3vh;
   }
   .hero {
-    height: 50vh;
-    background-size: cover;
-    background-position: bottom;
     margin-top: 10vh;
+    height: 90vh;
+    width: auto;
+    background-image: url("Graphics/Trainly_mobile_hero.png");
+    background-position: center;
+    background-size: cover;
   }
   .logo {
     width: 40%;
   }
-  .button {
-    font-size: 2vw;
+  .photos {
+    flex-direction: column;
+  }
+  .flip-card-front img {
+    border: 5px solid #734a40;
     width: 50%;
+    padding: 5%;
+    border-radius: 25px;
+    background-color: #d9b5a0;
+  }
+  .flip-card {
+    width: 100%;
+    margin-bottom: 5vh;
+  }
+  .flip-card h2 {
+    font-size: 4vh;
+  }
+  .flip-card p {
+    font-size: 2vh;
+  }
+  #how_to_start {
+    margin-top: 5vh;
+  }
+  .button {
+    font-size: 4vw;
+    width: 65%;
   }
   footer {
-    font-size: 24px;
+    font-size: 3vh;
+    margin-left: 2.5vw;
   }
   footer .logo {
     margin-left: 2vw;
+  }
+  .icon {
+    height: auto;
+    width: 10vw;
+    margin: 0;
+    margin-top: 25%;
   }
 }
 
@@ -1155,6 +1301,11 @@ hr {
 }
 
 /* Statystyki */
+
+#stats {
+  font-size: 2.5vw;
+  margin-top: 3vh;
+}
 
 .statystyki h3 {
   margin: 0;
