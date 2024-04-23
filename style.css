@@ -66,6 +66,10 @@ main {
   align-items: center;
 }
 
+.fade-in {
+  animation: fadeIn 0.2s ease;
+}
+
 a {
   color: #734a40;
   text-decoration: none;
