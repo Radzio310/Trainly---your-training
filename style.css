@@ -1949,7 +1949,7 @@ hr {
     margin-bottom: 20px;
     border: 5px solid #734a40;
     border-radius: 25px;
-    font-size: 10vw;
+    font-size: 15vw;
     resize: none;
   }
   .Formularz_kontaktowy textarea {
@@ -1959,7 +1959,7 @@ hr {
     font-size: 7.5vw;
   }
   .Formularz_kontaktowy input[type="file"] {
-    width: auto;
+    width: 90%;
     margin-top: 5vw;
   }
   .Formularz_kontaktowy input[type="submit"] {
@@ -1976,5 +1976,41 @@ hr {
     border: 3px solid #bf907e;
     padding: 5vw;
     font-size: 15vw;
+  }
+  /* Settings */
+  .set_mob {
+    height: auto;
+  }
+  .settings {
+    width: 90%;
+    margin: 5%;
+    margin-top: 50vw;
+  }
+  .settings h2 {
+    font-size: 25vw;
+    margin-top: 50vw;
+    margin-bottom: 5%;
+  }
+  .settings input {
+    width: 90%;
+    padding: 5vw;
+    margin-bottom: 20vw;
+    border: 5px solid #734a40;
+    border-radius: 25px;
+    font-size: 15vw;
+    resize: none;
+  }
+  .settings input[type="submit"] {
+    width: 75%;
+    font-size: 15vw;
+    padding: 7.5vw;
+    font-family: "Michroma", sans-serif;
+    font-weight: bolder;
+    color: #d9b5a0;
+    border-radius: 100px;
+    margin-top: 10%;
+  }
+  #password_error {
+    font-size: 10vw;
   }
 }
