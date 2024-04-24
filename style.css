@@ -447,7 +447,7 @@ input[type="submit"]:hover {
   color: #734a40;
   font-size: 3vh;
   margin-top: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .Logowanie input {
@@ -1766,7 +1766,7 @@ hr {
   .hero {
     margin-top: 7.5%;
     margin-bottom: 5%;
-    height: 29.5%;
+    height: 27%;
     width: auto;
     background-image: url("Graphics/Trainly_mobile_hero.png");
     background-position: center right;
@@ -1782,7 +1782,7 @@ hr {
     flex-direction: column;
   }
   .photo {
-    margin-bottom: 35%;
+    margin-bottom: 45%;
   }
   .flip-card-front img {
     border: 10px solid #734a40;
@@ -1805,12 +1805,13 @@ hr {
     margin-top: 10%;
   }
   .button {
-    margin-top: 10%;
-    font-size: 15vw;
-    width: 65%;
+    margin-top: 7.5%;
+    font-size: 12.5vw;
+    width: 75%;
   }
   footer {
-    margin-top: 190%;
+    position: fixed;
+    bottom: 0;
     width: 95%;
     font-size: 4vw;
     margin-left: 2.5%;
@@ -1827,10 +1828,46 @@ hr {
     margin: 0;
   }
   /* Logowanie */
-  .log_site {
-    height: 100%;
+  .log_mob {
+    height: auto;
+  }
+  .Logowanie {
+    margin-top: 75vw;
+    width: 90%;
+    margin-left: 5%;
+  }
+  .Logowanie h1 {
+    font-size: 20vw;
+    margin-bottom: 7.5%;
   }
   .Logowanie input {
-    width: 90%;
+    width: 75%;
+    font-size: 15vw;
+    padding: 5vw;
+    border: 5px solid #734a40;
+    border-radius: 50px;
+  }
+  #login {
+    margin-top: 20vh;
+  }
+  .Logowanie input[type="submit"] {
+    width: 50%;
+    font-size: 15vw;
+    padding: 7.5vw;
+    font-family: "Michroma", sans-serif;
+    font-weight: bolder;
+    color: #d9b5a0;
+    border-radius: 100px;
+    margin-top: 5%;
+  }
+  .Logowanie h3 {
+    font-size: 15vw;
+    margin-top: 50%;
+    margin-bottom: 5%;
+  }
+  #register {
+    font-size: 10vw;
+    border-radius: 100px;
+    padding: 7.5vw;
   }
 }
