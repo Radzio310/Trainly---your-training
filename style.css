@@ -2235,6 +2235,37 @@ hr {
   }
   .mobile_stats {
     display: block;
-    margin-top: 100vw;
+    margin-top: 200vw;
+  }
+  /* Opcje listy */
+  #lists {
+    margin-top: 75vw;
+    font-size: 25vw;
+  }
+  .opcje_listy {
+    border: 5px solid #734a40;
+    border-radius: 50px;
+    width: 75%;
+    height: auto;
+    margin-left: 12.5%;
+    display: flex;
+  }
+  .opcje_listy .header {
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    width: 100%;
+    height: 10%;
+  }
+  .opcje_listy h2 {
+    font-size: 15vw;
+  }
+  .your_list {
+    min-height: 130vw;
+  }
+  .create_list {
+    min-height: 130vw;
+  }
+  .our_list {
+    min-height: 130vw;
   }
 }
