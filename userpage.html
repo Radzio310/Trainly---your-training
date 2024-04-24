@@ -67,9 +67,18 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="user_mob">
       <div class="sidebar">
         <ul>
+          <li>
+            <img
+              src="Graphics\Panel.png"
+              alt="Twój panel"
+              onclick="showContent('panel')"
+              id="panel"
+              class="selected"
+            />
+          </li>
           <li>
             <img
               src="Graphics\Kalendarz.png"
@@ -253,6 +262,22 @@
         var html = "";
         // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
         switch (section) {
+          case "panel":
+            html = "<div class='userinfo' id='side_user'>";
+            html += "<br><h2><bold>Witaj Radek!</bold></h2><br>";
+            html += "</div>";
+            html += "<div id='clock'></div>";
+            html += "<hr>";
+            html +=
+              '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
+            document.getElementById("panel").classList.add("selected");
+            document.getElementById("kalendarz").classList.remove("selected");
+            document.getElementById("lista").classList.remove("selected");
+            document.getElementById("statystyki").classList.remove("selected");
+            document
+              .getElementById("powiadomienia")
+              .classList.remove("selected");
+            break;
           case "kalendarz":
             var currentDate = new Date();
             var monthNames = [
@@ -310,6 +335,7 @@
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
+            document.getElementById("panel").classList.remove("selected");
             document
               .getElementById("powiadomienia")
               .classList.remove("selected");
@@ -320,6 +346,7 @@
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
             document.getElementById("kalendarz").classList.remove("selected");
+            document.getElementById("panel").classList.remove("selected");
             html = "<h2>Powiadomienia</h2><div class='notification_visible'>";
             html += generateNotification(
               "ZMIANY, IDĄ ZMIANY!",
@@ -361,6 +388,7 @@
             document.getElementById("statystyki").classList.add("selected");
             document.getElementById("kalendarz").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
+            document.getElementById("panel").classList.remove("selected");
             document
               .getElementById("powiadomienia")
               .classList.remove("selected");
@@ -383,6 +411,7 @@
             document.getElementById("lista").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("kalendarz").classList.remove("selected");
+            document.getElementById("panel").classList.remove("selected");
             document
               .getElementById("powiadomienia")
               .classList.remove("selected");
