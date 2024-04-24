@@ -373,123 +373,6 @@ input[type="submit"]:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
-/* Media query dla tabletów */
-
-@media only screen and (max-width: 1024px) {
-}
-
-/* Media query dla smartfonów */
-
-@media only screen and (max-width: 600px) {
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    left: 0;
-    margin: 0;
-    overflow-x: hidden;
-    height: 150%;
-  }
-  main {
-    width: 90%;
-    height: 145%;
-    margin-left: 5%;
-  }
-  header {
-    font-size: 3vw;
-    height: 10%;
-    width: 95%;
-    left: 2.5%;
-    position: fixed;
-    top: 0;
-  }
-  h2 {
-    font-size: 25vw;
-    text-align: center;
-    margin-bottom: 2.5vw;
-    width: 100%;
-    margin-left: -2.5vw;
-  }
-  p {
-    font-size: 15vw;
-    width: 90%;
-    margin-left: 5%;
-    margin-bottom: 3.5vw;
-    text-align: center;
-  }
-  .menu ul li {
-    width: 100%;
-    font-size: 4vw;
-  }
-  .hero {
-    margin-top: 7.5%;
-    height: 31%;
-    width: auto;
-    background-image: url("Graphics/Trainly_mobile_hero.png");
-    background-position: center;
-    background-size: cover;
-  }
-  .logo {
-    width: auto;
-    height: 90%;
-    margin-left: 5%;
-  }
-  .photos {
-    margin-top: 5%;
-    flex-direction: column;
-  }
-  .photo {
-    margin-bottom: 35%;
-  }
-  .flip-card-front img {
-    border: 10px solid #734a40;
-    width: 50%;
-    padding: 5%;
-    border-radius: 25px;
-    background-color: #d9b5a0;
-  }
-  .flip-card {
-    width: 100%;
-    margin-bottom: 5vw;
-  }
-  .flip-card h2 {
-    font-size: 25vw;
-  }
-  .flip-card p {
-    font-size: 14vw;
-  }
-  #how_to_start {
-    margin-top: 10%;
-  }
-  .button {
-    margin-top: 10%;
-    font-size: 15vw;
-    width: 65%;
-  }
-  footer {
-    margin-top: 210%;
-    width: 95%;
-    font-size: 4vw;
-    margin-left: 2.5%;
-    height: 5%;
-  }
-  footer .logo {
-    margin-left: 5%;
-    height: 25vw;
-    width: auto;
-  }
-  .icon {
-    height: auto;
-    width: 25vw;
-    margin: 0;
-  }
-}
-
 /* Contact.html */
 
 .Formularz_kontaktowy {
@@ -1021,64 +904,6 @@ hr {
   display: none;
   /* Ukrywamy hamburger ikonę na początku */
   cursor: pointer;
-}
-
-/* Ukrywamy standardowe menu przy szerokości ekranu poniżej 1200px */
-
-@media screen and (max-width: 1200px) {
-  .menu {
-    position: fixed;
-    display: none;
-    margin-top: 10%;
-    right: 5%;
-    width: 60%;
-    text-align: center;
-    background-color: #d9d9d9;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-  }
-  .menu.active {
-    display: block;
-  }
-  .menu ul {
-    display: block;
-  }
-  .menu ul li {
-    font-size: 20vw;
-    width: 100%;
-  }
-  .menu ul li:hover {
-    background-color: #d9b5a0;
-    color: #734a40;
-    border-radius: 25px;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
-  }
-  .hamburger {
-    display: block;
-    width: 10%;
-    height: 50%;
-    position: absolute;
-    top: 35%;
-    right: 7.5%;
-    cursor: pointer;
-    z-index: 1000;
-  }
-  .line {
-    width: 100%;
-    height: 10%;
-    background-color: #734a40;
-    margin: 10% 0;
-    transition: all 0.5s ease;
-  }
-  .clicked .line:nth-child(1) {
-    transform: translateY(22.5px) rotate(45deg);
-  }
-  .clicked .line:nth-child(2) {
-    opacity: 0;
-  }
-  .clicked .line:nth-child(3) {
-    transform: translateY(-22.5px) rotate(-45deg);
-  }
 }
 
 /* Lista ćwiczeń */
@@ -1779,4 +1604,233 @@ hr {
 #exercise-list li:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
   background-color: #d9b5a0;
+}
+
+/* ----------------------------------- */
+
+/* MEDIA QUERIES */
+
+/* Ukrywamy standardowe menu przy szerokości ekranu poniżej 1200px */
+
+@media screen and (max-width: 1200px) {
+  .menu {
+    position: fixed;
+    display: none;
+    margin-top: 10%;
+    right: 5%;
+    width: 60%;
+    text-align: center;
+    background-color: #d9d9d9;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  .menu.active {
+    display: block;
+  }
+  .menu ul {
+    display: block;
+  }
+  .menu ul li {
+    font-size: 20vw;
+    width: 100%;
+  }
+  .menu ul li:hover {
+    background-color: #d9b5a0;
+    color: #734a40;
+    border-radius: 25px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  }
+  .hamburger {
+    display: block;
+    width: 50px;
+    height: 50%;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .line {
+    width: 100%;
+    height: 3px;
+    background-color: #734a40;
+    margin: 5px 0;
+    transition: all 0.5s ease;
+  }
+  .clicked .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .clicked .line:nth-child(2) {
+    opacity: 0;
+  }
+  .clicked .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Media query dla tabletów */
+
+@media only screen and (max-width: 1024px) {
+}
+
+/* Media query dla smartfonów */
+
+@media only screen and (max-width: 600px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    left: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+  main {
+    width: 90%;
+    height: 140%;
+    margin-left: 5%;
+  }
+  header {
+    font-size: 3vw;
+    height: 10%;
+    width: 95%;
+    left: 2.5%;
+    position: fixed;
+    top: 0;
+  }
+  h2 {
+    font-size: 25vw;
+    text-align: center;
+    margin-bottom: 5vw;
+    width: 100%;
+    margin-left: -2.5vw;
+  }
+  p {
+    font-size: 15vw;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 3.5vw;
+    text-align: center;
+  }
+  .menu {
+    position: fixed;
+    display: none;
+    margin-top: 10%;
+    right: 5%;
+    width: 60%;
+    text-align: center;
+    background-color: #d9d9d9;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  .menu.active {
+    display: block;
+  }
+  .menu ul {
+    display: block;
+  }
+  .menu ul li {
+    font-size: 20vw;
+    width: 100%;
+  }
+  .hamburger {
+    display: block;
+    width: 10%;
+    height: 50%;
+    position: absolute;
+    top: 35%;
+    right: 7.5%;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .line {
+    width: 100%;
+    height: 10%;
+    background-color: #734a40;
+    margin: 10% 0;
+    transition: all 0.5s ease;
+  }
+  .clicked .line:nth-child(1) {
+    transform: translateY(22.5px) rotate(45deg);
+  }
+  .clicked .line:nth-child(2) {
+    opacity: 0;
+  }
+  .clicked .line:nth-child(3) {
+    transform: translateY(-22.5px) rotate(-45deg);
+  }
+  .hero {
+    margin-top: 7.5%;
+    margin-bottom: 5%;
+    height: 29.5%;
+    width: auto;
+    background-image: url("Graphics/Trainly_mobile_hero.png");
+    background-position: center right;
+    background-size: cover;
+  }
+  .logo {
+    width: auto;
+    height: 90%;
+    margin-left: 5%;
+  }
+  .photos {
+    margin-top: 15%;
+    flex-direction: column;
+  }
+  .photo {
+    margin-bottom: 35%;
+  }
+  .flip-card-front img {
+    border: 10px solid #734a40;
+    width: 50%;
+    padding: 5%;
+    border-radius: 25px;
+    background-color: #d9b5a0;
+  }
+  .flip-card {
+    width: 100%;
+    margin-bottom: 10%;
+  }
+  .flip-card h2 {
+    font-size: 25vw;
+  }
+  .flip-card p {
+    font-size: 14vw;
+  }
+  #how_to_start {
+    margin-top: 10%;
+  }
+  .button {
+    margin-top: 10%;
+    font-size: 15vw;
+    width: 65%;
+  }
+  footer {
+    margin-top: 190%;
+    width: 95%;
+    font-size: 4vw;
+    margin-left: 2.5%;
+    height: 5%;
+  }
+  footer .logo {
+    margin-left: 5%;
+    height: 25vw;
+    width: auto;
+  }
+  .icon {
+    height: auto;
+    width: 25vw;
+    margin: 0;
+  }
+  /* Logowanie */
+  .log_site {
+    height: 100%;
+  }
+  .Logowanie input {
+    width: 90%;
+  }
 }
