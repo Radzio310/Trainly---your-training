@@ -52,7 +52,7 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="con_mob">
       <section class="Formularz_kontaktowy">
         <form action="" method="POST" onsubmit="return submitForm(event)">
           <h1>Skontaktuj się z nami</h1>
@@ -82,7 +82,9 @@
             required
           />
           <br />
-          <label for="attachment">Wybierz plik do załączenia:</label>
+          <label class="plik" for="attachment"
+            >Wybierz plik do załączenia:</label
+          >
           <input
             type="file"
             id="attachment"

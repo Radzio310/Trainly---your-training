@@ -1929,4 +1929,52 @@ hr {
     font-size: 15vw;
     font-weight: bolder;
   }
+  /* Contact.html */
+  .con_mob {
+    height: auto;
+  }
+  .Formularz_kontaktowy {
+    width: 90%;
+    margin: 5%;
+    margin-top: 50vw;
+  }
+  .Formularz_kontaktowy h1 {
+    font-size: 15vw;
+    margin-bottom: 7.5%;
+  }
+  .Formularz_kontaktowy input,
+  .Formularz_kontaktowy textarea {
+    width: 90%;
+    padding: 5vw;
+    margin-bottom: 20px;
+    border: 5px solid #734a40;
+    border-radius: 25px;
+    font-size: 10vw;
+    resize: none;
+  }
+  .Formularz_kontaktowy textarea {
+    height: 100vh;
+  }
+  .plik {
+    font-size: 7.5vw;
+  }
+  .Formularz_kontaktowy input[type="file"] {
+    width: auto;
+    margin-top: 5vw;
+  }
+  .Formularz_kontaktowy input[type="submit"] {
+    width: 40%;
+    border-radius: 100px;
+    padding: 5vw;
+    font-size: 10vw;
+  }
+  .success_notification {
+    top: 75vw;
+    left: 50%;
+    width: 75%;
+    border-radius: 25px;
+    border: 3px solid #bf907e;
+    padding: 5vw;
+    font-size: 15vw;
+  }
 }
