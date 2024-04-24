@@ -1,530 +1,486 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>Trainly - Twój panel</title>
     <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
     <meta name="author" content="Radosław Witkowicz" />
-    <meta
-      name="keywords"
-      content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami"
-    />
-    <meta
-      name="description"
-      content="Trainly - aplikacja do zarządzania treningami"
-    />
+    <meta name="keywords" content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami" />
+    <meta name="description" content="Trainly - aplikacja do zarządzania treningami" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
-  </head>
+</head>
 
-  <body class="fade-in">
+<body class="fade-in">
     <div id="overlay_notification">
-      <div id="notification-modal">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="notification-title"></h2>
-        <p id="notification-content"></p>
-      </div>
+        <div id="notification-modal">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="notification-title"></h2>
+            <p id="notification-content"></p>
+        </div>
     </div>
     <header>
-      <div class="container">
-        <img class="logo" src="Graphics/Trainly-logo.png" />
-      </div>
-      <nav>
-        <div class="hamburger">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
+        <div class="container">
+            <img class="logo" src="Graphics/Trainly-logo.png" />
         </div>
-        <div class="menu">
-          <ul>
-            <a href="userpage.html" class="current_site">
-              <li>Twój panel</li>
-            </a>
-            <a href="settings.html">
-              <li>Ustawienia</li>
-            </a>
-            <a href="user_contact.html">
-              <li>Kontakt</li>
-            </a>
-            <a href="index.html">
-              <li>Wyloguj</li>
-            </a>
-          </ul>
-        </div>
-      </nav>
+        <nav>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <a href="userpage.html" class="current_site">
+                        <li>Twój panel</li>
+                    </a>
+                    <a href="settings.html">
+                        <li>Ustawienia</li>
+                    </a>
+                    <a href="user_contact.html">
+                        <li>Kontakt</li>
+                    </a>
+                    <a href="index.html">
+                        <li>Wyloguj</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
     </header>
     <main class="user_mob">
-      <div class="sidebar">
-        <ul>
-          <li>
-            <img
-              src="Graphics\Panel.png"
-              alt="Twój panel"
-              onclick="showContent('panel')"
-              id="panel"
-              class="selected"
-            />
-          </li>
-          <li>
-            <img
-              src="Graphics\Kalendarz.png"
-              alt="Kalendarz"
-              onclick="showContent('kalendarz')"
-              id="kalendarz"
-            />
-          </li>
-          <li>
-            <img
-              src="Graphics\Powiadomienia.png"
-              alt="Historia i powiadomienia"
-              onclick="showContent('powiadomienia')"
-              id="powiadomienia"
-            />
-          </li>
-          <li>
-            <img
-              src="Graphics\Statystyki.png"
-              alt="Statystyki"
-              onclick="showContent('statystyki')"
-              id="statystyki"
-            />
-          </li>
-          <li>
-            <img
-              src="Graphics\Lista.png"
-              alt="Lista ćwiczeń"
-              onclick="showContent('lista')"
-              id="lista"
-            />
-          </li>
-        </ul>
-      </div>
-      <section class="content" id="content">
-        <!-- Sekcja na ekranie głównym -->
-        <div class="userinfo">
-          <br />
-          <h2>
-            <bold>Witaj Radek!</bold>
-          </h2>
-          <br />
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <img src="Graphics\Panel.png" alt="Twój panel" onclick="showContent('panel')" id="panel" class="selected" />
+                </li>
+                <li>
+                    <img src="Graphics\Kalendarz.png" alt="Kalendarz" onclick="showContent('kalendarz')" id="kalendarz" />
+                </li>
+                <li>
+                    <img src="Graphics\Powiadomienia.png" alt="Historia i powiadomienia" onclick="showContent('powiadomienia')" id="powiadomienia" />
+                </li>
+                <li>
+                    <img src="Graphics\Statystyki.png" alt="Statystyki" onclick="showContent('statystyki')" id="statystyki" />
+                </li>
+                <li>
+                    <img src="Graphics\Lista.png" alt="Lista ćwiczeń" onclick="showContent('lista')" id="lista" />
+                </li>
+            </ul>
         </div>
-        <div id="clock"></div>
-        <hr />
-        <div class="button" id="user_button" onclick="startTraining()">
-          Zacznij trening!
-        </div>
-      </section>
+        <section class="content" id="content">
+            <!-- Sekcja na ekranie głównym -->
+            <div class="userinfo">
+                <br />
+                <h2>
+                    <bold>Witaj Radek!</bold>
+                </h2>
+                <br />
+            </div>
+            <div id="clock"></div>
+            <hr />
+            <div class="button" id="user_button" onclick="startTraining()">
+                Zacznij trening!
+            </div>
+        </section>
     </main>
     <footer>
-      <a href="user_homepage.html">
-        <img class="logo" src="Graphics/Trainly-logo_2.png" />
-      </a>
-      <!-- Dodaj ikonki mediów społecznościowych -->
-      <div class="social-media-icons">
-        <a
-          href="https://www.facebook.com/profile.php?id=61558575186327"
-          target="_blank"
-          ><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook"
-        /></a>
-        <a
-          href="https://www.instagram.com/trainly_yourtraining/"
-          target="_blank"
-          ><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram"
-        /></a>
-      </div>
+        <a href="user_homepage.html">
+            <img class="logo" src="Graphics/Trainly-logo_2.png" />
+        </a>
+        <!-- Dodaj ikonki mediów społecznościowych -->
+        <div class="social-media-icons">
+            <a href="https://www.facebook.com/profile.php?id=61558575186327" target="_blank"><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/trainly_yourtraining/" target="_blank"><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram" /></a>
+        </div>
     </footer>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const hamburger = document.querySelector(".hamburger");
-        const menu = document.querySelector(".menu");
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.querySelector(".hamburger");
+            const menu = document.querySelector(".menu");
 
-        // Dodajemy obsługę kliknięcia na hamburger
-        hamburger.addEventListener("click", function () {
-          // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
-          this.classList.toggle("clicked");
+            // Dodajemy obsługę kliknięcia na hamburger
+            hamburger.addEventListener("click", function() {
+                // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+                this.classList.toggle("clicked");
 
-          // Pokazujemy/Ukrywamy menu po kliknięciu
-          menu.classList.toggle("active");
-        });
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // Sprawdź czy parametr "show_lists" jest obecny w adresie URL
-        var urlParams = new URLSearchParams(window.location.search);
-        var showLists = urlParams.get("show_lists");
-        var showCalendar = urlParams.get("show_calendar");
-        var showStats = urlParams.get("show_stats");
-        var showNotes = urlParams.get("show_notes");
-        var createList = urlParams.get("create_list");
-        var addList = urlParams.get("add_list");
-
-        if (showLists === "true") {
-          // Wyświetl sekcję z listami ćwiczeń
-          showContent("lista");
-        }
-        if (showCalendar === "true") {
-          // Wyświetl sekcję z kalendarzem
-          showContent("kalendarz");
-        }
-        if (showStats === "true") {
-          // Wyświetl sekcję ze statystykami
-          showContent("statystyki");
-        }
-        if (showNotes === "true") {
-          // Wyświetl sekcję z powiadomieniami
-          showContent("powiadomienia");
-        }
-        if (createList === "true") {
-          var listName = urlParams.get("list_name");
-          showSuccessNotification("Lista " + listName + " została utworzona!");
-        }
-        if (addList === "true") {
-          var listName = urlParams.get("list_name");
-          showSuccessNotification(
-            "Lista " + listName + " została dodana do Twoich list!"
-          );
-        }
-      });
-
-      function planTraining() {
-        alert("Zaplanuj trening");
-      }
-
-      function startTraining() {
-        // Wyświetlenie alertu informującego o rozpoczęciu treningu
-        alert("Rozpoczęto trening!");
-
-        // Pobierz dzień "active" z kalendarza
-        var activeDay = document.querySelector(".active");
-
-        // Sprawdź, czy jest wybrany dzień
-        if (activeDay) {
-          // Pobierz numer dnia
-          var dayNumber = parseInt(activeDay.textContent);
-
-          // Oznacz ten dzień jako dzień treningowy
-          markTrainingDay(dayNumber);
-
-          // Zaktualizuj statystyki
-          updateStatistics();
-        } else {
-          alert("Najpierw wybierz dzień treningu z kalendarza!");
-        }
-      }
-
-      function plan(dayId) {
-        document.getElementById("startTraining").style.display = "none";
-        document.getElementById("planTraining").style.display = "block";
-        handleDayClick(dayId);
-      }
-
-      function start(dayID) {
-        document.getElementById("planTraining").style.display = "none";
-        document.getElementById("startTraining").style.display = "block";
-        handleDayClick(null);
-      }
-
-      function handleDayClick(dayId) {
-        var clickedDay = document.getElementById(dayId); // Pobierz kliknięty dzień na podstawie jego ID
-
-        // Usuń klasę "last-clicked" ze wszystkich dni w kalendarzu
-        var allDays = document.querySelectorAll(".days li span");
-        allDays.forEach(function (day) {
-          day.classList.remove("last-clicked");
+                // Pokazujemy/Ukrywamy menu po kliknięciu
+                menu.classList.toggle("active");
+            });
         });
 
-        // Dodaj klasę "last-clicked" tylko do klikniętego dnia
-        clickedDay.classList.add("last-clicked");
-      }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Sprawdź czy parametr "show_lists" jest obecny w adresie URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var showLists = urlParams.get("show_lists");
+            var showCalendar = urlParams.get("show_calendar");
+            var showStats = urlParams.get("show_stats");
+            var showNotes = urlParams.get("show_notes");
+            var createList = urlParams.get("create_list");
+            var addList = urlParams.get("add_list");
 
-      function getDaysInMonth(month, year) {
-        // Użyjemy miesiąca następnego, aby ustalić datę ostatniego dnia bieżącego miesiąca
-        // Ponieważ dzień 0 zawsze oznacza ostatni dzień poprzedniego miesiąca
-        return new Date(year, month + 1, 0).getDate();
-      }
+            if (showLists === "true") {
+                // Wyświetl sekcję z listami ćwiczeń
+                showContent("lista");
+            }
+            if (showCalendar === "true") {
+                // Wyświetl sekcję z kalendarzem
+                showContent("kalendarz");
+            }
+            if (showStats === "true") {
+                // Wyświetl sekcję ze statystykami
+                showContent("statystyki");
+            }
+            if (showNotes === "true") {
+                // Wyświetl sekcję z powiadomieniami
+                showContent("powiadomienia");
+            }
+            if (createList === "true") {
+                var listName = urlParams.get("list_name");
+                showSuccessNotification("Lista " + listName + " została utworzona!");
+            }
+            if (addList === "true") {
+                var listName = urlParams.get("list_name");
+                showSuccessNotification(
+                    "Lista " + listName + " została dodana do Twoich list!"
+                );
+            }
+        });
 
-      function showContent(section) {
-        var content = document.getElementById("content");
-        var html = "";
-        // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
-        switch (section) {
-          case "panel":
-            html = "<div class='userinfo' id='side_user'>";
-            html += "<br><h2><bold>Witaj Radek!</bold></h2><br>";
-            html += "</div>";
-            html += "<div id='clock'></div>";
-            html += "<hr>";
-            html +=
-              '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
-            document.getElementById("panel").classList.add("selected");
-            document.getElementById("kalendarz").classList.remove("selected");
-            document.getElementById("lista").classList.remove("selected");
-            document.getElementById("statystyki").classList.remove("selected");
-            document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
-            break;
-          case "kalendarz":
-            var currentDate = new Date();
-            var monthNames = [
-              "STYCZEŃ",
-              "LUTY",
-              "MARZEC",
-              "KWIECIEŃ",
-              "MAJ",
-              "CZERWIEC",
-              "LIPIEC",
-              "SIERPIEŃ",
-              "WRZESIEŃ",
-              "PAŹDZIERNIK",
-              "LISTOPAD",
-              "GRUDZIEŃ",
-            ];
-            var monthIndex = currentDate.getMonth();
-            var year = currentDate.getFullYear();
-            var activeDay = currentDate.getDate();
-            var html = '<div class="calendar"><div class="month"><ul><li><h2>';
-            html += monthNames[monthIndex];
-            html += "<span> ";
-            html += year;
-            html += "</span></h2></li></ul></div>";
-            html +=
-              '<ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>';
-            html += '<ul class="days">';
-            // Pobieramy liczbę dni w danym miesiącu
-            var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+        function planTraining() {
+            alert("Zaplanuj trening");
+        }
 
-            for (var i = 1; i <= daysInMonth; i++) {
-              if (i === activeDay) {
-                html +=
-                  '<li><span class="active" onclick="start(this.id)">' +
-                  i +
-                  "</span></li>";
-              } else {
-                html +=
-                  '<li><span class="inactive" onclick="plan(this.id)" id="day_' +
-                  i +
-                  '">' +
-                  i +
-                  "</span></li>";
-              }
+        function startTraining() {
+            // Wyświetlenie alertu informującego o rozpoczęciu treningu
+            alert("Rozpoczęto trening!");
+
+            // Pobierz dzień "active" z kalendarza
+            var activeDay = document.querySelector(".active");
+
+            // Sprawdź, czy jest wybrany dzień
+            if (activeDay) {
+                // Pobierz numer dnia
+                var dayNumber = parseInt(activeDay.textContent);
+
+                // Oznacz ten dzień jako dzień treningowy
+                markTrainingDay(dayNumber);
+
+                // Zaktualizuj statystyki
+                updateStatistics();
+            } else {
+                alert("Najpierw wybierz dzień treningu z kalendarza!");
+            }
+        }
+
+        function plan(dayId) {
+            document.getElementById("startTraining").style.display = "none";
+            document.getElementById("planTraining").style.display = "block";
+            handleDayClick(dayId);
+        }
+
+        function start(dayID) {
+            document.getElementById("planTraining").style.display = "none";
+            document.getElementById("startTraining").style.display = "block";
+            handleDayClick(null);
+        }
+
+        function handleDayClick(dayId) {
+            var clickedDay = document.getElementById(dayId); // Pobierz kliknięty dzień na podstawie jego ID
+
+            // Usuń klasę "last-clicked" ze wszystkich dni w kalendarzu
+            var allDays = document.querySelectorAll(".days li span");
+            allDays.forEach(function(day) {
+                day.classList.remove("last-clicked");
+            });
+
+            // Dodaj klasę "last-clicked" tylko do klikniętego dnia
+            clickedDay.classList.add("last-clicked");
+        }
+
+        function getDaysInMonth(month, year) {
+            // Użyjemy miesiąca następnego, aby ustalić datę ostatniego dnia bieżącego miesiąca
+            // Ponieważ dzień 0 zawsze oznacza ostatni dzień poprzedniego miesiąca
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function showContent(section) {
+            var content = document.getElementById("content");
+            var html = "";
+            // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
+            switch (section) {
+                case "panel":
+                    html = "<div class='userinfo' id='side_user'>";
+                    html += "<br><h2><bold>Witaj Radek!</bold></h2><br>";
+                    html += "</div>";
+                    html += "<div id='clock'></div>";
+                    html += "<hr>";
+                    html +=
+                        '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
+                    document.getElementById("panel").classList.add("selected");
+                    document.getElementById("kalendarz").classList.remove("selected");
+                    document.getElementById("lista").classList.remove("selected");
+                    document.getElementById("statystyki").classList.remove("selected");
+                    document
+                        .getElementById("powiadomienia")
+                        .classList.remove("selected");
+                    break;
+                case "kalendarz":
+                    var currentDate = new Date();
+                    var monthNames = [
+                        "STYCZEŃ",
+                        "LUTY",
+                        "MARZEC",
+                        "KWIECIEŃ",
+                        "MAJ",
+                        "CZERWIEC",
+                        "LIPIEC",
+                        "SIERPIEŃ",
+                        "WRZESIEŃ",
+                        "PAŹDZIERNIK",
+                        "LISTOPAD",
+                        "GRUDZIEŃ",
+                    ];
+                    var monthIndex = currentDate.getMonth();
+                    var year = currentDate.getFullYear();
+                    var activeDay = currentDate.getDate();
+                    var html =
+                        '<h2 id="cals">Kalendarz</h2><div class="calendar"><div class="month"><ul><li><h2>';
+                    html += monthNames[monthIndex];
+                    html += "<span> ";
+                    html += year;
+                    html += "</span></h2></li></ul></div>";
+                    html +=
+                        '<ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>';
+                    html += '<ul class="days">';
+                    // Pobieramy liczbę dni w danym miesiącu
+                    var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+                    for (var i = 1; i <= daysInMonth; i++) {
+                        if (i === activeDay) {
+                            html +=
+                                '<li><span class="active" onclick="start(this.id)">' +
+                                i +
+                                "</span></li>";
+                        } else {
+                            html +=
+                                '<li><span class="inactive" onclick="plan(this.id)" id="day_' +
+                                i +
+                                '">' +
+                                i +
+                                "</span></li>";
+                        }
+                    }
+
+                    html += "</ul>";
+                    // Dodajemy przycisk "Zaplanuj trening" i "Rozpocznij trening"
+                    html +=
+                        '<button class="button" id="startTraining" onclick="startTraining()">Rozpocznij trening</button>';
+                    html +=
+                        '<button class="button" id="planTraining" onclick="planTraining()">Zaplanuj trening</button>';
+                    html += "</div>";
+                    html += "</div></div><span class='mobile_cal'>";
+                    document.getElementById("kalendarz").classList.add("selected");
+                    document.getElementById("statystyki").classList.remove("selected");
+                    document.getElementById("lista").classList.remove("selected");
+                    document.getElementById("panel").classList.remove("selected");
+                    document
+                        .getElementById("powiadomienia")
+                        .classList.remove("selected");
+                    break;
+
+                case "powiadomienia":
+                    document.getElementById("powiadomienia").classList.add("selected");
+                    document.getElementById("statystyki").classList.remove("selected");
+                    document.getElementById("lista").classList.remove("selected");
+                    document.getElementById("kalendarz").classList.remove("selected");
+                    document.getElementById("panel").classList.remove("selected");
+                    html =
+                        "<h2 id='notes_h2'>Powiadomienia</h2><div class='notification_visible'>";
+                    html += generateNotification(
+                        "ZMIANY, IDĄ ZMIANY!",
+                        "Już za kilka chwil na naszej platformie pojawią się nowe funkcje, które ułatwią Ci zarządzanie treningami! W planach kilka drobiazgów technicznych i nowości, które z pewnością Ci się spodobają!"
+                    );
+                    html += generateNotification(
+                        "Dodaliśmy nowe listy ćwiczeń!",
+                        "Sprawdź nowe listy ćwiczeń, które dodaliśmy do naszej bazy. Możesz je dodać do swoich list w sekcji Lista ćwiczeń!"
+                    );
+                    html += generateNotification(
+                        "Sekcja kalendarza już dostępna!",
+                        "Odblokowaliśmy dla Ciebie sekcję Kalendarz, w której możesz planować swoje treningi na cały miesiąc i obserwować swoją regularność treningów!"
+                    );
+                    html += generateNotification(
+                        "Zobacz swoje statystyki za marzec",
+                        "W sekcji Statystyki są już dostępne Twoje wyniki i osiągnięcia w miesiącu MARZEC!<br>Sprawdź już teraz, aby poprawić jakość swoich treningów"
+                    );
+                    html += generateNotification(
+                        "Zacznij swój trening!",
+                        "Witaj Radek! \n\nMożesz już tworzyć nowe plany treningowe lub stworzyć własną listę ćwiczeń w sekcji Mój Trening lub Lista ćwiczeń\nSprawdź już dziś!"
+                    );
+                    html += generateNotification(
+                        "Witaj Nowy Użytkowniku!",
+                        "Witaj Radek!\n\n Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
+                    );
+                    html += "</div><span class='mobile_not'></span>";
+                    break;
+                case "statystyki":
+                    html = "<h2 id='stats'>Statystyki</h2><div class='statystyki'>";
+                    html +=
+                        '<h3>Całkowita liczba treningów w miesiącu</h3><div class="statistics"><div class="training">13</div></div>';
+                    html +=
+                        '<h3>Średni czas treningu</h3><div class="statistics"><div class="time">57 min</div></div>';
+                    html +=
+                        '<h3>Spalone kalorie</h3><div class="statistics"><div class="calories">1259 kcal</div></div>';
+                    html +=
+                        '<h3>Średnia intensywność treningu</h3><div class="statistics"><div class="intensitivity">Powyżej przeciętnej</div></div></div>';
+                    html += "<span class='mobile_stats'></span>"
+
+                    document.getElementById("statystyki").classList.add("selected");
+                    document.getElementById("kalendarz").classList.remove("selected");
+                    document.getElementById("lista").classList.remove("selected");
+                    document.getElementById("panel").classList.remove("selected");
+                    document
+                        .getElementById("powiadomienia")
+                        .classList.remove("selected");
+                    break;
+
+                case "lista":
+                    html = '<h2>Listy ćwiczeń</h2><div class="columns">';
+                    html +=
+                        '<a href="your_list.html"><ul class="opcje_listy"><li class="header"><h2>Twoje listy<h2></li>';
+                    html += "<li class='your_list'></li></ul></a>";
+                    html +=
+                        '<a href="create_list.html"><ul class="opcje_listy"><li class="header"><h2>Stwórz listę<h2></li>';
+                    html += "<li class='create_list'></li></ul></a>";
+                    html +=
+                        '<a href="our_list.html"><ul class="opcje_listy"><li class="header"><h2>Nasze listy<h2></li>';
+                    html += "<li class='our_list'></li></ul></a>";
+                    html += "</div>"; //class columns
+                    html +=
+                        '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
+                    document.getElementById("lista").classList.add("selected");
+                    document.getElementById("statystyki").classList.remove("selected");
+                    document.getElementById("kalendarz").classList.remove("selected");
+                    document.getElementById("panel").classList.remove("selected");
+                    document
+                        .getElementById("powiadomienia")
+                        .classList.remove("selected");
+                    break;
+
+                default:
+                    html = "<p>Nieznany dział</p>";
             }
 
-            html += "</ul>";
-            // Dodajemy przycisk "Zaplanuj trening" i "Rozpocznij trening"
-            html +=
-              '<button class="button" id="startTraining" onclick="startTraining()">Rozpocznij trening</button>';
-            html +=
-              '<button class="button" id="planTraining" onclick="planTraining()">Zaplanuj trening</button>';
-            html += "</div>";
-            html += "</div>";
-            document.getElementById("kalendarz").classList.add("selected");
-            document.getElementById("statystyki").classList.remove("selected");
-            document.getElementById("lista").classList.remove("selected");
-            document.getElementById("panel").classList.remove("selected");
-            document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
-            break;
-
-          case "powiadomienia":
-            document.getElementById("powiadomienia").classList.add("selected");
-            document.getElementById("statystyki").classList.remove("selected");
-            document.getElementById("lista").classList.remove("selected");
-            document.getElementById("kalendarz").classList.remove("selected");
-            document.getElementById("panel").classList.remove("selected");
-            html = "<h2>Powiadomienia</h2><div class='notification_visible'>";
-            html += generateNotification(
-              "ZMIANY, IDĄ ZMIANY!",
-              "Już za kilka chwil na naszej platformie pojawią się nowe funkcje, które ułatwią Ci zarządzanie treningami! W planach kilka drobiazgów technicznych i nowości, które z pewnością Ci się spodobają!"
-            );
-            html += generateNotification(
-              "Dodaliśmy nowe listy ćwiczeń!",
-              "Sprawdź nowe listy ćwiczeń, które dodaliśmy do naszej bazy. Możesz je dodać do swoich list w sekcji Lista ćwiczeń!"
-            );
-            html += generateNotification(
-              "Sekcja kalendarza już dostępna!",
-              "Odblokowaliśmy dla Ciebie sekcję Kalendarz, w której możesz planować swoje treningi na cały miesiąc i obserwować swoją regularność treningów!"
-            );
-            html += generateNotification(
-              "Zobacz swoje statystyki za marzec",
-              "W sekcji Statystyki są już dostępne Twoje wyniki i osiągnięcia w miesiącu MARZEC!<br>Sprawdź już teraz, aby poprawić jakość swoich treningów"
-            );
-            html += generateNotification(
-              "Zacznij swój trening!",
-              "Witaj Radek! \n\nMożesz już tworzyć nowe plany treningowe lub stworzyć własną listę ćwiczeń w sekcji Mój Trening lub Lista ćwiczeń\nSprawdź już dziś!"
-            );
-            html += generateNotification(
-              "Witaj Nowy Użytkowniku!",
-              "Witaj Radek!\n\n Nawet nie wiesz jak się cieszymy, że dołączyłeś do społeczności Trainly! Poznaj naszą platformę i przenieś swój trening na wyższy poziom!"
-            );
-            html += "</div>";
-            break;
-          case "statystyki":
-            html = "<h2 id='stats'>Statystyki</h2><div class='statystyki'>";
-            html +=
-              '<h3>Całkowita liczba treningów w miesiącu</h3><div class="statistics"><div class="training">13</div></div>';
-            html +=
-              '<h3>Średni czas treningu</h3><div class="statistics"><div class="time">57 min</div></div>';
-            html +=
-              '<h3>Spalone kalorie</h3><div class="statistics"><div class="calories">1259 kcal</div></div>';
-            html +=
-              '<h3>Średnia intensywność treningu</h3><div class="statistics"><div class="intensitivity">Powyżej przeciętnej</div></div></div>';
-
-            document.getElementById("statystyki").classList.add("selected");
-            document.getElementById("kalendarz").classList.remove("selected");
-            document.getElementById("lista").classList.remove("selected");
-            document.getElementById("panel").classList.remove("selected");
-            document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
-            break;
-
-          case "lista":
-            html = '<h2>Listy ćwiczeń</h2><div class="columns">';
-            html +=
-              '<a href="your_list.html"><ul class="opcje_listy"><li class="header"><h2>Twoje listy<h2></li>';
-            html += "<li class='your_list'></li></ul></a>";
-            html +=
-              '<a href="create_list.html"><ul class="opcje_listy"><li class="header"><h2>Stwórz listę<h2></li>';
-            html += "<li class='create_list'></li></ul></a>";
-            html +=
-              '<a href="our_list.html"><ul class="opcje_listy"><li class="header"><h2>Nasze listy<h2></li>';
-            html += "<li class='our_list'></li></ul></a>";
-            html += "</div>"; //class columns
-            html +=
-              '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
-            document.getElementById("lista").classList.add("selected");
-            document.getElementById("statystyki").classList.remove("selected");
-            document.getElementById("kalendarz").classList.remove("selected");
-            document.getElementById("panel").classList.remove("selected");
-            document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
-            break;
-
-          default:
-            html = "<p>Nieznany dział</p>";
+            // Wstawiamy wygenerowaną zawartość do sekcji content
+            content.innerHTML = html;
         }
 
-        // Wstawiamy wygenerowaną zawartość do sekcji content
-        content.innerHTML = html;
-      }
+        function generateNotification(title, n_content) {
+            var notification = document.createElement("div");
+            notification.classList.add("notification");
+            notification.innerHTML =
+                "<strong>" +
+                title +
+                "</strong><br><span style='display:none;'>" +
+                n_content +
+                "</span>";
 
-      function generateNotification(title, n_content) {
-        var notification = document.createElement("div");
-        notification.classList.add("notification");
-        notification.innerHTML =
-          "<strong>" +
-          title +
-          "</strong><br><span style='display:none;'>" +
-          n_content +
-          "</span>";
+            return notification.outerHTML;
+        }
 
-        return notification.outerHTML;
-      }
+        document
+            .getElementById("content")
+            .addEventListener("click", function(event) {
+                var target = event.target;
 
-      document
-        .getElementById("content")
-        .addEventListener("click", function (event) {
-          var target = event.target;
+                // Sprawdzamy czy kliknięcie dotyczyło elementu z klasą "notification"
+                if (target.classList.contains("notification")) {
+                    // Pobieramy tytuł i zawartość powiadomienia
+                    var title = target.querySelector("strong").textContent;
+                    var content = target.querySelector("span").textContent;
 
-          // Sprawdzamy czy kliknięcie dotyczyło elementu z klasą "notification"
-          if (target.classList.contains("notification")) {
-            // Pobieramy tytuł i zawartość powiadomienia
-            var title = target.querySelector("strong").textContent;
-            var content = target.querySelector("span").textContent;
+                    // Otwieramy modal z tytułem i zawartością powiadomienia
+                    openModal(title, content);
+                }
+            });
 
-            // Otwieramy modal z tytułem i zawartością powiadomienia
-            openModal(title, content);
-          }
-        });
+        function openModal(title, content) {
+            var modal = document.getElementById("overlay_notification");
+            var modalTitle = document.getElementById("notification-title");
+            var modalContent = document.getElementById("notification-content");
 
-      function openModal(title, content) {
-        var modal = document.getElementById("overlay_notification");
-        var modalTitle = document.getElementById("notification-title");
-        var modalContent = document.getElementById("notification-content");
+            modalTitle.textContent = title;
+            modalContent.innerHTML = content;
 
-        modalTitle.textContent = title;
-        modalContent.innerHTML = content;
+            modal.style.display = "block";
+        }
 
-        modal.style.display = "block";
-      }
+        // Funkcja do zamykania modalu
+        function closeModal() {
+            var modal = document.getElementById("overlay_notification");
+            modal.style.display = "none";
+        }
 
-      // Funkcja do zamykania modalu
-      function closeModal() {
-        var modal = document.getElementById("overlay_notification");
-        modal.style.display = "none";
-      }
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
 
-      function updateClock() {
-        var now = new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        var seconds = now.getSeconds();
+            // Formatowanie czasu
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // Formatowanie czasu
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+            // Wyświetlanie czasu w elemencie o id "clock"
+            document.getElementById("clock").textContent =
+                hours + ":" + minutes + ":" + seconds;
+        }
 
-        // Wyświetlanie czasu w elemencie o id "clock"
-        document.getElementById("clock").textContent =
-          hours + ":" + minutes + ":" + seconds;
-      }
+        // Wywołanie funkcji updateClock co sekundę
+        setInterval(updateClock, 1000);
 
-      // Wywołanie funkcji updateClock co sekundę
-      setInterval(updateClock, 1000);
+        // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
+        updateClock();
 
-      // Wywołanie funkcji updateClock przy załadowaniu strony, aby od razu wyświetliła się aktualna godzina
-      updateClock();
+        // Tutaj dodajemy przypisanie szerokości dla klasy .training
+        var numberOfTrainingDays = 7;
 
-      // Tutaj dodajemy przypisanie szerokości dla klasy .training
-      var numberOfTrainingDays = 7;
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth();
+        var currentYear = currentDate.getFullYear();
+        var totalDaysInMonth = getDaysInMonth(currentMonth, currentYear);
 
-      var currentDate = new Date();
-      var currentMonth = currentDate.getMonth();
-      var currentYear = currentDate.getFullYear();
-      var totalDaysInMonth = getDaysInMonth(currentMonth, currentYear);
-
-      // Oblicz szerokość dla sekcji .training na podstawie liczby dni treningowych i całkowitej liczby dni w miesiącu
-      var trainingWidth = (numberOfTrainingDays / totalDaysInMonth) * 100;
-      // Ustaw szerokość dla sekcji .training
-      document.documentElement.style.setProperty(
-        "--training-width",
-        dayWidth + "%"
-      );
-
-      // Funkcja wyświetlająca powiadomienie o sukcesie
-      function showSuccessNotification(message) {
-        var successNotification = document.getElementById(
-          "success_notification"
+        // Oblicz szerokość dla sekcji .training na podstawie liczby dni treningowych i całkowitej liczby dni w miesiącu
+        var trainingWidth = (numberOfTrainingDays / totalDaysInMonth) * 100;
+        // Ustaw szerokość dla sekcji .training
+        document.documentElement.style.setProperty(
+            "--training-width",
+            dayWidth + "%"
         );
-        var successMessage = document.getElementById("success_message");
-        successMessage.innerText = message; // Ustawiamy treść powiadomienia
 
-        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+        // Funkcja wyświetlająca powiadomienie o sukcesie
+        function showSuccessNotification(message) {
+            var successNotification = document.getElementById(
+                "success_notification"
+            );
+            var successMessage = document.getElementById("success_message");
+            successMessage.innerText = message; // Ustawiamy treść powiadomienia
 
-        // Ukrywamy powiadomienie po 3 sekundach
-        setTimeout(function () {
-          successNotification.style.display = "none";
-          showContent("lista");
-        }, 3000);
-      }
+            successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+            // Ukrywamy powiadomienie po 3 sekundach
+            setTimeout(function() {
+                successNotification.style.display = "none";
+                showContent("lista");
+            }, 3000);
+        }
     </script>
-  </body>
+</body>
+
 </html>
