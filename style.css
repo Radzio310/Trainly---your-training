@@ -2082,6 +2082,7 @@ hr {
   }
   /* Kalendarz */
   #cals {
+    display: block;
     margin-top: 75vw;
     font-size: 25vw;
   }
@@ -2380,4 +2381,51 @@ hr {
     margin-bottom: 2.5vh;
   }
   /* your_list.html */
+  .Twoje {
+    min-height: 225vh;
+  }
+  .Twoje h2 {
+    font-size: 20vw;
+    margin-top: 35vh;
+    margin-bottom: 15vh;
+  }
+  .Twoje a {
+    margin-left: 60vw;
+    align-items: center;
+    margin-bottom: 15vh;
+    padding: 5vw;
+  }
+  .twoje-listy {
+    width: 95%;
+    display: block;
+  }
+  .twoje-listy h3 {
+    font-size: 15vw;
+  }
+  .twoje-listy p {
+    font-size: 10vw;
+  }
+  .twoje-listy li {
+    padding: 10vw;
+    width: 100%;
+    display: inline-block;
+    border-radius: 50px;
+    margin-bottom: 5vh;
+    border: 5px solid #734a40;
+  }
+  .Widok_list {
+    height: 150vh;
+    margin-bottom: 15vh;
+    padding: 10px;
+  }
+  #exercise-list {
+    margin-top: 15vh;
+  }
+  #exercise-list li {
+    font-size: 10vw;
+    padding: 5vw;
+    border-radius: 50px;
+    margin-left: 20vw;
+    border: 3px solid #734a40;
+  }
 }
