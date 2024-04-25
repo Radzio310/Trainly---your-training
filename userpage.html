@@ -169,6 +169,7 @@
         var showCalendar = urlParams.get("show_calendar");
         var showStats = urlParams.get("show_stats");
         var showNotes = urlParams.get("show_notes");
+        var showPanel = urlParams.get("show_panel");
         var createList = urlParams.get("create_list");
         var addList = urlParams.get("add_list");
 
@@ -187,6 +188,10 @@
         if (showNotes === "true") {
           // Wyświetl sekcję z powiadomieniami
           showContent("powiadomienia");
+        }
+        if (showPanel === "true") {
+          // Wyświetl sekcję z panelem użytkownika
+          showContent("panel");
         }
         if (createList === "true") {
           var listName = urlParams.get("list_name");

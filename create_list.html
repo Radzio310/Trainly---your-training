@@ -67,9 +67,17 @@
         </div>
       </nav>
     </header>
-    <main>
-      <div class="sidebar">
+    <main class="user_mob">
+      <div class="sidebar" id="our_sidebar">
         <ul>
+          <li id="konto">
+            <img
+              src="Graphics\Panel.png"
+              alt="Twój panel"
+              onclick="sidebar('show_panel')"
+              id="panel"
+            />
+          </li>
           <li id="konto">
             <img
               src="Graphics\Kalendarz.png"
@@ -96,11 +104,11 @@
           </li>
           <li id="konto">
             <img
-              class="selected"
               src="Graphics\Lista.png"
               alt="Lista ćwiczeń"
               onclick="sidebar('show_lists')"
               id="lista"
+              class="selected"
             />
           </li>
         </ul>

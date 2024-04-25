@@ -67,9 +67,17 @@
         </div>
       </nav>
     </header>
-    <main>
-      <div class="sidebar">
+    <main class="user_mob">
+      <div class="sidebar" id="our_sidebar">
         <ul>
+          <li id="konto">
+            <img
+              src="Graphics\Panel.png"
+              alt="Twój panel"
+              onclick="sidebar('show_panel')"
+              id="panel"
+            />
+          </li>
           <li id="konto">
             <img
               src="Graphics\Kalendarz.png"
@@ -96,16 +104,16 @@
           </li>
           <li id="konto">
             <img
-              class="selected"
               src="Graphics\Lista.png"
               alt="Lista ćwiczeń"
               onclick="sidebar('show_lists')"
               id="lista"
+              class="selected"
             />
           </li>
         </ul>
       </div>
-
+      <h2 id="our-lists">Nasze listy ćwiczeń</h2>
       <ul class="nasze-listy">
         <li onclick="openModal('klata_triceps')">
           <h3>"Zbuduj ciało niczym szafa"</h3>
@@ -155,7 +163,7 @@
       <div id="nameList" class="modal">
         <div class="modal-content">
           <span class="close" onclick="closeModalNameList()">&times;</span>
-          <h3>Nadaj nazwę Twojej liście</h3>
+          <h3 id="our_name">Nadaj nazwę Twojej liście</h3>
           <input type="text" id="listNameInput" placeholder="Nazwa listy..." />
           <div class="button" onclick="nameList('listNameInput')">Zapisz</div>
         </div>
