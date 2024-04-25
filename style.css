@@ -1690,13 +1690,17 @@ hr {
     box-sizing: border-box;
   }
   body {
+    transform: scale(0.3);
+    transform-origin: top left;
     left: 0;
     margin: 0;
     overflow-x: hidden;
+    height: auto;
+    min-height: 100%;
   }
   main {
     width: 90%;
-    height: 140%;
+    height: auto;
     margin-left: 5%;
   }
   header {
@@ -1706,6 +1710,9 @@ hr {
     left: 2.5%;
     position: fixed;
     top: 0;
+  }
+  .index header {
+    height: 30vh;
   }
   h2 {
     font-size: 25vw;
@@ -1724,7 +1731,7 @@ hr {
   .menu {
     position: fixed;
     display: none;
-    margin-top: 10%;
+    margin-top: 8%;
     right: 5%;
     width: 60%;
     text-align: center;
@@ -1771,7 +1778,7 @@ hr {
   .hero {
     margin-top: 7.5%;
     margin-bottom: 5%;
-    height: 27%;
+    height: 300vh;
     width: auto;
     background-image: url("Graphics/Trainly_mobile_hero.png");
     background-position: center right;
@@ -1816,11 +1823,14 @@ hr {
   }
   footer {
     position: fixed;
-    bottom: 0;
+    top: 100%;
     width: 95%;
     font-size: 4vw;
     margin-left: 2.5%;
     height: 5%;
+  }
+  .index footer {
+    height: 15vh;
   }
   footer .logo {
     margin-left: 5%;
@@ -2280,7 +2290,7 @@ hr {
   .nasze-listy {
     width: 100%;
     display: block;
-    max-height: 200vh;
+    max-height: 190vh;
     overflow-y: auto;
     margin-bottom: 10vh;
   }
