@@ -115,32 +115,32 @@
       </div>
       <h2 id="our-lists">Nasze listy ćwiczeń</h2>
       <ul class="nasze-listy">
-        <li onclick="openModal('klata_triceps')">
+        <li id="konto" onclick="openModal('klata_triceps')">
           <h3>"Zbuduj ciało niczym szafa"</h3>
           <p>klata + triceps</p>
           <span id="exercise-count" class="badge">9</span>
         </li>
-        <li onclick="openModal('barki_ramiona')">
+        <li id="konto" onclick="openModal('barki_ramiona')">
           <h3>Nie przejdziesz przez framugę"</h3>
           <p>barki + ramiona</p>
           <span id="exercise-count" class="badge">10</span>
         </li>
-        <li onclick="openModal('plecy_biceps')">
+        <li id="konto" onclick="openModal('plecy_biceps')">
           <h3>"Worki z ziemniakami Ci nie straszne"</h3>
           <p>plecy + biceps</p>
           <span id="exercise-count" class="badge">8</span>
         </li>
-        <li onclick="openModal('nogi')">
+        <li id="konto" onclick="openModal('nogi')">
           <h3>"Po tym nie wstaniesz z łóżka"</h3>
           <p>nogi</p>
           <span id="exercise-count" class="badge">7</span>
         </li>
-        <li onclick="openModal('brzuch_cardio')">
+        <li id="konto" onclick="openModal('brzuch_cardio')">
           <h3>"Czas na wymianę bojlera "</h3>
           <p>brzuch + cardio</p>
           <span id="exercise-count" class="badge">10</span>
         </li>
-        <li onclick="openModal('cale_cialo')">
+        <li id="konto" onclick="openModal('cale_cialo')">
           <h3>"Zaraz muszę biec na uczelnię "</h3>
           <p>całe ciało</p>
           <span id="exercise-count" class="badge">9</span>
@@ -368,8 +368,6 @@
         if (listName.trim() === "") {
           alert("Podaj poprawną nazwę listy ćwiczeń!");
         } else {
-          // Do whatever you want with the list name, e.g., save it
-          // After saving, you can redirect the user to userpage.html
           window.location.href =
             "userpage.html?show_lists=true&add_list=true&list_name=" + listName;
         }
