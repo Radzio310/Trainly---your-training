@@ -198,6 +198,9 @@
         });
       });
 
+      document.getElementById("myInput").focus();
+      document.getElementById("listNameInput").focus();
+
       var myNodelist = document.getElementsByTagName("LI");
       var i;
       for (i = 0; i < myNodelist.length; i++) {
@@ -215,6 +218,24 @@
           div.style.display = "none";
         };
       }
+
+      // Obsługa dodawania ćwiczenia po wciśnięciu klawisza Enter
+      var input = document.getElementById("myInput");
+      input.addEventListener("keypress", function (event) {
+        if (event.keyCode === 13) {
+          // keyCode 13 odpowiada klawiszowi Enter
+          event.preventDefault();
+          newElement();
+        }
+      });
+
+      var listNameInput = document.getElementById("listNameInput");
+      listNameInput.addEventListener("keypress", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          nameList("listNameInput");
+        }
+      });
 
       function newElement() {
         var li = document.createElement("li");

@@ -173,6 +173,8 @@
         });
       });
 
+      document.getElementById("myInput").focus();
+
       // Create a "close" button and append it to each list item
       var myNodelist = document.getElementsByTagName("LI");
       var i;
@@ -192,6 +194,26 @@
           div.style.display = "none";
         };
       }
+
+      // Obsługa dodawania ćwiczenia po wciśnięciu klawisza Enter
+      var input = document.getElementById("myInput");
+      input.addEventListener("keypress", function (event) {
+        if (event.keyCode === 13) {
+          // keyCode 13 odpowiada klawiszowi Enter
+          event.preventDefault();
+          newElement();
+        }
+      });
+
+      // Obsługa dodawania nowej listy po wciśnięciu klawisza Enter
+      var listNameInput = document.getElementById("listNameInput");
+      listNameInput.addEventListener("keypress", function (event) {
+        if (event.keyCode === 13) {
+          // keyCode 13 odpowiada klawiszowi Enter
+          event.preventDefault();
+          saveList();
+        }
+      });
 
       // Create a new list item when clicking on the "Add" button
       function newElement() {
