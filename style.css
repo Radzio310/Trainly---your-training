@@ -2574,9 +2574,12 @@ hr {
     margin-top: 50%;
     margin-bottom: 5%;
   }
+  .modal {
+    min-height: 150%;
+  }
   .modal-content {
     margin: 10%;
-    margin-top: 50%;
+    margin-top: 100%;
     padding: 5vw;
     border: 5px solid #734a40;
     width: 80%;
@@ -2584,7 +2587,7 @@ hr {
     border-radius: 50px;
   }
   .modal-content p {
-    font-size: 20vw;
+    font-size: 25vw;
   }
   .close {
     font-size: 15vw;
@@ -3012,9 +3015,15 @@ hr {
     min-width: 75%;
   }
   /* create_list.html */
+  #create-list {
+    margin-top: 20vh;
+  }
+  #create-list h2 {
+    font-size: 15vw;
+  }
   #addEx {
     margin-top: 10vh;
-    min-height: 150vh;
+    min-height: 200vh;
   }
   #addEx li {
     border: 3px solid #734a40;
@@ -3032,6 +3041,9 @@ hr {
   .create {
     margin-top: 25vh;
     padding: 7.5vw 10vw;
+  }
+  .create h2 {
+    font-size: 20vw;
   }
   #save-list {
     margin-top: 2.5vh;
