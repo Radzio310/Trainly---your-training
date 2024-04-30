@@ -41,7 +41,16 @@ main {
   width: 80vw;
   background-color: #f0f0f0;
   margin: 0 auto;
+  margin-top: 15vh;
   border-radius: 25px;
+}
+
+.homepage {
+  margin-top: 0;
+}
+
+.userpage {
+  margin-top: 0;
 }
 
 .main-content {
@@ -116,6 +125,9 @@ h2 {
   margin-top: 50px;
 }
 
+/* ORIGINAL HEADER STYLES */
+
+/*
 header {
   display: flex;
   justify-content: space-between;
@@ -125,11 +137,31 @@ header {
   height: 11.25vh;
   min-height: 50px;
   margin: 0 auto;
+  margin-bottom: 15vh;
   width: 95%;
   border-radius: 25px;
   position: fixed;
   top: 0;
   left: 2.5%;
+  z-index: 1000;
+}
+*/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d9d9d9;
+  color: #734a40;
+  height: 11.25vh;
+  min-height: 50px;
+  margin: 0 auto;
+  margin-bottom: 10vh;
+  width: 100%;
+  position: fixed;
+  border-radius: 0;
+  top: 0;
+  left: 0;
   z-index: 1000;
 }
 
@@ -361,6 +393,8 @@ p {
   transition: 0.5s;
 }
 
+/*ORIGINAL FOOTER STYLES */
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -477,14 +511,14 @@ input[type="submit"]:hover {
 .Logowanie h1 {
   color: #734a40;
   font-size: 3vh;
-  margin-top: 50px;
-  margin-bottom: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .Logowanie input {
   width: 75%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #bf907e;
   border-radius: 5px;
   font-size: 1.25vw;
@@ -726,6 +760,7 @@ input[type="submit"]:hover {
   justify-content: center;
   align-items: center;
   height: auto;
+  min-height: 75vh;
   text-align: center;
   /* Centruje zawartość tekstu */
 }
@@ -893,14 +928,14 @@ hr {
 .settings h2 {
   color: #734a40;
   font-size: 24px;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .settings input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #bf907e;
   border-radius: 5px;
   font-size: 16px;
