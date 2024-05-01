@@ -262,6 +262,20 @@
         return new Date(year, month + 1, 0).getDate();
       }
 
+      // Funkcja do uzyskania dnia tygodnia dla pierwszego dnia miesiąca
+      function getFirstDayOfMonth(month, year) {
+        return new Date(year, month, 1).getDay();
+      }
+
+      // Funkcja do generowania pustych pól dla poprzednich dni w kalendarzu
+      function generateEmptyCells(firstDayIndex) {
+        var emptyCells = "";
+        for (var i = 1; i < firstDayIndex; i++) {
+          emptyCells += '<li><span class="empty"></span></li>';
+        }
+        return emptyCells;
+      }
+
       function showContent(section) {
         var content = document.getElementById("content");
         var html = "";
@@ -302,6 +316,7 @@
             var monthIndex = currentDate.getMonth();
             var year = currentDate.getFullYear();
             var activeDay = currentDate.getDate();
+            var firstDayIndex = getFirstDayOfMonth(monthIndex, year);
             var html =
               '<h2 id="cals">Kalendarz</h2><div class="calendar"><div class="month"><ul><li><h2>';
             html += monthNames[monthIndex];
@@ -313,6 +328,7 @@
             html += '<ul class="days">';
             // Pobieramy liczbę dni w danym miesiącu
             var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+            html += generateEmptyCells(firstDayIndex);
 
             for (var i = 1; i <= daysInMonth; i++) {
               if (i === activeDay) {
