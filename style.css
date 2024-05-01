@@ -2436,11 +2436,11 @@ hr {
   .menu {
     position: fixed;
     display: none;
-    margin-top: 8%;
+    margin-top: 7%;
     right: 5%;
     width: 60%;
     text-align: center;
-    background-color: #d9d9d9;
+    background-color: white;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
   }
@@ -2749,6 +2749,7 @@ hr {
     margin-top: 5%;
     margin-left: 0;
     height: auto;
+    min-height: 575vw;
   }
   .sidebar {
     width: 10%;
@@ -2807,53 +2808,59 @@ hr {
     font-size: 25vw;
   }
   .calendar {
-    margin-top: 50vw;
+    margin-top: 100vw;
     width: 100%;
   }
   /* Month header */
   .month {
-    padding: 2.5% 5%;
+    padding: 5% 5%;
     width: 100%;
   }
   .month h2 {
     font-size: 20vw;
+    text-align: center;
+    margin-left: 2.5vh;
   }
   /* Weekdays (Mon-Sun) */
   .weekdays {
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;
   }
   .weekdays li {
-    width: 5vw;
+    width: 1vw;
     font-weight: bolder;
-    padding-left: 5%;
+    padding-left: 1vh;
     font-size: 5vh;
   }
   /* Days (1-31) */
   .days {
     padding: 10px 0;
-    padding-left: 25vw;
+    padding-left: 5vh;
   }
   .days li {
-    width: 12.5vw;
+    width: 6vw;
     margin-bottom: 5vw;
-    font-size: 5vh;
+    font-size: 4vh;
     font-weight: bolder;
-    left: 7.5%;
+    padding-left: 1vh;
   }
   #startTraining {
     padding: 5vw;
     font-size: 15vw;
-    font-weight: bolder;
+    font-weight: 700;
     margin-top: 10vw;
     border-radius: 100px;
+    width: auto;
+    min-width: 65%;
   }
   #planTraining {
     padding: 5vw;
     font-size: 15vw;
-    font-weight: bolder;
+    font-weight: 700;
     margin-top: 10vw;
     border-radius: 100px;
+    width: auto;
+    min-width: 65%;
   }
   .last-clicked {
     color: #734a40 !important;
@@ -2863,7 +2870,7 @@ hr {
   }
   .mobile_cal {
     display: block;
-    margin-top: 85vw;
+    margin-top: 150vw;
   }
   /* Powiadomienia */
   .notification {
