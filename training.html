@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Trainly - Ustawienia</title>
+    <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta name="keywords" content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami" />
+    <meta name="description" content="Trainly - aplikacja do zarządzania treningami" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="fade-in">
+    <header>
+        <div class="container">
+            <img class="logo" src="Graphics/Trainly-logo-active.png" />
+        </div>
+        <nav>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <a href="userpage.html">
+                        <li>Twój panel</li>
+                    </a>
+                    <a href="settings.html">
+                        <li>Ustawienia</li>
+                    </a>
+                    <a href="user_contact.html">
+                        <li>Kontakt</li>
+                    </a>
+                    <a href="index.html">
+                        <li>Wyloguj</li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="train_mob">
+        <h2 id="train">ZACZYNAMY TRENING!</h2>
+        <div class="columns">
+            <a href="your_list.html">
+                <ul class="opcje_listy">
+                    <li class="header">
+                        <h2>Twoje listy
+                            <h2>
+                    </li>
+                    <li class='your_list'></li>
+                </ul>
+            </a>
+            <a href="create_list.html">
+                <ul class="opcje_listy">
+                    <li class="header">
+                        <h2>Jadę na żywioł!
+                            <h2>
+                    </li>
+                    <li class='go-on-fire'></li>
+                </ul>
+            </a>
+            <a href="our_list.html">
+                <ul class="opcje_listy">
+                    <li class="header">
+                        <h2>Nasze listy
+                            <h2>
+                    </li>
+                    <li class='our_list'></li>
+                </ul>
+            </a>
+        </div>
+        <div class="success_notification" id="success_notification"><span id="success_message"></span></div>
+    </main>
+    <footer>
+        <a href="user_homepage.html">
+            <img class="logo" src="Graphics/Trainly-logo_2.png" />
+        </a>
+        <!-- Dodaj ikonki mediów społecznościowych -->
+        <div class="social-media-icons">
+            <a href="https://www.facebook.com/profile.php?id=61558575186327" target="_blank"><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/trainly_yourtraining/" target="_blank"><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram" /></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.querySelector(".hamburger");
+            const menu = document.querySelector(".menu");
+
+            // Dodajemy obsługę kliknięcia na hamburger
+            hamburger.addEventListener("click", function() {
+                // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+                this.classList.toggle("clicked");
+
+                // Pokazujemy/Ukrywamy menu po kliknięciu
+                menu.classList.toggle("active");
+            });
+
+            // Ukryj domyślnie powiadomienie po załadowaniu strony
+            hideNotification();
+        });
+    </script>
+</body>
+
+</html>

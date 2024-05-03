@@ -1736,6 +1736,27 @@ hr {
   background-color: #d9b5a0;
 }
 
+/* Training.html */
+
+#train {
+  text-align: center;
+}
+
+.train_mob .columns {
+  text-align: center;
+  margin: 0;
+  margin-left: -2.5%;
+}
+
+.go-on-fire {
+  background-image: url("Graphics/Go_on_fire.png");
+  min-height: 25vh;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-size: cover;
+  background-position: center;
+}
+
 /* ----------------------------------- */
 
 /* MEDIA QUERIES */
