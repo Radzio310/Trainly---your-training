@@ -686,6 +686,10 @@ input[type="submit"]:hover {
 
 /* Dodane style dla paska nawigacyjnego po lewej stronie */
 
+#welcome {
+  margin-left: 100px;
+}
+
 .sidebar {
   width: 5vw;
   background-color: #bf907e;
@@ -2791,6 +2795,9 @@ hr {
   }
   /*-------------------------------*/
   /* Twój panel */
+  #welcome {
+    margin-left: 10px;
+  }
   .user_mob {
     height: auto;
     width: 80%;
