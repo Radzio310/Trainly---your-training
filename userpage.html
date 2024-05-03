@@ -205,10 +205,6 @@
         }
       });
 
-      function planTraining() {
-        alert("Zaplanuj trening");
-      }
-
       function startTraining() {
         // Wyświetlenie alertu informującego o rozpoczęciu treningu
         alert("Rozpoczęto trening!");
@@ -276,6 +272,84 @@
         return emptyCells;
       }
 
+      // Funkcja otwierająca modal do planowania treningu
+      function openPlanModal() {
+        var modal = document.getElementById("planModal");
+        modal.style.display = "block";
+        document.getElementById("trainingDescriptionInput").focus();
+      }
+
+      // Funkcja zamykająca modal do planowania treningu
+      function closePlanModal() {
+        var modal = document.getElementById("planModal");
+        document.getElementById("trainingDescriptionInput").value = "";
+        document.getElementById("trainingTimeInput").value = "";
+        modal.style.display = "none";
+      }
+
+      // Funkcja zapisująca plan treningowy
+      function saveTrainingPlan() {
+        var description = document.getElementById(
+          "trainingDescriptionInput"
+        ).value;
+        var time = document.getElementById("trainingTimeInput").value;
+
+        // Tutaj możesz dodać kod do zapisu opisu treningu i godziny w bazie danych lub gdziekolwiek indziej
+        // Następnie zmień klasę danego dnia na 'planned'
+        var plannedDay = document.querySelector(".last-clicked");
+        if (plannedDay && description != "" && time != "") {
+          plannedDay.classList.add("planned");
+          // Wyświetlenie komunikatu o udanym zaplanowaniu treningu
+          var successNotification = document.getElementById(
+            "success_notification"
+          );
+          var successMessage = document.getElementById("success_message");
+          successMessage.innerText =
+            "Zaplanowano trening na " +
+            plannedDay.innerText +
+            ". dzień miesiąca o godzinie " +
+            time +
+            "!";
+          successNotification.style.display = "block";
+
+          // Zamknij modal
+          closePlanModal();
+          setTimeout(function () {
+            successNotification.style.display = "none";
+          }, 3000);
+        } else {
+          alert("Wypełnij wszystkie pola!");
+        }
+      }
+
+      // Funkcja obsługująca kliknięcie na dzień zaplanowany
+      function showPlannedTraining(dayId) {
+        var plannedDay = document.getElementById(dayId);
+        var plannedTrainingDescription = document.getElementById(
+          "plannedTrainingDescription"
+        );
+        var plannedTrainingTime = document.getElementById(
+          "plannedTrainingTime"
+        );
+
+        // Sprawdź, czy dany dzień jest zaplanowany
+        if (plannedDay.classList.contains("planned")) {
+          // Tutaj możesz pobrać opis i godzinę treningu z bazy danych lub gdziekolwiek indziej
+          var exampleDescription = "Przykładowy opis treningu";
+          var exampleTime = "18:35";
+
+          // Wyświetl opis i godzinę treningu
+          plannedTrainingDescription.innerText = exampleDescription;
+          plannedTrainingTime.innerText = " || " + exampleTime;
+
+          // Wyświetl plannedInfo
+          document.getElementById("plannedInfo").style.display = "block";
+        } else {
+          // Jeśli dzień nie jest zaplanowany, ukryj plannedInfo
+          document.getElementById("plannedInfo").style.display = "none";
+        }
+      }
+
       function showContent(section) {
         var content = document.getElementById("content");
         var html = "";
@@ -333,12 +407,16 @@
             for (var i = 1; i <= daysInMonth; i++) {
               if (i === activeDay) {
                 html +=
-                  '<li><span class="active" onclick="start(this.id)">' +
+                  '<li><span class="active" onclick="start(this.id); showPlannedTraining(\'day_' +
+                  i +
+                  "')\">" +
                   i +
                   "</span></li>";
               } else {
                 html +=
-                  '<li><span class="inactive" onclick="plan(this.id)" id="day_' +
+                  '<li><span class="inactive" onclick="plan(this.id); showPlannedTraining(\'day_' +
+                  i +
+                  '\')" id="day_' +
                   i +
                   '">' +
                   i +
@@ -347,13 +425,29 @@
             }
 
             html += "</ul>";
+            // opis zaplanowanego treningu
+            html +=
+              '<div class="planned_info" id="plannedInfo"><span id="plannedTrainingDescription"></span> <span id="plannedTrainingTime"></span></div>';
             // Dodajemy przycisk "Zaplanuj trening" i "Rozpocznij trening"
             html +=
               '<button class="button" id="startTraining" onclick="startTraining()">Rozpocznij trening</button>';
             html +=
-              '<button class="button" id="planTraining" onclick="planTraining()">Zaplanuj trening</button>';
+              '<button class="button" id="planTraining" onclick="openPlanModal()">Zaplanuj trening</button>';
             html += "</div>";
             html += "</div></div><span class='mobile_cal'>";
+            // Modal do planowania treningu
+            html +=
+              '<div id="planModal" class="modal"><div class="modal-content"><span class="close" onclick="closePlanModal()">&times;</span>';
+            html +=
+              '<h3>Zaplanuj trening</h3><input type="text" id="trainingDescriptionInput" placeholder="Opis treningu..."/>';
+            html +=
+              '<span class="icon"><i class="fa fa-clock-o"></i></span><input type="time" id="trainingTimeInput" />';
+            html +=
+              '<div class="button" onclick="saveTrainingPlan()">Zapisz</div></div></div>';
+            // Komunikat o udanym zaplanowaniu treningu
+            html +=
+              '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
+
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");

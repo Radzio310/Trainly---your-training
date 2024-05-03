@@ -984,6 +984,42 @@ hr {
   display: none;
 }
 
+#planModal {
+  display: none;
+}
+
+#trainingDescriptionInput {
+  width: 75%;
+  display: block;
+  margin-left: 12.5%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 3px solid #bf907e;
+  border-radius: 25px;
+  font-size: 1vw;
+  resize: none;
+}
+
+#trainingDescriptionInput:focus {
+  border: 1px solid #734a40;
+}
+
+#trainingDescriptionInput::placeholder {
+  color: #734a40;
+}
+
+#trainingTimeInput {
+  padding: 8px;
+  border: 3px solid #bf907e;
+  border-radius: 10px;
+  font-size: 1vw;
+  margin-bottom: 5%;
+}
+
+#trainingTimeInput:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
 .calendar {
   margin-top: 7.5vh;
   width: 100%;
@@ -1126,10 +1162,26 @@ hr {
 }
 
 .last-clicked {
-  color: #734a40 !important;
+  color: #bf907e;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
   padding: 5px;
   border-radius: 25%;
+}
+
+.planned {
+  color: #734a40;
+  box-shadow: #0d0907;
+}
+
+#plannedInfo {
+  display: none;
+  color: #734a40;
+  font-size: 1vw;
+  font-weight: bold;
+  font-family: "Michroma", sans-serif;
+  width: auto;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
 
 /* Statystyki */
@@ -2867,6 +2919,33 @@ hr {
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
     padding: 5px;
     border-radius: 25%;
+  }
+  #planModal {
+    margin-top: -45%;
+  }
+  #planModal h3 {
+    font-size: 15vw;
+    margin-bottom: 2.5vh;
+  }
+  #trainingDescriptionInput {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 5px solid #bf907e;
+    border-radius: 50px;
+    font-size: 15vw;
+  }
+  #trainingTimeInput {
+    width: 25%;
+    padding: 8px;
+    border: 5px solid #bf907e;
+    border-radius: 50px;
+    font-size: 10vw;
+    margin-bottom: 2.5%;
+  }
+  #plannedInfo {
+    font-size: 10vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
   }
   .mobile_cal {
     display: block;
