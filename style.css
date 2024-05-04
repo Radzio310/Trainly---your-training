@@ -1288,6 +1288,7 @@ hr {
 
 .opcje_listy:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 /* Nagłówki list */
@@ -1755,6 +1756,31 @@ hr {
   border-bottom-right-radius: 25px;
   background-size: cover;
   background-position: center;
+}
+
+#exercise-list-training li {
+  list-style-type: none;
+  color: #734a40;
+  font-weight: bolder;
+  padding: 5px;
+  border-radius: 25px;
+  border: 3px solid #734a40;
+  margin-bottom: 5px;
+}
+
+#exercise-list-training li:hover {
+  background-color: #d9b5a0;
+  cursor: pointer;
+}
+
+#exercise-list-training li.selected {
+  background-color: #d9b5a0;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+  border: #bf907e;
+}
+
+#exercise-list-training li.selected:hover {
+  background-color: #bf907e;
 }
 
 /* ----------------------------------- */

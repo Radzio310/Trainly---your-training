@@ -46,35 +46,42 @@
     <main class="train_mob">
         <h2 id="train">ZACZYNAMY TRENING!</h2>
         <div class="columns">
-            <a href="your_list.html">
-                <ul class="opcje_listy">
-                    <li class="header">
-                        <h2>Twoje listy
-                            <h2>
-                    </li>
-                    <li class='your_list'></li>
-                </ul>
-            </a>
+            <ul class="opcje_listy" onclick="openModal('twoje_listy')">
+                <li class="header">
+                    <h2>Twoje listy
+                        <h2>
+                </li>
+                <li class="your_list"></li>
+            </ul>
             <a href="create_list.html">
                 <ul class="opcje_listy">
                     <li class="header">
                         <h2>Jadę na żywioł!
                             <h2>
                     </li>
-                    <li class='go-on-fire'></li>
+                    <li class="go-on-fire"></li>
                 </ul>
             </a>
-            <a href="our_list.html">
-                <ul class="opcje_listy">
-                    <li class="header">
-                        <h2>Nasze listy
-                            <h2>
-                    </li>
-                    <li class='our_list'></li>
-                </ul>
-            </a>
+            <ul class="opcje_listy" onclick="openModal('nasze_listy')">
+                <li class="header">
+                    <h2>Nasze listy
+                        <h2>
+                </li>
+                <li class="our_list"></li>
+            </ul>
         </div>
-        <div class="success_notification" id="success_notification"><span id="success_message"></span></div>
+        <div class="success_notification" id="success_notification">
+            <span id="success_message"></span>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <ul id="exercise-list-training"></ul>
+                <button class="button" onclick="startTraining()">
+            Rozpocznij trening
+          </button>
+            </div>
+        </div>
     </main>
     <footer>
         <a href="user_homepage.html">
@@ -104,6 +111,74 @@
             // Ukryj domyślnie powiadomienie po załadowaniu strony
             hideNotification();
         });
+
+        function openModal(listType) {
+            var modal = document.getElementById("myModal");
+            var exerciseList = document.getElementById("exercise-list-training");
+
+            // Czyść listę ćwiczeń
+            exerciseList.innerHTML = "";
+
+            // Pobierz listę ćwiczeń dla danego rodzaju treningu
+            var exercises = getExerciseList(listType);
+
+            // Wyświetl listę ćwiczeń w modalu
+            exercises.forEach(function(exercise) {
+                var li = document.createElement("li");
+                li.textContent = exercise;
+                li.addEventListener("click", function() {
+                    // Usuń klasę selected z wcześniej zaznaczonego elementu
+                    var selectedExercise = exerciseList.querySelector(".selected");
+                    if (selectedExercise) {
+                        selectedExercise.classList.remove("selected");
+                    }
+                    // Dodaj klasę selected do aktualnie zaznaczonego elementu
+                    li.classList.add("selected");
+                });
+                exerciseList.appendChild(li);
+            });
+
+            modal.style.display = "block";
+        }
+
+        function startTraining() {
+            var selectedExercise = document.getElementById("exercise-list-training").querySelector(".selected");
+            if (selectedExercise) {
+                // Pobierz nazwę zaznaczonego ćwiczenia
+                var selectedExerciseName = selectedExercise.textContent;
+                alert("Rozpoczynamy trening: " + selectedExerciseName);
+            } else {
+                alert("Wybierz ćwiczenie przed rozpoczęciem treningu!");
+            }
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        function getExerciseList(listType) {
+            // Tutaj możesz zwrócić odpowiednią listę ćwiczeń na podstawie listType
+            // Na razie zwrócę przykładową listę, aby pokazać działanie
+            var exerciseLists = {
+                twoje_listy: [
+                    "Biegne już",
+                    "Ała, ała, ała",
+                    "Brzuch mnie pali",
+                    "MEGA BICEPS",
+                ],
+                nasze_listy: [
+                    "Zbuduj ciało niczym szafa",
+                    "Nie przejdziesz przez framugę",
+                    "Worki z ziemniakami Ci nie straszne",
+                    "Po tym nie wstaniesz z łóżka",
+                    "Czas na wymianę bojlera",
+                    "Zaraz muszę biec na uczelnię",
+                ],
+            };
+
+            return exerciseLists[listType] || [];
+        }
     </script>
 </body>
 
