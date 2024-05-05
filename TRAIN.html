@@ -34,57 +34,103 @@
         <div class="menu">
           <ul>
             <li>
-              <a href="training.html" id="end_training">Zakończ trening</a>
+              <div class="button" id="end_training" onclick="openModal()">
+                Zakończ trening
+              </div>
             </li>
 
             <li>
-              <div class="timer">00:00</div>
+              <p id="demo" class="timer"></p>
             </li>
           </ul>
         </div>
       </nav>
     </header>
     <main id="twoj_trening">
+      <h2 class="trenuj">Twój trening</h2>
       <!-- Tutaj będziemy umieszczać listę ćwiczeń na trening -->
-      <ul id="exercise-list"></ul>
-      <button type="button" class="collapsible">Ćwiczenie 1</button>
-      <div class="exercise_details">
-        <p>
-          To ćwiczenie wykonujemy w postawie stojącej z wyprostowanymi plecami
-          unosząc sztangę ponad głowę i opuszczając do klatki piersiowej
-        </p>
-        <iframe
-          src="Graphics\KROKI + 2min.mp4"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-        <form class="Trening">
-          <label for="weight">Obciążenie (kg):</label>
-          <input
-            type="number"
-            id="weight"
-            name="weight"
-            min="0"
-            max="200"
-            step="1"
-            placeholder="Obciążenie"
-          />
-          <label for="sets">Ilość serii:</label>
-          <input
-            type="number"
-            id="sets"
-            name="sets"
-            min="0"
-            max="10"
-            step="1"
-            placeholder="Liczba serii"
-          />
-        </form>
-        <div id="myCheck" class="unchecked" onclick="checkEx()"></div>
+      <ul id="exercise-list">
+        <li>
+          <button type="button" class="collapsible">Rozgrzewka</button>
+          <div class="exercise_details">
+            <p>
+              Każdy trening dobrze jest zacząć od porządnej rozgrzewki całego
+              ciała!
+              <br />
+              Każdy mięsień i ścięgno jest ważne, więc nie zapominajmy o nich!
+            </p>
+            <iframe
+              src="Videos\Rozgrzewka.mp4"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <form class="Trening">
+              <label for="weight">Obciążenie (kg):</label>
+              <input
+                type="number"
+                id="weight"
+                name="weight"
+                min="0"
+                max="200"
+                step="1"
+                placeholder="Obciążenie"
+              />
+              <label for="sets">Ilość serii:</label>
+              <input
+                type="number"
+                id="sets"
+                name="sets"
+                min="0"
+                max="10"
+                step="1"
+                placeholder="Liczba serii"
+              />
+            </form>
+            <div class="myCheck unchecked" onclick="checkEx()"></div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Formularz do dodawania nowego ćwiczenia -->
+      <form id="addExerciseForm">
+        <label for="exerciseName">Nazwa ćwiczenia:</label>
+        <br />
+        <input
+          type="text"
+          id="exerciseName"
+          name="exerciseName"
+          placeholder="Nazwa ćwiczenia"
+          required
+        />
+        <br />
+        <label for="exerciseDescription">Opis ćwiczenia:</label>
+        <br />
+        <textarea
+          id="exerciseDescription"
+          name="exerciseDescription"
+          placeholder="Opis ćwiczenia"
+        ></textarea>
+        <br />
+        <input
+          type="button"
+          class="button"
+          onclick="addExercise()"
+          value="Dodaj ćwiczenie"
+        />
+      </form>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <p>Czy na pewno chcesz zakończyć trening?</p>
+          <a href="training.html" class="button" id="confirmEndTraining"
+            >Tak, zakończ</a
+          >
+          <button class="button closeModal" id="anuluj">Anuluj</button>
+        </div>
       </div>
     </main>
-    <footer></footer>
+    <footer id="footer_train"></footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -105,9 +151,6 @@
 
         // Rozpocznij trening
         startTraining();
-
-        // Uruchom timer
-        startTimer();
       });
 
       function startTraining() {
@@ -131,65 +174,188 @@
         });
       }
 
-      function startTimer() {
-        var timerElement = document.querySelector(".timer");
-        var startTime = Date.now();
+      // Set the date we're counting down to
+      var startTime = new Date().getTime();
 
-        setInterval(function () {
-          // Oblicz czas od początku treningu w milisekundach
-          var elapsedTime = Date.now() - startTime;
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
 
-          // Oblicz godziny, minuty i sekundy
-          var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-          var minutes = Math.floor((elapsedTime / (1000 * 60)) % 60);
-          var seconds = Math.floor((elapsedTime / 1000) % 60);
+        // Find the distance between now and the count down date
+        var distance = now - startTime;
 
-          // Formatuj czas
-          var formattedTime =
-            pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-          // Wyświetl czas na stronie
-          timerElement.textContent = formattedTime;
-        }, 1000);
-      }
-
-      function pad(val) {
-        var valString = val + "";
-        if (valString.length < 2) {
-          return "0" + valString;
-        } else {
-          return valString;
-        }
-      }
-
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML =
+          hours + "h " + minutes + "m " + seconds + "s ";
+      }, 1000);
+      document
+        .getElementById("exercise-list")
+        .addEventListener("click", function (event) {
+          if (event.target.classList.contains("collapsible")) {
+            event.target.classList.toggle("active");
+            var content = event.target.nextElementSibling;
+            content.style.display =
+              content.style.display === "block" ? "none" : "block";
           }
+
+          // Obsługa kliknięcia na buttony z klasą "collapsible" w elementach dynamicznie dodanych
+          var coll = document.querySelectorAll(".collapsible");
+          coll.forEach(function (item) {
+            item.addEventListener("click", function () {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              content.style.display =
+                content.style.display === "block" ? "none" : "block";
+            });
+          });
+        });
+
+      function checkEx() {
+        var checkBoxes = document.querySelectorAll(".myCheck");
+
+        checkBoxes.forEach(function (checkBox) {
+          checkBox.addEventListener("click", function () {
+            this.classList.toggle("checked");
+            this.classList.toggle("unchecked");
+
+            // Znajdź element collapsible
+            var collapsible = this.parentNode.previousElementSibling;
+
+            // Jeśli znaleziono element collapsible, dodaj/usuń klasę "checked"
+            if (collapsible && collapsible.classList.contains("collapsible")) {
+              collapsible.classList.toggle("checked_col");
+              collapsible.classList.toggle("unchecked_col");
+            }
+          });
         });
       }
 
-      function checkEx() {
-        // Get the checkbox
-        var checkBox = document.getElementById("myCheck");
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("myCheck")) {
+          var checkBox = event.target;
+          checkBox.classList.toggle("checked");
+          checkBox.classList.toggle("unchecked");
 
-        // If the checkbox is checked, display the output text
-        if (checkBox.className === "unchecked") {
-          checkBox.classList.add("checked");
-          checkBox.classList.remove("unchecked");
-        } else {
-          checkBox.classList.add("unchecked");
-          checkBox.classList.remove("checked");
+          // Znajdź element collapsible
+          var collapsible = checkBox.parentNode.previousElementSibling;
+
+          // Jeśli znaleziono element collapsible, dodaj/usuń klasę "checked"
+          if (collapsible && collapsible.classList.contains("collapsible")) {
+            collapsible.classList.toggle("checked_col");
+            collapsible.classList.toggle("unchecked_col");
+          }
         }
+      });
+
+      // Pobierz pole tekstowe do wpisania nazwy ćwiczenia
+      var exerciseNameInput = document.getElementById("exerciseName");
+
+      // Dodaj EventListenera na wciśnięcie klawisza Enter
+      exerciseNameInput.addEventListener("keyup", function (event) {
+        // Sprawdź, czy naciśnięty klawisz to Enter (keyCode 13)
+        if (event.keyCode === 13) {
+          // Wywołaj funkcję dodawania ćwiczenia
+          addExercise();
+        }
+      });
+
+      document
+        .getElementById("addExerciseForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Zatrzymuje domyślne zachowanie formularza
+        });
+
+      function addExercise() {
+        // Pobierz wartości z formularza
+        var exerciseName = document.getElementById("exerciseName").value.trim();
+        var exerciseDescription = document
+          .getElementById("exerciseDescription")
+          .value.trim();
+
+        // Sprawdź, czy nazwa ćwiczenia została wpisana
+        if (exerciseName === "") {
+          alert("Nazwa ćwiczenia jest wymagana!");
+          return;
+        }
+
+        // Utwórz nowy element listy ćwiczeń
+        var exerciseList = document.getElementById("exercise-list");
+        var newExerciseItem = document.createElement("li");
+        newExerciseItem.innerHTML = `
+        <button type="button" class="collapsible">${exerciseName}</button>
+        <div class="exercise_details">
+            <p>${exerciseDescription}</p>
+            <form class="Trening">
+                <label for="weight">Obciążenie (kg):</label>
+                <input type="number" id="weight" name="weight" min="0" max="200" step="1" placeholder="Obciążenie"/>
+                <label for="sets">Ilość serii:</label>
+                <input type="number" id="sets" name="sets" min="0" max="10" step="1" placeholder="Liczba serii"/>
+            </form>
+            <div class="myCheck unchecked" onclick="checkEx()"></div>
+        </div>
+    `;
+        exerciseList.appendChild(newExerciseItem);
+
+        // Dodaj klasę "collapsible" do nowego elementu listy
+        newExerciseItem.querySelector("button").classList.add("collapsible");
+
+        // Wyczyść wartości formularza po dodaniu ćwiczenia
+        document.getElementById("exerciseName").value = "";
+        document.getElementById("exerciseDescription").value = "";
+
+        var newCheck = newExerciseItem.querySelector(".myCheck");
+        newCheck.addEventListener("click", function () {
+          this.classList.toggle("checked");
+          this.classList.toggle("unchecked");
+        });
       }
+
+      function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        document.getElementById("listNameInput").focus();
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("myModal")) {
+          document.getElementById("myModal").style.display = "none";
+        }
+      };
+
+      document.getElementsByClassName("closeModal")[0].onclick = function () {
+        document.getElementById("myModal").style.display = "none";
+      };
+
+      document.getElementById("confirmEndTraining").onclick = function () {
+        clearInterval(x); // Zatrzymaj timer
+        var distance = new Date().getTime() - startTime; // Oblicz czas trwania treningu
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        alert(
+          "Trening został zakończony. Czas trwania treningu: " +
+            hours +
+            "h " +
+            minutes +
+            "m " +
+            seconds +
+            "s"
+        );
+      };
     </script>
   </body>
 </html>
