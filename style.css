@@ -1843,13 +1843,15 @@ iframe {
 }
 
 .Trening {
-  display: flex;
-  margin-left: 25%;
+  display: block;
+  margin-left: 7.5%;
+  margin-top: 5vh;
 }
 
 .Trening input {
   width: 25%;
-  margin-right: 15%;
+  margin-left: 15px;
+  margin-right: 5%;
   font-size: 1.5vw;
   padding: 1vh;
   border: 3px solid #734a40;
@@ -1857,58 +1859,32 @@ iframe {
 }
 
 #myCheck {
-  margin-left: 45%;
+  width: 7.5vh;
+  height: 7.5vh;
+  margin: 2.5vh 0;
+  margin-left: 47.5%;
   font-size: 1.5vw;
-  color: #734a40;
-  border: 3px solid #bf907e;
-}
-
-/* Styl checkboxa */
-
-.custom-checkbox {
-  width: 50px;
-  height: 50px;
-  background-color: #f0f0f0;
-  border: 5px solid #bf907e;
   border-radius: 50%;
+  border: 3px solid #734a40;
+}
+
+#myCheck:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  position: relative;
+  background-image: url("Graphics/checked_hover.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* Styl checkboxa po zaznaczeniu */
-
-.custom-checkbox:checked {
-  background-color: #734a40 !important;
+.checked {
+  background-image: url("Graphics/checked.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* Ukryj domyślny checkbox */
-
-.custom-checkbox input {
-  display: none;
-}
-
-/* Styl ikony wewnątrz checkboxa (jeśli używasz ikony) */
-
-.custom-checkbox::before {
-  content: "\2713";
-  /* Kod Unicode dla znaku zaznaczenia */
-  color: #d9d9d9;
-  /* Kolor ikony */
-  font-size: 16px;
-  /* Rozmiar ikony */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  visibility: hidden;
-  /* Ukryj ikonę domyślnie */
-}
-
-/* Pokaż ikonę checkboxa po zaznaczeniu */
-
-.custom-checkbox input:checked + .custom-checkbox::before {
-  visibility: visible;
-  background-color: #734a40;
+.checked:hover {
+  background-image: url("Graphics/checked.png");
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
 .exercise_details {
