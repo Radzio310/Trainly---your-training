@@ -1787,14 +1787,18 @@ hr {
 
 #twoj_trening {
   height: auto;
-  width: 80%;
+  width: 100%;
   margin-top: 15vh;
   margin-left: 10%;
 }
 
-.timer:hover {
+.timer {
+  font-size: 3vh;
+  font-family: "Michroma", sans-serif;
+  font-weight: bolder;
+  font-style: italic;
   color: #734a40;
-  cursor: auto;
+  min-width: 10vw;
 }
 
 #end_training {
@@ -1811,13 +1815,34 @@ hr {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
+.trenuj {
+  text-align: center;
+  font-size: 5vh;
+  color: #734a40;
+  margin-left: -2.5%;
+  margin-top: 2.5vh;
+}
+
+#footer_train {
+  display: none;
+}
+
+#exercise-list li {
+  list-style-type: none;
+  color: #734a40;
+  font-weight: bolder;
+  padding: 0;
+  border-radius: 30px;
+  border: 3px solid #d9b5a0;
+  margin-bottom: 5px;
+}
+
 .collapsible {
   background-color: #734a40;
   color: #d9d9d9;
   cursor: pointer;
-  padding: 18px;
-  width: 75%;
-  margin-left: 12.5%;
+  width: 100%;
+  padding: 0;
   border: none;
   text-align: center;
   font-weight: bolder;
@@ -1849,7 +1874,7 @@ iframe {
 }
 
 .Trening input {
-  width: 25%;
+  width: 20%;
   margin-left: 15px;
   margin-right: 5%;
   font-size: 1.5vw;
@@ -1858,7 +1883,7 @@ iframe {
   border-radius: 50px;
 }
 
-#myCheck {
+.myCheck {
   width: 7.5vh;
   height: 7.5vh;
   margin: 2.5vh 0;
@@ -1868,10 +1893,9 @@ iframe {
   border: 3px solid #734a40;
 }
 
-#myCheck:hover {
+.myCheck:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  background-image: url("Graphics/checked_hover.png");
   background-size: cover;
   background-position: center;
 }
@@ -1882,20 +1906,84 @@ iframe {
   background-position: center;
 }
 
-.checked:hover {
-  background-image: url("Graphics/checked.png");
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+.checked_col {
+  color: #bf907e;
+  background-color: #734a40;
+}
+
+.checked_col:hover {
+  background-color: #bf907e;
+  color: #d9d9d9;
 }
 
 .exercise_details {
   padding: 0 18px;
-  width: 75%;
-  margin-left: 12.5%;
+  width: 100%;
   display: none;
   overflow: hidden;
   background-color: #d9d9d9;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+}
+
+.exercise_details p {
+  font-size: 1.5vw;
+  text-align: center;
+  font-style: italic;
+}
+
+#addExerciseForm {
+  text-align: center;
+  margin-top: 5%;
+  border: 3px solid #734a40;
+  width: 75%;
+  margin-left: 12.5%;
+  border-radius: 100px;
+  margin-bottom: 25px;
+}
+
+#addExerciseForm input,
+textarea {
+  width: 75%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 3px solid #bf907e;
+  border-radius: 25px;
+  font-size: 1vw;
+  resize: none;
+}
+
+#addExerciseForm textarea {
+  min-height: 75px;
+}
+
+#addExerciseForm input:focus,
+textarea:focus {
+  border: 3px solid #734a40;
+}
+
+#addExerciseForm input[type="button"] {
+  width: 40%;
+  background-color: #734a40;
+  color: #d9d9d9;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1vw;
+  cursor: pointer;
+}
+
+#confirmEndTraining {
+  font-weight: bold;
+  font-style: italic;
+  border: 3px solid #734a40;
+}
+
+#anuluj {
+  width: auto;
+  padding: 10px;
+  margin-left: 2.5vw;
+  border: 3px solid #734a40;
 }
 
 /* ----------------------------------- */
