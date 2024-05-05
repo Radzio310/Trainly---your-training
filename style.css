@@ -1783,6 +1783,145 @@ hr {
   background-color: #bf907e;
 }
 
+/*TRAIN.html*/
+
+#twoj_trening {
+  height: auto;
+  width: 80%;
+  margin-top: 15vh;
+  margin-left: 10%;
+}
+
+.timer:hover {
+  color: #734a40;
+  cursor: auto;
+}
+
+#end_training {
+  background-color: #d9b5a0;
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: bolder;
+  transition: 0.5s;
+}
+
+#end_training:hover {
+  background-color: #734a40;
+  color: #d9d9d9;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+.collapsible {
+  background-color: #734a40;
+  color: #d9d9d9;
+  cursor: pointer;
+  padding: 18px;
+  width: 75%;
+  margin-left: 12.5%;
+  border: none;
+  text-align: center;
+  font-weight: bolder;
+  outline: none;
+  font-size: 2vw;
+  border-radius: 25px;
+}
+
+.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #bf907e;
+  color: #734a40;
+}
+
+.collapsible:hover {
+  background-color: #bf907e;
+}
+
+iframe {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.Trening {
+  display: flex;
+  margin-left: 25%;
+}
+
+.Trening input {
+  width: 25%;
+  margin-right: 15%;
+  font-size: 1.5vw;
+  padding: 1vh;
+  border: 3px solid #734a40;
+  border-radius: 50px;
+}
+
+#myCheck {
+  margin-left: 45%;
+  font-size: 1.5vw;
+  color: #734a40;
+  border: 3px solid #bf907e;
+}
+
+/* Styl checkboxa */
+
+.custom-checkbox {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border: 5px solid #bf907e;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Styl checkboxa po zaznaczeniu */
+
+.custom-checkbox:checked {
+  background-color: #734a40 !important;
+}
+
+/* Ukryj domyślny checkbox */
+
+.custom-checkbox input {
+  display: none;
+}
+
+/* Styl ikony wewnątrz checkboxa (jeśli używasz ikony) */
+
+.custom-checkbox::before {
+  content: "\2713";
+  /* Kod Unicode dla znaku zaznaczenia */
+  color: #d9d9d9;
+  /* Kolor ikony */
+  font-size: 16px;
+  /* Rozmiar ikony */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  /* Ukryj ikonę domyślnie */
+}
+
+/* Pokaż ikonę checkboxa po zaznaczeniu */
+
+.custom-checkbox input:checked + .custom-checkbox::before {
+  visibility: visible;
+  background-color: #734a40;
+}
+
+.exercise_details {
+  padding: 0 18px;
+  width: 75%;
+  margin-left: 12.5%;
+  display: none;
+  overflow: hidden;
+  background-color: #d9d9d9;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
 /* ----------------------------------- */
 
 /* MEDIA QUERIES */
