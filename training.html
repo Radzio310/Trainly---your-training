@@ -146,7 +146,7 @@
             if (selectedExercise) {
                 // Pobierz nazwę zaznaczonego ćwiczenia
                 var selectedExerciseName = selectedExercise.textContent;
-                alert("Rozpoczynamy trening: " + selectedExerciseName);
+                window.location.href = "TRAIN.html?exerciseList=" + selectedExerciseName;
             } else {
                 alert("Wybierz ćwiczenie przed rozpoczęciem treningu!");
             }

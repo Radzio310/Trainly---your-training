@@ -1815,7 +1815,7 @@ hr {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
-.trenuj {
+#trenuj {
   text-align: center;
   font-size: 5vh;
   color: #734a40;
@@ -1919,6 +1919,7 @@ iframe {
 .exercise_details {
   padding: 0 18px;
   width: 100%;
+  max-width: 71vw;
   display: none;
   overflow: hidden;
   background-color: #d9d9d9;
@@ -1930,6 +1931,8 @@ iframe {
   font-size: 1.5vw;
   text-align: center;
   font-style: italic;
+  width: 75%;
+  margin-left: 12.5%;
 }
 
 #addExerciseForm {
