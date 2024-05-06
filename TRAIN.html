@@ -76,7 +76,15 @@
                 min="0"
                 max="200"
                 step="1"
-                placeholder="Obciążenie"
+              />
+              <label for="sets">Powtórzenia na serię:</label>
+              <input
+                type="number"
+                id="sets"
+                name="sets"
+                min="0"
+                max="50"
+                step="1"
               />
               <label for="sets">Ilość serii:</label>
               <input
@@ -86,7 +94,6 @@
                 min="0"
                 max="10"
                 step="1"
-                placeholder="Liczba serii"
               />
             </form>
             <div class="myCheck unchecked" onclick="checkEx()"></div>
@@ -376,9 +383,11 @@
             <p>${exerciseDescription}</p>
             <form class="Trening">
                 <label for="weight">Obciążenie (kg):</label>
-                <input type="number" id="weight" name="weight" min="0" max="200" step="1" placeholder="Obciążenie"/>
+                <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
+                <label for="sets">Powtórzenia na serię:</label>
+                <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
                 <label for="sets">Ilość serii:</label>
-                <input type="number" id="sets" name="sets" min="0" max="10" step="1" placeholder="Liczba serii"/>
+                <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
             </form>
             <div class="myCheck unchecked" onclick="checkEx()"></div>
         </div>
@@ -507,9 +516,11 @@
             <p>${exerciseDescription}</p>
             <form class="Trening">
                 <label for="weight">Obciążenie (kg):</label>
-                <input type="number" id="weight" name="weight" min="0" max="200" step="1" placeholder="Obciążenie"/>
+                <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
+                <label for="sets">Powtórzenia na serię:</label>
+                <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
                 <label for="sets">Ilość serii:</label>
-                <input type="number" id="sets" name="sets" min="0" max="10" step="1" placeholder="Liczba serii"/>
+                <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
             </form>
             <div class="myCheck unchecked" onclick="checkEx()"></div>
         </div>

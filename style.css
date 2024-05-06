@@ -1869,18 +1869,23 @@ iframe {
 
 .Trening {
   display: block;
-  margin-left: 7.5%;
+  margin-left: 2.5%;
   margin-top: 5vh;
 }
 
 .Trening input {
-  width: 20%;
+  width: 7.5%;
   margin-left: 15px;
-  margin-right: 5%;
+  margin-right: 2.5%;
   font-size: 1.5vw;
   padding: 1vh;
   border: 3px solid #734a40;
   border-radius: 50px;
+}
+
+.Trening label {
+  font-size: 1.25vw;
+  font-weight: bold;
 }
 
 .myCheck {
