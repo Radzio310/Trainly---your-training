@@ -158,7 +158,16 @@
             <span onclick="newElement()" class="addBtn">Dodaj</span>
           </div>
           <ul id="our_addEx"></ul>
-          <div class="button" onclick="saveList()">Dodaj do Twoich list</div>
+          <div id="our_addList" class="button" onclick="saveList()">
+            Dodaj do Twoich list
+          </div>
+          <button
+            id="our_rozpocznij"
+            class="button"
+            onclick="startTraining(listName)"
+          >
+            Rozpocznij trening
+          </button>
         </div>
       </div>
       <!-- Modal -->
@@ -269,6 +278,8 @@
         };
       }
 
+      var listName = "";
+
       function openModal(listType) {
         var modal = document.getElementById("myModal");
         var listElements = {
@@ -358,6 +369,20 @@
           li.appendChild(span);
 
           listContainer.appendChild(li);
+
+          if (listType === "klata_triceps") {
+            listName = "Zbuduj ciało niczym szafa";
+          } else if (listType === "barki_ramiona") {
+            listName = "Nie przejdziesz przez framugę";
+          } else if (listType === "plecy_biceps") {
+            listName = "Worki z ziemniakami Ci nie straszne";
+          } else if (listType === "nogi") {
+            listName = "Po tym nie wstaniesz z łóżka";
+          } else if (listType === "brzuch_cardio") {
+            listName = "Czas na wymianę bojlera";
+          } else if (listType === "cale_cialo") {
+            listName = "Zaraz muszę biec na uczelnię";
+          }
         });
 
         // Pobieramy wszystkie krzyżyki i dodajemy obsługę zdarzenia dla każdego z nich
@@ -371,6 +396,10 @@
 
         modal.style.display = "block";
         document.getElementById("myInput").focus();
+      }
+
+      function startTraining(listType) {
+        window.location.href = "TRAIN.html?exerciseList=" + listType;
       }
 
       function closeModal() {

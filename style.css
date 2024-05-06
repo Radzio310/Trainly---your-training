@@ -1639,6 +1639,18 @@ hr {
   cursor: pointer;
 }
 
+#our_addList {
+  background-color: #d9d9d9;
+  border: 3px solid #734a40;
+  color: #734a40;
+}
+
+#our_rozpocznij {
+  margin-top: 2.5vh;
+  border: 3px solid #d9b5a0;
+  background-color: #d9d9d9;
+}
+
 /* your_list.html */
 
 .Twoje h2 {

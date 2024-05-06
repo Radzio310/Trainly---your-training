@@ -139,7 +139,7 @@
         <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>
           <ul id="exercise-list"></ul>
-          <button class="button" onclick="startTraining()">
+          <button class="button" onclick="startTraining(listName)">
             Rozpocznij trening
           </button>
         </div>
@@ -174,6 +174,8 @@
         });
       });
 
+      var listName = "";
+
       function openModal(listType) {
         var modal = document.getElementById("myModal");
         var exerciseList = document.getElementById("exercise-list");
@@ -192,6 +194,15 @@
         });
 
         modal.style.display = "block";
+        if (listType === "Biegneeee_juz") {
+          listName = "Biegne już";
+        } else if (listType === "Ala_ala_ala") {
+          listName = "Ała, ała, ała";
+        } else if (listType === "Brzuch_mnie_pali") {
+          listName = "Brzuch mnie pali";
+        } else if (listType === "MEGA_BICEPS") {
+          listName = "MEGA BICEPS";
+        }
       }
 
       function closeModal() {
@@ -199,9 +210,8 @@
         modal.style.display = "none";
       }
 
-      function startTraining() {
-        alert("Rozpoczęto trening!");
-        window.location.href = "your_list.html";
+      function startTraining(listType) {
+        window.location.href = "TRAIN.html?exerciseList=" + listType;
       }
 
       // Funkcja do pobierania listy ćwiczeń dla danego rodzaju treningu
