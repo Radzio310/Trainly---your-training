@@ -78,7 +78,7 @@
               alt="Twój panel"
               onclick="showContent('panel')"
               id="panel"
-              class="selected"
+              class="selected"case "s
             />
           </li>
           <li>

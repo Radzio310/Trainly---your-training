@@ -254,13 +254,49 @@
       // Funkcja zapisująca listę
       function saveList() {
         var listName = document.getElementById("listNameInput").value;
+        var exercisesList = [];
+        var addedExercises = document
+          .getElementById("addEx")
+          .getElementsByTagName("li");
+        for (var i = 0; i < addedExercises.length; i++) {
+          var exercise = addedExercises[i].textContent;
+          // Ucinamy ostatni znak z ćwiczenia
+          var trimmedExercise = exercise.slice(0, -1);
+          if (
+            trimmedExercise !== "Przykładowe ćwiczenie nr 1" &&
+            trimmedExercise !== "Przykładowe ćwiczenie nr 2" &&
+            trimmedExercise !== "Przykładowe ćwiczenie nr 3"
+          ) {
+            exercisesList.push(trimmedExercise);
+          }
+        }
         if (listName.trim() === "") {
-          alert("Podaj poprawną nazwę listy ćwiczeń!");
+          alert("Podaj nazwę listy ćwiczeń!");
+        } else if (exercisesList.length === 0) {
+          alert("Dodaj co najmniej jedno ćwiczenie do listy!");
         } else {
-          // Przenosimy użytkownika do strony userpage.php z odpowiednim komunikatem w adresie URL
+          // Utwórz obiekt z danymi do przesłania
+          var data = {
+            listName: listName,
+            exercises: JSON.stringify(exercisesList),
+          };
+
+          // Wyślij dane do pliku PHP za pomocą AJAX
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "zapisz_liste.php", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              // Odpowiedź z serwera
+              alert(xhr.responseText);
+              // Możesz też dodać kod do obsługi sukcesu
+            } else {
+              alert("Wystąpił błąd podczas zapisywania listy.");
+            }
+          };
+          xhr.send(JSON.stringify(data));
           window.location.href =
-            "userpage.php?show_lists=true&create_list=true&list_name=" +
-            listName;
+            "your_list.html?add_list=true&list_name=" + listName;
         }
       }
 

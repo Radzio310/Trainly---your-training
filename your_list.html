@@ -144,6 +144,9 @@
           </button>
         </div>
       </div>
+      <div class="success_notification" id="success_notification">
+        <span id="success_message"></span>
+      </div>
     </main>
     <footer>
       <a href="user_homepage.html">
@@ -164,6 +167,18 @@
       </div>
     </footer>
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sprawdź czy parametr "add_list" jest obecny w adresie URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var addList = urlParams.get("add_list");
+        if (addList === "true") {
+          var listName = urlParams.get("list_name");
+          showSuccessNotification(
+            "Lista " + listName + " została dodana do Twoich list!"
+          );
+        }
+      });
+
       document.addEventListener("DOMContentLoaded", function () {
         const hamburger = document.querySelector(".hamburger");
         const menu = document.querySelector(".menu");
@@ -255,6 +270,22 @@
         };
 
         return exerciseLists[listType] || [];
+      }
+
+      // Funkcja wyświetlająca powiadomienie o sukcesie
+      function showSuccessNotification(message) {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        var successMessage = document.getElementById("success_message");
+        successMessage.innerText = message; // Ustawiamy treść powiadomienia
+
+        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+        // Ukrywamy powiadomienie po 3 sekundach
+        setTimeout(function () {
+          successNotification.style.display = "none";
+        }, 3000);
       }
 
       function sidebar(where) {
