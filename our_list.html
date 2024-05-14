@@ -53,13 +53,13 @@
         </div>
         <div class="menu">
           <ul>
-            <a href="userpage.html?show_lists=true">
+            <a href="userpage.php?show_lists=true">
               <li id="konto">Twój panel</li>
             </a>
-            <a href="settings.html">
+            <a href="settings.php">
               <li id="konto">Ustawienia</li>
             </a>
-            <a href="user_contact.html">
+            <a href="user_contact.php">
               <li id="konto">Kontakt</li>
             </a>
             <a href="index.html">
@@ -413,7 +413,7 @@
       }
 
       function sidebar(where) {
-        window.location.href = "userpage.html?" + where + "=true";
+        window.location.href = "userpage.php?" + where + "=true";
       }
 
       function nameList(listID) {
@@ -422,7 +422,7 @@
           alert("Podaj poprawną nazwę listy ćwiczeń!");
         } else {
           window.location.href =
-            "userpage.html?show_lists=true&add_list=true&list_name=" + listName;
+            "userpage.php?show_lists=true&add_list=true&list_name=" + listName;
         }
       }
 

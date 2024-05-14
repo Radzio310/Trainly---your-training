@@ -1,3 +1,48 @@
+<?php
+              session_start();
+              $id = $_SESSION['user_id'];
+
+              $servername = "localhost";
+              $username = "root"; // domyślnie 'root' w XAMPP
+              $password = ""; // domyślne hasło w XAMPP jest puste
+              $dbname = "trainly";
+
+              $conn = new mysqli($servername, $username, $password, $dbname);
+
+              if ($conn->connect_error) {
+                die("Błąd połączenia: " . $conn->connect_error);
+              }
+
+              $sql = "SELECT * FROM users WHERE User_ID='$id'";
+              $result = $conn->query($sql);
+          
+              if ($result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $user_name = $row['Name'];
+                  $user_surname = $row['Surname'];
+                  $user_gender = $row['Gender'];
+                  $user_age = $row['Age'];
+                  $user_phone = $row['Phone'];
+                  $user_email = $row['Login'];
+              }
+
+              $conn->close();
+            ?>
+<?php
+// Sprawdzenie, czy parametr "success" jest ustawiony na "true"
+if (isset($_GET['success']) && $_GET['success'] == 'true') {
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var successNotification = document.getElementById("success_notification");
+            successNotification.style.display = "block";
+            setTimeout(function () {
+                successNotification.style.display = "none";
+            }, 3000);
+        });
+    </script>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -40,13 +85,13 @@
         </div>
         <div class="menu">
           <ul>
-            <a href="userpage.html">
+            <a href="userpage.php">
               <li>Twój panel</li>
             </a>
-            <a href="settings.html" class="current_site">
+            <a href="settings.php" class="current_site">
               <li>Ustawienia</li>
             </a>
-            <a href="user_contact.html">
+            <a href="user_contact.php">
               <li>Kontakt</li>
             </a>
             <a href="index.html">
@@ -61,40 +106,66 @@
         <br />
         <h2>Ustawienia konta</h2>
         <br />
-        <form id="settingsForm" onsubmit="return submitForm(event)">
+        <form id="settingsForm"  method="POST" action="update.php" onsubmit="return submitForm(event)">  
+          <label style="font-weight: bold; color: #734a40;" class='set_label' for="name">Imię:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Imię"
+              value="<?php echo $user_name; ?>"
+              required
+            />
+            <label style="font-weight: bold; color: #734a40;" class='set_label' for="name">Nazwisko:</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            placeholder="Nazwa użytkownika"
-            value="Twoja nazwa"
+            id="surname"
+            name="surname"
+            placeholder="Nazwisko"
+            value=<?php echo $user_surname; ?>
             required
           />
-          <hr />
+          <label style="font-weight: bold; color: #734a40;" class='set_label' for="age">Wiek:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Wiek"
+            value=<?php echo $user_age; ?>
+            required
+          />
+          <label style="font-weight: bold; color: #734a40;" class='set_label' for="phone">Numer telefonu:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Numer telefonu"
+            value=<?php echo $user_phone; ?>
+            required
+          />
+          <label style="font-weight: bold; color: #734a40;" class='set_label' for="email">Adres email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            value="Twoj@aktualnymail.com"
+            value=<?php echo $user_email; ?>
             placeholder="Adres email"
             disabled
           />
           <hr />
+          <label style="font-weight: bolder; color: #734a40;" class='set_label' for="email">Zmień hasło:</label>
           <input
             type="password"
             id="password"
             name="password"
             minlength="8"
             placeholder="Nowe hasło"
-            required
           />
-          <hr />
           <input
             type="password"
             id="confirm_password"
             name="confirm_password"
             placeholder="Potwierdź nowe hasło"
-            required
           />
           <div id="password_error">Hasła nie są identyczne.</div>
           <hr />
@@ -145,23 +216,24 @@
       });
 
       function submitForm(event) {
-        event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
-        var isFormValid = validateForm();
-        if (isFormValid) {
-          // Wyświetlanie powiadomienia o sukcesie
-          var successNotification = document.getElementById(
-            "success_notification"
-          );
-          successNotification.style.display = "block";
-          setTimeout(function () {
+    event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+    var isFormValid = validateForm();
+    if (isFormValid) {
+        var successNotification = document.getElementById("success_notification");
+        successNotification.style.display = "block";
+        setTimeout(function () {
             successNotification.style.display = "none";
+            if (window.location.search.indexOf('success=true') === -1) {
+                window.location.href = window.location.href + '?success=true';
+            }
+            document.getElementById("settingsForm").submit();
             // Wyczyść pola z hasłem i powtórzeniem hasła
             document.getElementById("password").value = "";
             document.getElementById("confirm_password").value = "";
-          }, 3000);
-        }
-        return isFormValid;
-      }
+        }, 3000);
+    }
+    return isFormValid;
+}
 
       function validateForm() {
         var password = document.getElementById("password").value;

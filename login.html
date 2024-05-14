@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-
-<html lang="”pl”">
+<html lang="pl">
   <head>
     <meta charset="utf-8" />
-
     <title>Trainly - Logowanie</title>
     <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
-
     <meta name="author" content="Radosław Witkowicz" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
@@ -21,7 +17,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body class="fade-in" class="log_site">
+  <body class="fade-in log_site">
     <header>
       <div class="container">
         <a href="index.html">
@@ -54,8 +50,11 @@
     </header>
     <main class="log_mob">
       <section class="Logowanie">
-        <form id="loginForm" action="" method="POST">
+        <form id="loginForm" action="login.php" method="POST">
           <h1>Zaloguj się i zacznij swój trening!</h1>
+          <div style="color: red; display: none" id="loginError">
+            Nieprawidłowy login lub hasło
+          </div>
           <input
             type="email"
             name="login"
@@ -88,28 +87,33 @@
         <a
           href="https://www.facebook.com/profile.php?id=61558575186327"
           target="_blank"
-          ><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook"
-        /></a>
+        >
+          <img class="icon" src="Graphics/facebook-icon.png" alt="Facebook" />
+        </a>
         <a
           href="https://www.instagram.com/trainly_yourtraining/"
           target="_blank"
-          ><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram"
-        /></a>
+        >
+          <img class="icon" src="Graphics/instagram-icon.png" alt="Instagram" />
+        </a>
       </div>
     </footer>
   </body>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const hamburger = document.querySelector(".hamburger");
       const menu = document.querySelector(".menu");
 
-      // Dodajemy obsługę kliknięcia na hamburger
-      hamburger.addEventListener("click", function () {
-        // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
-        this.classList.toggle("clicked");
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get("error");
 
-        // Pokazujemy/Ukrywamy menu po kliknięciu
+      // Jeśli success jest ustawiony na "true", wyświetl successModal
+      if (error === "true") {
+        document.getElementById("loginError").style.display = "block";
+      }
+
+      hamburger.addEventListener("click", function () {
+        this.classList.toggle("clicked");
         menu.classList.toggle("active");
       });
     });
@@ -117,17 +121,12 @@
     document
       .getElementById("loginForm")
       .addEventListener("submit", function (event) {
-        event.preventDefault(); // Zapobiega domyślnej akcji przesyłania formularza
+        //event.preventDefault();
+        var login = document.getElementById("login").value;
+        var password = document.getElementById("password").value;
 
-        // Tutaj możesz dodać kod do weryfikacji poprawności danych logowania
-        // Jeśli dane są poprawne, możesz przekierować użytkownika na userpage.html
-        var login = document.getElementById("login").value; // Pobierz wartość pola login
-        var password = document.getElementById("password").value; // Pobierz wartość pola password
-
-        // Tutaj możesz dodać logikę weryfikacji loginu i hasła
-
-        // Przekierowanie użytkownika na userpage.html po poprawnym zalogowaniu
-        window.location.href = "userpage.html";
+        // Ta linijka zostanie zastąpiona po weryfikacji w PHP
+        //window.location.href = "userpage.html";
       });
   </script>
 </html>

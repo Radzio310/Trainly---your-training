@@ -540,6 +540,14 @@ input[type="submit"]:hover {
   background-color: #bf907e;
 }
 
+#loginError {
+  color: red;
+  display: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0;
+}
+
 #register {
   color: #734a40;
   background-color: #bf907e;
@@ -792,7 +800,7 @@ input[type="submit"]:hover {
   overflow-y: auto;
 }
 
-/* Dodatkowy styl dla powiadomienia w settings.html */
+/* Dodatkowy styl dla powiadomienia w settings.php */
 
 .success_notification {
   position: fixed;
@@ -905,7 +913,7 @@ hr {
   color: #734a40;
   font-size: 24px;
   font-weight: bold;
-  cursor: wait;
+  cursor: default;
 }
 
 #user_button {
@@ -937,7 +945,7 @@ hr {
 }
 
 .settings input {
-  width: 100%;
+  width: 75%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #bf907e;

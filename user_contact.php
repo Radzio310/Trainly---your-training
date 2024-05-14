@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="”pl”">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Trainly - Kontakt</title>
+    <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
+
+    <meta name="author" content="Radosław Witkowicz" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="fade-in">
+    <header>
+      <div class="container">
+        <a href="training.html">
+          <img class="logo" src="Graphics/Trainly-logo.png" />
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="menu">
+          <ul>
+            <a href="userpage.php">
+              <li>Twój panel</li>
+            </a>
+            <a href="settings.php">
+              <li>Ustawienia</li>
+            </a>
+            <a href="user_contact.php" class="current_site">
+              <li>Kontakt</li>
+            </a>
+            <a href="index.html">
+              <li>Wyloguj</li>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="con_mob">
+      <section class="Formularz_kontaktowy">
+        <form id='contact' action="user_send_message.php" method="POST" onsubmit="return submitForm(event)">
+          <h1>Skontaktuj się z nami</h1>
+          <label class="plik" for="attachment"
+            >Wybierz plik do załączenia:</label
+          >
+          <input
+            type="file"
+            id="attachment"
+            name="attachment"
+            accept=".img, .png, .pdf, .doc, .docx"
+          />
+          <br />
+          <textarea
+            name="message"
+            id="message"
+            placeholder="Twoja wiadomość"
+            required
+          ></textarea>
+          <br />
+          <input type="submit" value="Wyślij wiadomość" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <a href="user_homepage.html">
+        <img class="logo" src="Graphics/Trainly-logo_2.png" />
+      </a>
+      <!-- Dodaj ikonki mediów społecznościowych -->
+      <div class="social-media-icons">
+        <a
+          href="https://www.facebook.com/profile.php?id=61558575186327"
+          target="_blank"
+          ><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook"
+        /></a>
+        <a
+          href="https://www.instagram.com/trainly_yourtraining/"
+          target="_blank"
+          ><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram"
+        /></a>
+      </div>
+    </footer>
+    <!-- Div dla powiadomienia -->
+    <div class="success_notification" id="success_notification">
+      <span id="success_message">Wiadomość została wysłana!</span>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.querySelector(".hamburger");
+      const menu = document.querySelector(".menu");
+
+      // Dodajemy obsługę kliknięcia na hamburger
+      hamburger.addEventListener("click", function () {
+        // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+        this.classList.toggle("clicked");
+
+        // Pokazujemy/Ukrywamy menu po kliknięciu
+        menu.classList.toggle("active");
+      });
+    });
+
+    function submitForm(event) {
+      event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+      // Wyświetlanie powiadomienia o sukcesie
+      var successNotification = document.getElementById("success_notification");
+      successNotification.style.display = "block";
+      setTimeout(function () {
+        successNotification.style.display = "none";
+        document.getElementById("contact").submit();
+      document.getElementById("attachment").value = "";
+      document.getElementById("message").value = "";
+      }, 3000);
+      
+      return isFormValid;
+    }
+  </script>
+</html>
