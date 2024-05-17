@@ -603,24 +603,30 @@ $conn->close();
         xhr.send();
             break;
 
-          case "statystyki":
-                        // Zaznacz odpowiedni przycisk na pasku bocznym
-                        document.getElementById("statystyki").classList.add("selected");
-            document.getElementById("kalendarz").classList.remove("selected");
-            document.getElementById("lista").classList.remove("selected");
-            document.getElementById("panel").classList.remove("selected");
-            document.getElementById("powiadomienia").classList.remove("selected");
+            case "statystyki":
+    // Zaznacz odpowiedni przycisk na pasku bocznym
+    document.getElementById("statystyki").classList.add("selected");
+    document.getElementById("kalendarz").classList.remove("selected");
+    document.getElementById("lista").classList.remove("selected");
+    document.getElementById("panel").classList.remove("selected");
+    document.getElementById("powiadomienia").classList.remove("selected");
+
     // Pobierz dane statystyczne treningów z serwera
     var xhr_stat = new XMLHttpRequest();
     xhr_stat.open('GET', 'pobierz_dane_statystyczne.php', true); // Ustaw ścieżkę do skryptu PHP, który pobiera dane statystyczne
     xhr_stat.onload = function () {
         if (xhr_stat.status === 200) {
             var statistics = JSON.parse(xhr_stat.responseText);
+            var trainingDaysWidth = (statistics.Training_count / 30) * 100;
+            var trainingTimeWidth = (parseTime(statistics.Training_time) / 10800) * 100; // 3 hours = 10800 seconds
+            var caloriesWidth = (statistics.Calories / 1500) * 100;
+            var intensityWidth = getIntensityWidth(statistics.Intensity);
+
             var stat_html = "<h2 id='stats'>Statystyki</h2><div class='statystyki'>";
-            stat_html += "<h3>Całkowita liczba treningów w miesiącu</h3><div class='statistics'><div class='training'>" + statistics.Training_count + "</div></div>";
-            stat_html += "<h3>Średni czas treningu</h3><div class='statistics'><div class='time'>" + statistics.Training_time + " min</div></div>";
-            stat_html += "<h3>Spalone kalorie</h3><div class='statistics'><div class='calories'>" + statistics.Calories + " kcal</div></div>";
-            stat_html += "<h3>Średnia intensywność treningu</h3><div class='statistics'><div class='intensitivity'>" + statistics.Intensity + "</div></div>";
+            stat_html += "<h3>Całkowita liczba treningów w miesiącu</h3><div class='statistics'><div class='training' style='width: " + trainingDaysWidth + "%'>" + statistics.Training_count + "</div></div>";
+            stat_html += "<h3>Średni czas treningu</h3><div class='statistics'><div class='time' style='width: " + trainingTimeWidth + "%'>" + statistics.Training_time + "</div></div>";
+            stat_html += "<h3>Spalone kalorie</h3><div class='statistics'><div class='calories' style='width: " + caloriesWidth + "%'>" + statistics.Calories + " kcal</div></div>";
+            stat_html += "<h3>Średnia intensywność treningu</h3><div class='statistics'><div class='intensitivity' style='width: " + intensityWidth + "%'>" + statistics.Intensity + "</div></div>";
             stat_html += "</div><span class='mobile_stats'></span>";
 
             // Wyświetl dane w sekcji statystyk
@@ -633,11 +639,10 @@ $conn->close();
     xhr_stat.send();
     break;
 
-
           case "lista":
             html = '<h2 id="lists">Listy ćwiczeń</h2><div class="columns">';
             html +=
-              '<a href="your_list.html"><ul class="opcje_listy"><li class="header"><h2>Twoje listy<h2></li>';
+              '<a href="your_list.php"><ul class="opcje_listy"><li class="header"><h2>Twoje listy<h2></li>';
             html += "<li class='your_list'></li></ul></a>";
             html +=
               '<a href="create_list.html"><ul class="opcje_listy"><li class="header"><h2>Stwórz listę<h2></li>';
@@ -664,6 +669,34 @@ $conn->close();
         // Wstawiamy wygenerowaną zawartość do sekcji content
         content.innerHTML = html;
       }
+
+      
+function parseTime(timeString) {
+    var parts = timeString.split(':');
+    var hours = parseInt(parts[0], 10);
+    var minutes = parseInt(parts[1], 10);
+    var seconds = parseInt(parts[2], 10);
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+function getIntensityWidth(intensity) {
+    switch(intensity.toLowerCase()) {
+        case 'brak':
+            return 0;
+        case 'bardzo niska':
+            return 20;
+        case 'niska':
+            return 40;
+        case 'średnia':
+            return 60;
+        case 'wysoka':
+            return 80;
+        case 'bardzo wysoka':
+            return 100;
+        default:
+            return 0;
+    }
+}
 
       function generateNotification(title, n_content) {
         var notification = document.createElement("div");

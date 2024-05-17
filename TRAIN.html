@@ -132,15 +132,33 @@
         <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>
           <p>Czy na pewno chcesz zakończyć trening?</p>
-          <a href="userpage.php" class="button" id="confirmEndTraining"
+          <a
+            style="border: 3px solid #734a40; background-color: #d9d9d9"
+            href="userpage.php"
+            class="button"
+            id="confirmEndTraining"
             >Tak, zakończ</a
           >
-          <button class="button closeModal" id="anuluj">Anuluj</button>
+          <button
+            style="border: 3px solid #734a40; background-color: #d9b5a0"
+            class="button closeModal"
+            id="anuluj"
+          >
+            Anuluj
+          </button>
         </div>
       </div>
     </main>
     <footer id="footer_train"></footer>
-
+    <div id="loadingModal" class="loading-modal">
+      <div class="loading-content">
+        <img
+          class="loading_logo"
+          src="Graphics/Trainly-logo_2-loading.png"
+          alt="Loading"
+        />
+      </div>
+    </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const hamburger = document.querySelector(".hamburger");
@@ -157,244 +175,117 @@
 
         // Ukryj domyślnie powiadomienie po załadowaniu strony
         hideNotification();
+
+        showLogo();
       });
 
       document.addEventListener("DOMContentLoaded", function () {
-        // Pobierz nazwę listy ćwiczeń z adresu URL
         var urlParams = new URLSearchParams(window.location.search);
         var exerciseList = urlParams.get("exerciseList");
 
         document.getElementById("trenuj").innerHTML =
           exerciseList || "Twój trening";
 
-        // Definiuj listy ćwiczeń wraz z ich opisami
-        var exerciseLists = {
-          "Biegne już": [
-            "Trucht >15min",
-            "Heel touch",
-            "Mountain climbers",
-            "Burpees",
-            "V-UP",
-            "Rowerek / schodki >20min",
-            "Interwały 10x2min",
-          ],
-          "Ała, ała, ała": [
-            "Wypychanie nóg na suwnicy",
-            "Przysiady z kettlem",
-            "Podciąganie nóg do klatki piersiowej",
-            "Spacer z wykrokami",
-            "Wspięcia na palce jednonóż",
-          ],
-          "Brzuch mnie pali": [
-            "Heel touch",
-            "Brzuszki",
-            "Plank",
-            "Mountain climbers",
-            "Burpees",
-            "V-UP",
-            "Right side plank",
-            "Left side plank",
-          ],
-          "MEGA BICEPS": [
-            "Podciąganie na drążku",
-            "Ugięcia ramion z hantlami ciągłe 3x8",
-            "Wiosłowanie hantlami na ławce skośnej",
-            "Wyciskanie sztangi na modlitewniku",
-            "Uginanie ramion ze sztangą stojąc",
-          ],
-          "Zbuduj ciało niczym szafa": [
-            "Zgięcia nóg na maszynie",
-            "Rozciąganie klaty na maszynie przodem",
-            "Wyciąg górny na klatę z dwóch stron",
-            "Triceps deep (podciąganie)",
-            "Wyciskanie hantli na ławce poziomej",
-            "Triceps press",
-            "Ugięcia ramienia za głową (triceps)",
-            "Uginanie ramion ze sztangą stojąc",
-            "Wyprosty ramion z wyciągu górnego",
-          ],
-          "Nie przejdziesz przez framugę": [
-            "Wspięcia na palce na maszynie siedząc",
-            "Wyciąg dolny na klatę z dwóch stron",
-            "Ściąganie drążka do klatki piersiowej (szeroko)",
-            "Wyciskanie żołnierskie",
-            "Wypychanie klato-ramienne na maszynie",
-            "Wznosy ramion z hantlami na boki",
-            "Arnoldki siedząc",
-            "Wyciskanie hantli w górę siedząc",
-            "Deltoidy stojąc",
-            "Ugięcia ramion z hantlami podchwytem",
-          ],
-          "Worki z ziemniakami Ci nie straszne": [
-            "Zgięcia na łydkę maszyna",
-            "Podciąganie na drążku szerokim uchwytem",
-            "Wiosłowanie sztangą w opadzie tułowia",
-            "Ugięcia ramion z hantlami ciągłe 3x8",
-            "Wiosłowanie hantlami na ławce skośnej",
-            "Wyciskanie sztangi na modlitewniku",
-            "Wioślarz na maszynie",
-            "Uginanie ramion ze sztangą stojąc",
-          ],
-          "Po tym nie wstaniesz z łóżka": [
-            "Wypychanie nóg na suwnicy",
-            "Skręty tułowia na kółku",
-            "Przysiady z kettlem",
-            "Podciąganie nóg do klatki piersiowej",
-            "Spacer z wykrokami",
-            "Wspięcia na palce jednonóż",
-            "Marsz pod górkę >15min",
-          ],
-          "Czas na wymianę bojlera": [
-            "Trucht >15min",
-            "Heel touch",
-            "Brzuszki",
-            "Plank",
-            "Mountain climbers",
-            "Burpees",
-            "V-UP",
-            "Right side plank",
-            "Left side plank",
-            "Rowerek / schodki >20min",
-          ],
-          "Zaraz muszę biec na uczelnię": [
-            "Wspięcia na palce na maszynie siedząc",
-            "Wyciąg górny na klatę z dwóch stron",
-            "Wyciskanie żołnierskie",
-            "Wyciskanie sztangi na ławce ujemnej",
-            "Podciąganie na drążku szerokim uchwytem",
-            "Brzuszki na ławce ujemnej",
-            "Wznosy ramion z hantlami na boki",
-            "Uginanie ramion ze sztangą stojąc",
-            "Wyprosty ramion z wyciągu górnego",
-          ],
-        };
-
-        // Pobierz listę ćwiczeń dla wybranej nazwy listy
-        var exercises = exerciseLists[exerciseList] || [];
-
-        // Wyświetl ćwiczenia na stronie TRAIN.html
-        displayExercises(exercises);
+        if (exerciseList) {
+          fetchExercises(exerciseList);
+        }
       });
 
-      function displayExercises(exercises) {
-        // Pobierz element, w którym będą wyświetlane ćwiczenia
-        var exerciseListElement = document.getElementById("exercise-list");
+      function showLogo() {
+        const loadingModal = document.getElementById("loadingModal");
 
-        if (exercises.length != 0) {
-          // Wyczyść listę, jeśli już coś jest w niej
-          exerciseListElement.innerHTML = "";
-        }
-
-        // Dodaj każde ćwiczenie do listy na stronie TRAIN.html
-        exercises.forEach(function (exercise) {
-          var exerciseDescriptions = {
-            "Trucht >15min":
-              "Trucht >15min to ćwiczenie aerobowe polegające na bieganiu z umiarkowanym tempem przez co najmniej 15 minut.",
-            "Heel touch":
-              "Heel touch to ćwiczenie wzmacniające mięśnie brzucha. Leżąc na plecach zgiętymi kolanami, próbuj dotknąć piętami pięt podczas unoszenia tułowia.",
-            "Mountain climbers":
-              "Mountain climbers to dynamiczne ćwiczenie, które angażuje wiele mięśni, w tym mięśnie brzucha, ramion i nóg. Przechodzisz z pozycji deski do pozycji skakania z jedną nogą do przodu, a drugą do tyłu.",
-            Burpees:
-              "Burpees to intensywne ćwiczenie, które angażuje wiele grup mięśniowych. Rozpoczynasz je w pozycji stojącej, następnie wykonujesz przysiad, przesuwając dłonie na podłogę, skaczesz do pozycji deski, wykonujesz pompkę, wracasz do pozycji przysiadu, a na koniec skaczesz w górę.",
-            "V-UP":
-              "V-UP to ćwiczenie wzmacniające mięśnie brzucha. Leżąc na plecach z wyciągniętymi kończynami, unosisz jednocześnie tułów i nogi, starając się dotknąć palcami stóp.",
-            "Rowerek / schodki >20min":
-              "Rowerek / schodki >20min to ćwiczenie kardio, które może być wykonywane na rowerze stacjonarnym lub poprzez wspinanie się po schodach przez co najmniej 20 minut.",
-            "Interwały 10x2min":
-              "Interwały 10x2min to trening interwałowy, w którym wykonujesz wysiłek przez 2 minuty, a następnie odpoczywasz przez 1 minutę, powtarzając ten cykl łącznie 10 razy.",
-            "Wypychanie nóg na suwnicy":
-              "Wypychanie nóg na suwnicy to ćwiczenie siłowe, które angażuje głównie mięśnie nóg, w szczególności mięśnie czworogłowe.",
-            "Przysiady z kettlem":
-              "Przysiady z kettlem to ćwiczenie siłowe, które angażuje mięśnie nóg, pośladków i mięśnie stabilizujące korpus.",
-            "Podciąganie nóg do klatki piersiowej":
-              "Podciąganie nóg do klatki piersiowej to ćwiczenie wzmacniające mięśnie brzucha. Leżąc na plecach, zgiętymi kolanami unosisz je do klatki piersiowej.",
-            "Spacer z wykrokami":
-              "Spacer z wykrokami to ćwiczenie aerobowe, które angażuje mięśnie nóg i pośladków.",
-            "Wspięcia na palce jednonóż":
-              "Wspięcia na palce jednonóż to ćwiczenie wzmacniające mięśnie łydek oraz poprawiające równowagę i stabilność.",
-            Brzuszki:
-              "Brzuszki to ćwiczenie wzmacniające mięśnie brzucha. Leżąc na plecach, unosisz tułów do przodu, starając się dotknąć kolan.",
-            Plank:
-              "Plank to ćwiczenie statyczne, które wzmacnia mięśnie core, czyli mięśnie głębokie brzucha, pleców i miednicy.",
-            "Right side plank":
-              "Right side plank to ćwiczenie wzmacniające mięśnie boczne tułowia. Leżąc na boku, unosimy tułów do góry, podtrzymując się na przedramieniu.",
-            "Left side plank":
-              "Left side plank to ćwiczenie wzmacniające mięśnie boczne tułowia. Leżąc na boku, unosimy tułów do góry, podtrzymując się na przedramieniu.",
-            "Podciąganie na drążku":
-              "Podciąganie na drążku to ćwiczenie siłowe, które angażuje mięśnie pleców, ramion oraz mięśnie stabilizujące korpus.",
-            "Ugięcia ramion z hantlami ciągłe 3x8":
-              "Ugięcia ramion z hantlami ciągłe 3x8 to ćwiczenie izolujące mięśnie bicepsa. Stojąc z hantlami w dłoniach, podnosisz je do ramion, wykonując zgięcie w łokciach.",
-            "Wiosłowanie hantlami na ławce skośnej":
-              "Wiosłowanie hantlami na ławce skośnej to ćwiczenie siłowe, które angażuje mięśnie grzbietu oraz mięśnie pośladkowe.",
-            "Wyciskanie sztangi na modlitewniku":
-              "Wyciskanie sztangi na modlitewniku to ćwiczenie siłowe, które angażuje mięśnie klatki piersiowej, tricepsa i barków.",
-            "Uginanie ramion ze sztangą stojąc":
-              "Uginanie ramion ze sztangą stojąc to ćwiczenie izolujące mięśnie bicepsa. Stojąc z prostymi plecami, unosisz sztangę do ramion, wykonując zgięcie w łokciach.",
-            "Zgięcia nóg na maszynie":
-              "Zgięcia nóg na maszynie to ćwiczenie izolujące mięśnie łydek. Siedząc na maszynie, zginasz nogi w stawie kolanowym, unosząc ciężar.",
-            "Rozciąganie klaty na maszynie przodem":
-              "Rozciąganie klaty na maszynie przodem to ćwiczenie izolujące mięśnie klatki piersiowej. Siedząc na maszynie, przyciskasz rękojeści do siebie, rozciągając mięśnie klatki piersiowej.",
-            "Wyciąg górny na klatę z dwóch stron":
-              "Wyciąg górny na klatę z dwóch stron to ćwiczenie izolujące mięśnie klatki piersiowej i barków. Stojąc przed maszyną, przyciskasz rękojeści do siebie, wykonując ruch podobny do wyciskania sztangi w górę.",
-            "Triceps deep (podciąganie)":
-              "Triceps deep (podciąganie) to ćwiczenie izolujące mięśnie tricepsa. Stojąc tyłem do maszyny, podnosisz rękojeść wyciągu w górę, wyprostowując przedramię.",
-            "Wioślarz na maszynie":
-              "Wioślarz na maszynie to ćwiczenie siłowe, które angażuje mięśnie grzbietu oraz mięśnie ramion.",
-            "Wyprosty ramion z wyciągu górnego":
-              "Wyprosty ramion z wyciągu górnego to ćwiczenie izolujące mięśnie tricepsa. Stojąc tyłem do maszyny, wyprostowujesz ręce w dół.",
-            "Wspięcia na palce na maszynie siedząc":
-              "Wspięcia na palce na maszynie siedząc to ćwiczenie wzmacniające mięśnie łydek oraz poprawiające równowagę i stabilność. Siedząc na maszynie, unosisz obie pięty do góry, wykonując ruch podobny do wspięć na palce.",
-            "Wyciskanie żołnierskie":
-              "Wyciskanie żołnierskie to ćwiczenie siłowe, które angażuje głównie mięśnie barków, tricepsa oraz mięśnie stabilizujące korpus.",
-            "Wyciskanie sztangi na ławce ujemnej":
-              "Wyciskanie sztangi na ławce ujemnej to ćwiczenie siłowe, które angażuje głównie mięśnie górnej części klatki piersiowej oraz mięśnie tricepsa.",
-            "Brzuszki na ławce ujemnej":
-              "Brzuszki na ławce ujemnej to ćwiczenie wzmacniające mięśnie brzucha. Leżąc na ławce ujemnej, unosisz tułów do przodu, starając się dotknąć kolan.",
-            "Wznosy ramion z hantlami na boki":
-              "Wznosy ramion z hantlami na boki to ćwiczenie izolujące mięśnie boczne deltoidów. Stojąc z hantlami w dłoniach, unosisz je na boki, trzymając lekko zgięte łokcie.",
-            "Arnoldki siedząc":
-              "Arnoldki siedząc to ćwiczenie izolujące mięśnie barków. Siedząc z hantlami w dłoniach, unosimy je w górę, obracając nadgarstki na zewnątrz na górze ruchu.",
-            "Wyciskanie hantli w górę siedząc":
-              "Wyciskanie hantli w górę siedząc to ćwiczenie siłowe, które angażuje mięśnie barków oraz mięśnie tricepsa.",
-            "Deltoidy stojąc":
-              "Deltoidy stojąc to ćwiczenie izolujące mięśnie barków. Stojąc z hantlami w dłoniach, unosimy je w górę, trzymając lekko zgięte łokcie.",
-            "Ugięcia ramion z hantlami podchwytem":
-              "Ugięcia ramion z hantlami podchwytem to ćwiczenie izolujące mięśnie bicepsa. Stojąc z hantlami w dłoniach, podnosisz je do ramion, wykonując zgięcie w łokciach.",
-            "Zgięcia na łydkę maszyna":
-              "Zgięcia na łydkę maszyna to ćwiczenie izolujące mięśnie łydek. Siedząc na maszynie, unosimy ciężar za pomocą mięśni łydek.",
-            "Podciąganie na drążku szerokim uchwytem":
-              "Podciąganie na drążku szerokim uchwytem to ćwiczenie siłowe, które angażuje głównie mięśnie grzbietu, ramion oraz mięśnie stabilizujące korpus.",
-            "Wiosłowanie sztangą w opadzie tułowia":
-              "Wiosłowanie sztangą w opadzie tułowia to ćwiczenie siłowe, które angażuje mięśnie grzbietu oraz mięśnie ramion.",
-            "Wznosy ramion z hantlami ciągłe 3x8":
-              "Wznosy ramion z hantlami ciągłe 3x8 to ćwiczenie izolujące mięśnie barków. Stojąc z hantlami w dłoniach, unosimy je na boki, trzymając lekko zgięte łokcie.",
-            "Wioślarz na maszynie":
-              "Wioślarz na maszynie to ćwiczenie siłowe, które angażuje mięśnie grzbietu oraz mięśnie ramion.",
-            "Marsz pod górkę >15min":
-              "Marsz pod górkę >15min to ćwiczenie aerobowe, które angażuje mięśnie nóg i pośladków. Marszujesz pod górę przez co najmniej 15 minut.",
-          };
-
-          var exerciseDescription = exerciseDescriptions[exercise] || "";
-
-          var li = document.createElement("li");
-          li.innerHTML = `
-        <button type="button" class="collapsible">${exercise}</button>
-        <div class="exercise_details">
-            <p>${exerciseDescription}</p>
-            <form class="Trening">
-                <label for="weight">Obciążenie (kg):</label>
-                <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
-                <label for="sets">Powtórzenia na serię:</label>
-                <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
-                <label for="sets">Ilość serii:</label>
-                <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
-            </form>
-            <div class="myCheck unchecked" onclick="checkEx()"></div>
-        </div>
-    `;
-          exerciseListElement.appendChild(li);
-        });
+        loadingModal.style.display = "block";
+        loadingModal.classList.add("fade-in");
+        setTimeout(function () {
+          // Submit the form after 1 second delay
+          //loadingModal.style.display = "none";
+        }, 2000);
       }
+
+      function fetchExercises(listType) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "pobierz_listy_treningowe.php?exerciseList=" + listType,
+          true
+        );
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.exercises) {
+              var exerciseListElement =
+                document.getElementById("exercise-list");
+              exerciseListElement.innerHTML = ""; // Wyczyść poprzednią listę
+
+              var exercises = data.exercises;
+              exercises.forEach(function (exercise) {
+                var li = document.createElement("li");
+
+                li.innerHTML = `
+            <button type="button" class="collapsible">${exercise}</button>
+            <div class="exercise_details">
+                <p>Ładowanie opisu...</p>
+                <form class="Trening">
+                    <label for="weight">Obciążenie (kg):</label>
+                    <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
+                    <label for="sets">Powtórzenia na serię:</label>
+                    <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
+                    <label for="sets">Ilość serii:</label>
+                    <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
+                </form>
+                <div class="myCheck unchecked" onclick="checkEx()"></div>
+            </div>
+          `;
+                exerciseListElement.appendChild(li);
+
+                var xhr_des = new XMLHttpRequest();
+                xhr_des.open(
+                  "GET",
+                  "pobierz_opis.php?exerciseName=" +
+                    encodeURIComponent(exercise),
+                  true
+                );
+                xhr_des.onload = function () {
+                  if (xhr_des.status === 200) {
+                    var descriptionData = JSON.parse(xhr_des.responseText);
+                    var description = descriptionData.description || "";
+                    li.querySelector("p").innerText = description;
+                  } else {
+                    li.querySelector("p").innerText =
+                      "Nie udało się pobrać opisu.";
+                  }
+                };
+                xhr_des.send();
+              });
+
+              // Dodaj obsługę kliknięcia na buttony z klasą "collapsible"
+              document
+                .querySelectorAll(".collapsible")
+                .forEach(function (item) {
+                  item.addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    content.style.display =
+                      content.style.display === "block" ? "none" : "block";
+                  });
+                });
+            }
+          } else {
+            alert("Wystąpił błąd podczas pobierania listy ćwiczeń.");
+          }
+        };
+        xhr.send();
+      }
+
+      // Sprawdź, czy adres URL zawiera parametr exerciseList i jeśli tak, pobierz listę ćwiczeń
+      document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var exerciseList = urlParams.get("exerciseList");
+
+        if (exerciseList) {
+          fetchExercises(exerciseList);
+        }
+      });
 
       // Set the date we're counting down to
       var startTime = new Date().getTime();

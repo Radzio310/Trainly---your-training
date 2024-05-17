@@ -1,185 +1,233 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Trainly - Zacznij trening</title>
     <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
     <meta name="author" content="Radosław Witkowicz" />
-    <meta name="keywords" content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami" />
-    <meta name="description" content="Trainly - aplikacja do zarządzania treningami" />
+    <meta
+      name="keywords"
+      content="Trainly, trening, ćwiczenia, plan treningowy, zarządzanie treningami"
+    />
+    <meta
+      name="description"
+      content="Trainly - aplikacja do zarządzania treningami"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
     <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 
-<body class="fade-in">
+  <body class="fade-in">
     <header>
-        <div class="container">
-            <img class="logo" src="Graphics/Trainly-logo-active.png" />
+      <div class="container">
+        <img class="logo" src="Graphics/Trainly-logo-active.png" />
+      </div>
+      <nav>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
-        <nav>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <div class="menu">
-                <ul>
-                    <a href="userpage.php">
-                        <li>Twój panel</li>
-                    </a>
-                    <a href="settings.php">
-                        <li>Ustawienia</li>
-                    </a>
-                    <a href="user_contact.html">
-                        <li>Kontakt</li>
-                    </a>
-                    <a href="index.html">
-                        <li>Wyloguj</li>
-                    </a>
-                </ul>
-            </div>
-        </nav>
+        <div class="menu">
+          <ul>
+            <a href="userpage.php">
+              <li>Twój panel</li>
+            </a>
+            <a href="settings.php">
+              <li>Ustawienia</li>
+            </a>
+            <a href="user_contact.html">
+              <li>Kontakt</li>
+            </a>
+            <a href="index.html">
+              <li>Wyloguj</li>
+            </a>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main class="train_mob">
-        <h2 id="train">ZACZYNAMY TRENING!</h2>
-        <div class="columns">
-            <ul class="opcje_listy" onclick="openModal('twoje_listy')">
-                <li class="header">
-                    <h2>Twoje listy
-                        <h2>
-                </li>
-                <li class="your_list"></li>
-            </ul>
-            <a href="TRAIN.html">
-                <ul class="opcje_listy">
-                    <li class="header">
-                        <h2>Jadę na żywioł!
-                            <h2>
-                    </li>
-                    <li class="go-on-fire"></li>
-                </ul>
-            </a>
-            <ul class="opcje_listy" onclick="openModal('nasze_listy')">
-                <li class="header">
-                    <h2>Nasze listy
-                        <h2>
-                </li>
-                <li class="our_list"></li>
-            </ul>
-        </div>
-        <div class="success_notification" id="success_notification">
-            <span id="success_message"></span>
-        </div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <ul id="exercise-list-training"></ul>
-                <button class="button" onclick="startTraining()">
+      <h2 id="train">ZACZYNAMY TRENING!</h2>
+      <div class="columns">
+        <ul class="opcje_listy" onclick="openUserListsModal()">
+          <li class="header">
+            <h2>Twoje listy</h2>
+          </li>
+          <li class="your_list"></li>
+        </ul>
+        <a href="TRAIN.html">
+          <ul class="opcje_listy">
+            <li class="header">
+              <h2>Jadę na żywioł!</h2>
+            </li>
+            <li class="go-on-fire"></li>
+          </ul>
+        </a>
+        <ul class="opcje_listy" onclick="openOurListsModal()">
+          <li class="header">
+            <h2>Nasze listy</h2>
+          </li>
+          <li class="our_list"></li>
+        </ul>
+      </div>
+      <div class="success_notification" id="success_notification">
+        <span id="success_message"></span>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <ul id="exercise-list-training"></ul>
+          <button class="button" onclick="startTraining()">
             Rozpocznij trening
           </button>
-            </div>
         </div>
+      </div>
     </main>
     <footer>
-        <a href="user_homepage.html">
-            <img class="logo" src="Graphics/Trainly-logo_2.png" />
+      <a href="user_homepage.html"
+        ><img class="logo" src="Graphics/Trainly-logo_2.png"
+      /></a>
+      <div class="social-media-icons">
+        <a
+          href="https://www.facebook.com/profile.php?id=61558575186327"
+          target="_blank"
+        >
+          <img class="icon" src="Graphics/facebook-icon.png" alt="Facebook" />
         </a>
-        <!-- Dodaj ikonki mediów społecznościowych -->
-        <div class="social-media-icons">
-            <a href="https://www.facebook.com/profile.php?id=61558575186327" target="_blank"><img class="icon" src="Graphics/facebook-icon.png" alt="Facebook" /></a>
-            <a href="https://www.instagram.com/trainly_yourtraining/" target="_blank"><img class="icon" src="Graphics/instagram-icon.png" alt="Instagram" /></a>
-        </div>
+        <a
+          href="https://www.instagram.com/trainly_yourtraining/"
+          target="_blank"
+        >
+          <img class="icon" src="Graphics/instagram-icon.png" alt="Instagram" />
+        </a>
+      </div>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const hamburger = document.querySelector(".hamburger");
-            const menu = document.querySelector(".menu");
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.querySelector(".hamburger");
+        const menu = document.querySelector(".menu");
 
-            // Dodajemy obsługę kliknięcia na hamburger
-            hamburger.addEventListener("click", function() {
-                // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
-                this.classList.toggle("clicked");
-
-                // Pokazujemy/Ukrywamy menu po kliknięciu
-                menu.classList.toggle("active");
-            });
-
-            // Ukryj domyślnie powiadomienie po załadowaniu strony
-            hideNotification();
+        hamburger.addEventListener("click", function () {
+          this.classList.toggle("clicked");
+          menu.classList.toggle("active");
         });
 
-        function openModal(listType) {
-            var modal = document.getElementById("myModal");
-            var exerciseList = document.getElementById("exercise-list-training");
+        hideNotification();
+      });
 
-            // Czyść listę ćwiczeń
-            exerciseList.innerHTML = "";
+      function openUserListsModal() {
+        var modal = document.getElementById("myModal");
+        var exerciseList = document.getElementById("exercise-list-training");
 
-            // Pobierz listę ćwiczeń dla danego rodzaju treningu
-            var exercises = getExerciseList(listType);
+        exerciseList.innerHTML = ""; // Wyczyść listę ćwiczeń
 
-            // Wyświetl listę ćwiczeń w modalu
-            exercises.forEach(function(exercise) {
-                var li = document.createElement("li");
-                li.textContent = exercise;
-                li.addEventListener("click", function() {
-                    // Usuń klasę selected z wcześniej zaznaczonego elementu
-                    var selectedExercise = exerciseList.querySelector(".selected");
-                    if (selectedExercise) {
-                        selectedExercise.classList.remove("selected");
-                    }
-                    // Dodaj klasę selected do aktualnie zaznaczonego elementu
-                    li.classList.add("selected");
-                });
-                exerciseList.appendChild(li);
+        fetchUserLists(function (lists) {
+          lists.forEach(function (list) {
+            var li = document.createElement("li");
+            li.textContent = list.List_Name;
+            li.addEventListener("click", function () {
+              var selectedList = exerciseList.querySelector(".selected");
+              if (selectedList) {
+                selectedList.classList.remove("selected");
+              }
+              li.classList.add("selected");
             });
+            exerciseList.appendChild(li);
+          });
+        });
 
-            modal.style.display = "block";
-        }
+        modal.style.display = "block";
+      }
 
-        function startTraining() {
-            var selectedExercise = document.getElementById("exercise-list-training").querySelector(".selected");
-            if (selectedExercise) {
-                // Pobierz nazwę zaznaczonego ćwiczenia
-                var selectedExerciseName = selectedExercise.textContent;
-                window.location.href = "TRAIN.html?exerciseList=" + selectedExerciseName;
-            } else {
-                alert("Wybierz ćwiczenie przed rozpoczęciem treningu!");
+      function fetchUserLists(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "pobierz_listy_uzytkownika.php", true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.lists) {
+              callback(data.lists);
             }
-        }
+          } else {
+            alert("Wystąpił błąd podczas pobierania list użytkownika.");
+          }
+        };
+        xhr.send();
+      }
 
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
+      function openOurListsModal() {
+        var modal = document.getElementById("myModal");
+        var exerciseList = document.getElementById("exercise-list-training");
 
-        function getExerciseList(listType) {
-            // Tutaj możesz zwrócić odpowiednią listę ćwiczeń na podstawie listType
-            // Na razie zwrócę przykładową listę, aby pokazać działanie
-            var exerciseLists = {
-                twoje_listy: [
-                    "Biegne już",
-                    "Ała, ała, ała",
-                    "Brzuch mnie pali",
-                    "MEGA BICEPS",
-                ],
-                nasze_listy: [
-                    "Zbuduj ciało niczym szafa",
-                    "Nie przejdziesz przez framugę",
-                    "Worki z ziemniakami Ci nie straszne",
-                    "Po tym nie wstaniesz z łóżka",
-                    "Czas na wymianę bojlera",
-                    "Zaraz muszę biec na uczelnię",
-                ],
-            };
+        exerciseList.innerHTML = ""; // Wyczyść listę ćwiczeń
 
-            return exerciseLists[listType] || [];
+        fetchOurLists(function (lists) {
+          lists.forEach(function (list) {
+            var li = document.createElement("li");
+            li.textContent = list.List_Name;
+            li.addEventListener("click", function () {
+              var selectedList = exerciseList.querySelector(".selected");
+              if (selectedList) {
+                selectedList.classList.remove("selected");
+              }
+              li.classList.add("selected");
+            });
+            exerciseList.appendChild(li);
+          });
+        });
+
+        modal.style.display = "block";
+      }
+
+      function fetchOurLists(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "pobierz_listy_systemowe.php", true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.lists) {
+              callback(data.lists);
+            }
+          } else {
+            alert("Wystąpił błąd podczas pobierania naszych list.");
+          }
+        };
+        xhr.send();
+      }
+
+      function startTraining() {
+        var selectedList = document
+          .getElementById("exercise-list-training")
+          .querySelector(".selected");
+        if (selectedList) {
+          var selectedListName = selectedList.textContent;
+          window.location.href =
+            "TRAIN.html?exerciseList=" + encodeURIComponent(selectedListName);
+        } else {
+          alert("Wybierz listę przed rozpoczęciem treningu!");
         }
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      function hideNotification() {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        successNotification.style.display = "none";
+      }
     </script>
-</body>
-
+  </body>
 </html>

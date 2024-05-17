@@ -288,7 +288,9 @@
           xhr.onload = function () {
             if (xhr.status === 200) {
               // Odpowiedź z serwera
-              alert(xhr.responseText);
+              //alert(xhr.responseText);
+              window.location.href =
+                "your_list.php?add_list=true&list_name=" + listName;
               // Możesz też dodać kod do obsługi sukcesu
             } else {
               alert("Wystąpił błąd podczas zapisywania listy.");
@@ -296,7 +298,7 @@
           };
           xhr.send(JSON.stringify(data));
           window.location.href =
-            "your_list.html?add_list=true&list_name=" + listName;
+            "your_list.php?add_list=true&list_name=" + listName;
         }
       }
 

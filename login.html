@@ -98,11 +98,22 @@
         </a>
       </div>
     </footer>
+    <div id="loadingModal" class="loading-modal">
+      <div class="loading-content">
+        <img
+          class="loading_logo"
+          src="Graphics/Trainly-logo_2-loading.png"
+          alt="Loading"
+        />
+      </div>
+    </div>
   </body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const hamburger = document.querySelector(".hamburger");
       const menu = document.querySelector(".menu");
+      const loadingModal = document.getElementById("loadingModal");
+      const loginInput = document.getElementById("login");
 
       const urlParams = new URLSearchParams(window.location.search);
       const error = urlParams.get("error");
@@ -116,17 +127,21 @@
         this.classList.toggle("clicked");
         menu.classList.toggle("active");
       });
+
+      loginInput.focus();
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          // Show the loading modal
+          loadingModal.style.display = "block";
+          loadingModal.classList.add("fade-in");
+          setTimeout(function () {
+            // Submit the form after 1 second delay
+            event.target.submit();
+          }, 1000);
+        });
     });
-
-    document
-      .getElementById("loginForm")
-      .addEventListener("submit", function (event) {
-        //event.preventDefault();
-        var login = document.getElementById("login").value;
-        var password = document.getElementById("password").value;
-
-        // Ta linijka zostanie zastąpiona po weryfikacji w PHP
-        //window.location.href = "userpage.html";
-      });
   </script>
 </html>

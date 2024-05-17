@@ -116,38 +116,7 @@
         </ul>
       </div>
       <h2 id="our-lists">Nasze listy ćwiczeń</h2>
-      <ul class="nasze-listy">
-        <li id="konto" onclick="openModal('klata_triceps')">
-          <h3>"Zbuduj ciało niczym szafa"</h3>
-          <p>klata + triceps</p>
-          <span id="exercise-count" class="badge">9</span>
-        </li>
-        <li id="konto" onclick="openModal('barki_ramiona')">
-          <h3>"Nie przejdziesz przez framugę"</h3>
-          <p>barki + ramiona</p>
-          <span id="exercise-count" class="badge">10</span>
-        </li>
-        <li id="konto" onclick="openModal('plecy_biceps')">
-          <h3>"Worki z ziemniakami Ci nie straszne"</h3>
-          <p>plecy + biceps</p>
-          <span id="exercise-count" class="badge">8</span>
-        </li>
-        <li id="konto" onclick="openModal('nogi')">
-          <h3>"Po tym nie wstaniesz z łóżka"</h3>
-          <p>nogi</p>
-          <span id="exercise-count" class="badge">7</span>
-        </li>
-        <li id="konto" onclick="openModal('brzuch_cardio')">
-          <h3>"Czas na wymianę bojlera "</h3>
-          <p>brzuch + cardio</p>
-          <span id="exercise-count" class="badge">10</span>
-        </li>
-        <li id="konto" onclick="openModal('cale_cialo')">
-          <h3>"Zaraz muszę biec na uczelnię "</h3>
-          <p>całe ciało</p>
-          <span id="exercise-count" class="badge">9</span>
-        </li>
-      </ul>
+      <ul class="nasze-listy" id="exercise-list"></ul>
 
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -176,7 +145,13 @@
           <span class="close" onclick="closeModalNameList()">&times;</span>
           <h3 id="our_name">Nadaj nazwę Twojej liście</h3>
           <input type="text" id="listNameInput" placeholder="Nazwa listy..." />
-          <div class="button" onclick="nameList('listNameInput')">Zapisz</div>
+          <div
+            id="saveListButton"
+            class="button"
+            onclick="nameList('listNameInput')"
+          >
+            Zapisz
+          </div>
         </div>
       </div>
     </main>
@@ -207,6 +182,8 @@
           this.classList.toggle("clicked");
           menu.classList.toggle("active");
         });
+
+        displayExerciseLists();
       });
 
       document.getElementById("myInput").focus();
@@ -230,11 +207,9 @@
         };
       }
 
-      // Obsługa dodawania ćwiczenia po wciśnięciu klawisza Enter
       var input = document.getElementById("myInput");
       input.addEventListener("keypress", function (event) {
         if (event.keyCode === 13) {
-          // keyCode 13 odpowiada klawiszowi Enter
           event.preventDefault();
           newElement();
         }
@@ -254,148 +229,94 @@
         var t = document.createTextNode(inputValue);
         li.appendChild(t);
         if (inputValue === "") {
-          alert("You must write something!");
+          alert("Pole nie może być puste!");
         } else {
           document.getElementById("our_addEx").appendChild(li);
         }
         document.getElementById("myInput").value = "";
 
-        // Dodajemy klasę "delete" do elementu listy
-        li.classList.add("delete");
-
-        // Dodajemy krzyżyk do usuwania elementu z listy
         var span = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
-        span.className = "closing";
-        span.setAttribute("data-added-by-user", "true"); // Dodajemy atrybut dla krzyżyka
+        span.className = "delete";
         span.appendChild(txt);
         li.appendChild(span);
 
-        // Dodajemy obsługę zdarzenia do nowego krzyżyka
-        span.onclick = function () {
-          var listItem = this.parentElement;
-          listItem.style.display = "none";
-        };
+        for (var i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          };
+        }
       }
 
-      var listName = "";
+      function nameList(id) {
+        var listName = document.getElementById(id).value;
+        if (listName === "") {
+          alert("Pole nie może być puste!");
+        } else {
+          closeModalNameList();
+          document.getElementById("listNameInput").value = "";
+        }
+      }
 
-      function openModal(listType) {
-        var modal = document.getElementById("myModal");
-        var listElements = {
-          klata_triceps: [
-            "Zgięcia nóg na maszynie",
-            "Rozciąganie klaty na maszynie przodem",
-            "Wyciąg górny na klatę z dwóch stron",
-            "Triceps deep (podciąganie)",
-            "Wyciskanie hantli na ławce poziomej",
-            "Triceps press",
-            "Ugięcia ramienia za głową (triceps)",
-            "Uginanie ramion ze sztangą stojąc",
-            "Wyprosty ramion z wyciągu górnego",
-          ],
-          barki_ramiona: [
-            "Wspięcia na palce na maszynie siedząc",
-            "Wyciąg dolny na klatę z dwóch stron",
-            "Ściąganie drążka do klatki piersiowej (szeroko)",
-            "Wyciskanie żołnierskie",
-            "Wypychanie klato-ramienne na maszynie",
-            "Wznosy ramion z hantlami na boki",
-            "Arnoldki siedząc",
-            "Wyciskanie hantli w górę siedząc",
-            "Deltoidy stojąc",
-            "Ugięcia ramion z hantlami podchwytem",
-          ],
-          plecy_biceps: [
-            "Zgięcia na łydkę maszyna",
-            "Podciąganie na drążku szerokim uchwytem",
-            "Wiosłowanie sztangą w opadzie tułowia",
-            "Ugięcia ramion z hantlami ciągłe 3x8",
-            "Wiosłowanie hantlami na ławce skośnej",
-            "Wyciskanie sztangi na modlitewniku",
-            "Wioślarz na maszynie",
-            "Uginanie ramion ze sztangą stojąc",
-          ],
-          nogi: [
-            "Wypychanie nóg na suwnicy",
-            "Skręty tułowia na kółku",
-            "Przysiady z kettlem",
-            "Podciąganie nóg do klatki piersiowej",
-            "Spacer z wykrokami",
-            "Wspięcia na palce jednonóż",
-            "Marsz pod górkę >15min",
-          ],
-          brzuch_cardio: [
-            "Trucht >15min",
-            "Heel touch",
-            "Brzuszki",
-            "Plank",
-            "Mountain climbers",
-            "Burpees",
-            "V-UP",
-            "Right side plank",
-            "Left side plank",
-            "Rowerek / schodki >20min",
-          ],
-          cale_cialo: [
-            "Wspięcia na palce na maszynie siedząc",
-            "Wyciąg górny na klatę z dwóch stron",
-            "Wyciskanie żołnierskie",
-            "Wyciskanie sztangi na ławce ujemnej",
-            "Podciąganie na drążku szerokim uchwytem",
-            "Brzuszki na ławce ujemnej",
-            "Wznosy ramion z hantlami na boki",
-            "Uginanie ramion ze sztangą stojąc",
-            "Wyprosty ramion z wyciągu górnego",
-          ],
-        };
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
 
-        var listContainer = document.getElementById("our_addEx");
-        listContainer.innerHTML = "";
+      function closeModalNameList() {
+        document.getElementById("nameList").style.display = "none";
+      }
 
-        var exercises = listElements[listType];
-        exercises.forEach(function (exercise) {
-          var li = document.createElement("li");
-          li.appendChild(document.createTextNode(exercise));
+      function displayExerciseLists() {
+        fetch("pobierz_nasze_listy.php")
+          .then((response) => response.json())
+          .then((data) => {
+            const exerciseListElement =
+              document.getElementById("exercise-list");
 
-          // Dodajemy klasę "delete" do elementu listy
-          li.classList.add("delete");
+            data.lists.forEach((list) => {
+              const listItem = document.createElement("li");
 
-          // Dodajemy krzyżyk do usuwania elementu z listy
-          var span = document.createElement("SPAN");
-          var txt = document.createTextNode("\u00D7");
-          span.className = "closing";
+              const badge = document.createElement("span");
+              badge.className = "badge";
+              badge.textContent = list.Exercise_count;
+
+              listItem.textContent = '"' + list.List_name + '"';
+              listItem.appendChild(badge);
+              listItem.className = "list-item";
+              listItem.addEventListener("click", () => {
+                openModal(list.List_name, list.Exercise_list);
+              });
+              exerciseListElement.appendChild(listItem);
+            });
+          })
+          .catch((error) =>
+            console.error("Error fetching exercise lists:", error)
+          );
+      }
+
+      function openModal(listName, exerciseList) {
+        const modal = document.getElementById("myModal");
+        const exerciseContainer = document.getElementById("our_addEx");
+
+        // Clear previous exercises
+        exerciseContainer.innerHTML = "";
+
+        exerciseList.forEach((exercise) => {
+          const li = document.createElement("li");
+          li.textContent = exercise;
+          const span = document.createElement("SPAN");
+          const txt = document.createTextNode("\u00D7");
+          span.className = "delete";
           span.appendChild(txt);
           li.appendChild(span);
-
-          listContainer.appendChild(li);
-
-          if (listType === "klata_triceps") {
-            listName = "Zbuduj ciało niczym szafa";
-          } else if (listType === "barki_ramiona") {
-            listName = "Nie przejdziesz przez framugę";
-          } else if (listType === "plecy_biceps") {
-            listName = "Worki z ziemniakami Ci nie straszne";
-          } else if (listType === "nogi") {
-            listName = "Po tym nie wstaniesz z łóżka";
-          } else if (listType === "brzuch_cardio") {
-            listName = "Czas na wymianę bojlera";
-          } else if (listType === "cale_cialo") {
-            listName = "Zaraz muszę biec na uczelnię";
-          }
-        });
-
-        // Pobieramy wszystkie krzyżyki i dodajemy obsługę zdarzenia dla każdego z nich
-        var closeButtons = document.querySelectorAll(".closing");
-        closeButtons.forEach(function (button) {
-          button.onclick = function () {
-            var listItem = this.parentElement;
-            listItem.style.display = "none";
-          };
+          exerciseContainer.appendChild(li);
         });
 
         modal.style.display = "block";
-        document.getElementById("myInput").focus();
+        document.getElementById("our_rozpocznij").onclick = function () {
+          startTraining(listName);
+        };
       }
 
       function startTraining(listType) {
@@ -421,8 +342,72 @@
         if (listName.trim() === "") {
           alert("Podaj poprawną nazwę listy ćwiczeń!");
         } else {
-          window.location.href =
-            "userpage.php?show_lists=true&add_list=true&list_name=" + listName;
+          //window.location.href = "userpage.php?show_lists=true&add_list=true&list_name=" + listName;
+          // Obsługa zdarzenia kliknięcia przycisku "Zapisz"
+          var listNameInput = document.getElementById("listNameInput");
+          listNameInput.addEventListener("keypress", function (event) {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              //nameList("listNameInput");
+            }
+          });
+          document
+            .getElementById("saveListButton")
+            .addEventListener("click", function () {
+              var listName = document.getElementById("listNameInput").value;
+
+              // Pobierz ćwiczenia z listy dodanej przez użytkownika
+              var exercises = [];
+              var listItems = document.querySelectorAll("#our_addEx li");
+              listItems.forEach(function (item) {
+                if (item.style.display !== "none") {
+                  var exercise = item.textContent;
+                  var trimmedExercise = exercise.slice(0, -1);
+                  if (
+                    trimmedExercise !== "Przykładowe ćwiczenie nr 1" &&
+                    trimmedExercise !== "Przykładowe ćwiczenie nr 2" &&
+                    trimmedExercise !== "Przykładowe ćwiczenie nr 3"
+                  ) {
+                    exercises.push(trimmedExercise);
+                  }
+                }
+              });
+
+              if (listName.trim() !== "") {
+                // Tworzymy obiekt zawierający nazwę listy i jej ćwiczenia
+                var newList = {
+                  listName: listName,
+                  exercises: JSON.stringify(exercises),
+                };
+
+                // Wysyłamy nową listę do serwera za pomocą AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "zapisz_liste.php", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = function () {
+                  if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                      // Komunikat po pomyślnym zapisaniu listy
+                      //alert("Lista została dodana do Twoich list!");
+                    } else {
+                      alert("Wystąpił błąd podczas zapisywania listy.");
+                    }
+                  }
+                };
+
+                // Wysyłamy dane w formie JSON
+                xhr.send(JSON.stringify(newList));
+                window.location.href =
+                  "your_list.php?add_list=true&list_name=" + listName;
+              } else {
+                // Komunikat w przypadku niepodania nazwy listy
+                alert("Nie podano nazwy listy!");
+              }
+
+              // Zamykamy modal z nadaniem nazwy nowej listy
+              closeModalNameList();
+            });
         }
       }
 

@@ -37,10 +37,10 @@ if ($result->num_rows > 0) {
 }
 else {
     $statistics = array(
-        "Training_count" => 0,
-        "Training_time" => 0,
-        "Calories" => 0,
-        "Intensity" => "Brak danych"
+        "Training_count" => '0',
+        "Training_time" => '0:00:00',
+        "Calories" => '0',
+        "Intensity" => "brak"
     );
 }
 
