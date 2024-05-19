@@ -29,6 +29,53 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
+
+    <style>
+      .nasze-listy {
+        width: 100%;
+        overflow-y: auto;
+        /* Dodanie pionowego scrolla, gdy lista przekracza maksymalną wysokość */
+        display: inline-block;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        margin-top: 15vh;
+      }
+
+      .nasze-listy li .list-name {
+        width: 90%;
+        /* Szerokość 90% dla nazwy listy */
+        word-wrap: break-word;
+        /* Zawijanie tekstu */
+        margin: 25px 0;
+        /* Odstęp między tytułem a badge'em */
+      }
+
+      .list-item {
+        min-height: 175px;
+        position: relative;
+        /* Aby umożliwić centrowanie badge'a */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Centrowanie w poziomie */
+        justify-content: center;
+        /* Centrowanie w pionie */
+      }
+
+      .badge {
+        background-color: #734a40;
+        color: #d9d9d9;
+        border-radius: 50%;
+        padding: 5px;
+        text-align: center;
+        font-size: 2.5vh;
+        margin: 10px 0;
+        /* Dodanie marginesu nad i pod badge'em */
+        max-width: 15%;
+        width: auto;
+        /* Automatyczna szerokość */
+      }
+    </style>
   </head>
 
   <body class="fade-in">
@@ -184,10 +231,21 @@
         });
 
         displayExerciseLists();
+        attachDeleteEvents();
       });
 
       document.getElementById("myInput").focus();
       document.getElementById("listNameInput").focus();
+
+      function attachDeleteEvents() {
+        var close = document.getElementsByClassName("delete");
+        for (var i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          };
+        }
+      }
 
       var myNodelist = document.getElementsByTagName("LI");
       var i;
@@ -247,6 +305,8 @@
             div.style.display = "none";
           };
         }
+
+        attachDeleteEvents();
       }
 
       function nameList(id) {
@@ -277,11 +337,16 @@
             data.lists.forEach((list) => {
               const listItem = document.createElement("li");
 
+              const listName = document.createElement("span");
+              listName.className = "list-name";
+              listName.textContent = '"' + list.List_name + '"';
+
               const badge = document.createElement("span");
               badge.className = "badge";
               badge.textContent = list.Exercise_count;
 
-              listItem.textContent = '"' + list.List_name + '"';
+              listItem.appendChild(listName);
+              listItem.innerHTML += "<br>";
               listItem.appendChild(badge);
               listItem.className = "list-item";
               listItem.addEventListener("click", () => {
@@ -312,6 +377,8 @@
           li.appendChild(span);
           exerciseContainer.appendChild(li);
         });
+
+        attachDeleteEvents();
 
         modal.style.display = "block";
         document.getElementById("our_rozpocznij").onclick = function () {

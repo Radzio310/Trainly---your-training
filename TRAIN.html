@@ -134,7 +134,6 @@
           <p>Czy na pewno chcesz zakończyć trening?</p>
           <a
             style="border: 3px solid #734a40; background-color: #d9d9d9"
-            href="userpage.php"
             class="button"
             id="confirmEndTraining"
             >Tak, zakończ</a
@@ -471,6 +470,117 @@
             "s"
         );
       };
+
+      // Funkcja do zbierania danych z ćwiczeń
+      function gatherTrainingData() {
+        const exercises = [];
+        document.querySelectorAll("#exercise-list li").forEach((li) => {
+          const name = li.querySelector(".collapsible").innerText.trim();
+          const weight = li.querySelector("input[name='weight']").value.trim();
+          const sets = li.querySelector("input[name='sets']").value.trim();
+          const reps = li
+            .querySelectorAll("input[name='sets']")[1]
+            .value.trim();
+          const isChecked = li
+            .querySelector(".myCheck")
+            .classList.contains("checked");
+
+          exercises.push({
+            Nazwa_cwiczenia: name,
+            Obciazenie: weight,
+            Serie: sets,
+            Powtorzenia: reps,
+            Czy_wykonane: isChecked,
+          });
+        });
+
+        return exercises;
+      }
+
+      function sendTrainingReport() {
+        // Zbieranie danych
+        const userId = "USER_ID"; // Wstaw identyfikator użytkownika
+        const trainingId = "TRAINING_ID"; // Wstaw identyfikator treningu
+        const date = new Date().toISOString().slice(0, 19).replace("T", " "); // Aktualna data i czas
+        const trainingTimeString = document
+          .getElementById("demo")
+          .innerText.trim(); // Zbieranie czasu treningu
+        const trainingTimeInSeconds = parseTime(trainingTimeString); // Przeliczanie czasu treningu na sekundy
+
+        // Sprawdzenie, czy czas treningu jest większy niż 5 minut
+        if (trainingTimeInSeconds > 300) {
+          const exercises = gatherTrainingData();
+
+          // Tworzenie obiektu z danymi
+          const trainingReport = {
+            User_ID: userId,
+            Training_ID: trainingId,
+            Date: date,
+            Training_time: trainingTimeString,
+            Exercises: exercises,
+          };
+
+          // Wysłanie danych do serwera
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "save_training_report.php", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/json;charset=UTF-8"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              window.location.href = "userpage.php?train=training_saved";
+            } else {
+              window.location.href = "userpage.php?train=error";
+            }
+          };
+          xhr.send(JSON.stringify(trainingReport));
+        } else {
+          window.location.href = "userpage.php?train=training_too_short";
+        }
+      }
+
+      // Modyfikacja funkcji kończącej trening
+      document.getElementById("confirmEndTraining").onclick = function () {
+        clearInterval(x); // Zatrzymaj timer
+        var distance = new Date().getTime() - startTime; // Oblicz czas trwania treningu
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        alert(
+          "Trening został zakończony. Czas trwania treningu: " +
+            hours +
+            "h " +
+            minutes +
+            "m " +
+            seconds +
+            "s"
+        );
+
+        // Wyślij raport z treningu
+        sendTrainingReport();
+      };
+
+      function parseTime(timeString) {
+        const timeParts = timeString.split(" ");
+        let hours = 0,
+          minutes = 0,
+          seconds = 0;
+
+        timeParts.forEach((part) => {
+          if (part.endsWith("h")) {
+            hours = parseInt(part.replace("h", ""));
+          } else if (part.endsWith("m")) {
+            minutes = parseInt(part.replace("m", ""));
+          } else if (part.endsWith("s")) {
+            seconds = parseInt(part.replace("s", ""));
+          }
+        });
+
+        return hours * 3600 + minutes * 60 + seconds;
+      }
     </script>
   </body>
 </html>

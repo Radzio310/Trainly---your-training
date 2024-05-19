@@ -187,6 +187,7 @@ $conn->close();
           Rozpocznij trening
         </a>
       </section>
+      <div class="success_notification" id="success_notification"><span id="success_message"></span></div>
     </main>
     <footer>
       <a href="user_homepage.html">
@@ -236,6 +237,7 @@ $conn->close();
         var showPanel = urlParams.get("show_panel");
         var createList = urlParams.get("create_list");
         var addList = urlParams.get("add_list");
+        var train = urlParams.get("train");
 
         if (showLists === "true") {
           // Wyświetl sekcję z listami ćwiczeń
@@ -266,6 +268,19 @@ $conn->close();
           var listName = urlParams.get("list_name");
           showSuccessNotification(
             "Lista " + listName + " została dodana do Twoich list!"
+          );
+        }
+        if (train === "success") {
+          showTrainNotification("Trening został zapisany!");
+        }
+        if (train == "training_too_short") {
+          showTrainFalseNotification(
+            "Trening nie został zapisany, ponieważ czas treningu był zbyt krótki. Minimalny czas treningu to 5 minut."
+          );
+        }
+        if (train == "error") {
+          showTrainNotification(
+            "Coś poszło nie tak podczas zapisywania treningu."
           );
         }
       });
@@ -642,13 +657,13 @@ $conn->close();
           case "lista":
             html = '<h2 id="lists">Listy ćwiczeń</h2><div class="columns">';
             html +=
-              '<a href="your_list.php"><ul class="opcje_listy"><li class="header"><h2>Twoje listy<h2></li>';
+              '<a href="your_list.php"><ul class="opcje_listy"><li class="header"><h2 style="margin-top: 20px;">Twoje listy<h2></li>';
             html += "<li class='your_list'></li></ul></a>";
             html +=
-              '<a href="create_list.html"><ul class="opcje_listy"><li class="header"><h2>Stwórz listę<h2></li>';
+              '<a href="create_list.html"><ul class="opcje_listy"><li class="header"><h2 style="margin-top: 20px;">Stwórz listę<h2></li>';
             html += "<li class='create_list'></li></ul></a>";
             html +=
-              '<a href="our_list.html"><ul class="opcje_listy"><li class="header"><h2>Nasze listy<h2></li>';
+              '<a href="our_list.html"><ul class="opcje_listy"><li class="header"><h2 style="margin-top: 20px;">Nasze listy<h2></li>';
             html += "<li class='our_list'></li></ul></a>";
             html += "</div>"; //class columns
             html +=
@@ -812,6 +827,36 @@ function getIntensityWidth(intensity) {
         setTimeout(function () {
           successNotification.style.display = "none";
         }, 3000);
+      }
+
+      function showTrainNotification(message) {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        var successMessage = document.getElementById("success_message");
+        successMessage.innerText = message; // Ustawiamy treść powiadomienia
+
+        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+        // Ukrywamy powiadomienie po 3 sekundach
+        setTimeout(function () {
+          successNotification.style.display = "none";
+        }, 3000);
+      }
+
+      function showTrainFalseNotification(message) {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        var successMessage = document.getElementById("success_message");
+        successMessage.innerText = message; // Ustawiamy treść powiadomienia
+
+        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+        // Ukrywamy powiadomienie po 3 sekundach
+        setTimeout(function () {
+          successNotification.style.display = "none";
+        }, 7000);
       }
     </script>
   </body>
