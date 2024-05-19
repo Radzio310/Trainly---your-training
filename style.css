@@ -1259,6 +1259,25 @@ hr {
   margin-top: 1%;
 }
 
+.well-done {
+  border: 2px solid #734a40;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: #d9b5a0;
+  color: #734a40;
+}
+
+.well-done:hover {
+  background-color: #734a40;
+  color: #bf907e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#view-report-btn {
+  display: none;
+}
+
 /* Statystyki */
 
 #stats {

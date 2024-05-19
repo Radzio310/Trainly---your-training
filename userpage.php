@@ -176,6 +176,29 @@
           }
         }
 
+          // Bieżący miesiąc i rok
+          $currentMonth = date('m');
+          $currentYear = date('Y');
+
+          // Pobieranie dni wykonanych treningów w bieżącym miesiącu
+          $sql = "SELECT DISTINCT DATE(Date) as TrainingDate 
+                  FROM history 
+                  WHERE User_ID = '$userId' 
+                  AND MONTH(Date) = '$currentMonth' 
+                  AND YEAR(Date) = '$currentYear'";
+
+          $result = mysqli_query($conn, $sql);
+          $trainingDays = [];
+
+          if ($result) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                  $trainingDays[] = date('j', strtotime($row['TrainingDate']));
+              }
+          }
+
+          // Konwertowanie tablicy do formatu JSON, aby użyć jej w JavaScript
+          $trainingDaysJson = json_encode($trainingDays);
+
 $conn->close();
             ?>
           
@@ -318,137 +341,215 @@ $conn->close();
         xhr.send();
     }
 
-    // Wywołaj funkcję przy załadowaniu strony
+    // Funkcja do oznaczania dni wykonanych treningów
+    function markTrainingDays() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'pobierz_wykonane_treningi.php', true); // Skrypt PHP do pobierania dni wykonanych treningów
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    var trainingDays = response.trainingDays; // Tablica dni z wykonanymi treningami
+                    trainingDays.forEach(function(day) {
+                        var dayElement = document.getElementById("day_" + day);
+                        if (dayElement) {
+                            dayElement.classList.add("well-done");
+                            dayElement.addEventListener('click', function() {
+                                showTrainingReport(day);
+                            });
+                            // Ustaw tytuł, aby wskazywać, że trening został wykonany
+                            dayElement.setAttribute("title", "Trening wykonany. Kliknij, aby zobaczyć raport.");
+                        }
+                    });
+                } else {
+                    console.error("Wystąpił błąd podczas pobierania dni wykonanych treningów.");
+                }
+            } else {
+                console.error("Wystąpił błąd podczas pobierania dni wykonanych treningów.");
+            }
+        };
+        xhr.send();
+    }
+
+    // Wywołaj funkcje przy załadowaniu strony
     markPlannedDays();
+    markTrainingDays();
+    
     var calendarSidebar = document.getElementById('kalendarz');
     if (calendarSidebar) {
-        calendarSidebar.addEventListener('click', markPlannedDays);
+        calendarSidebar.addEventListener('click', function() {
+            markPlannedDays();
+            markTrainingDays();
+        });
     }
 });
 
+// Funkcja do wyświetlania raportu treningu
+function showTrainingReport(day) {
+    var date = new Date();
+    var currentMonth = date.getMonth() + 1;
+    var currentYear = date.getFullYear();
+    var formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-
-
-      function plan(dayId) {
-        document.getElementById("startTraining").style.display = "none";
-        document.getElementById("planTraining").style.display = "block";
-        handleDayClick(dayId);
-      }
-
-      function start(dayID) {
-        document.getElementById("planTraining").style.display = "none";
-        document.getElementById("startTraining").style.display = "block";
-        document.getElementById("plannedInfo").style.display = "none";
-        handleDayClick(null);
-      }
-
-      function handleDayClick(dayId) {
-        var clickedDay = document.getElementById(dayId); // Pobierz kliknięty dzień na podstawie jego ID
-
-        // Usuń klasę "last-clicked" ze wszystkich dni w kalendarzu
-        var allDays = document.querySelectorAll(".days li span");
-        allDays.forEach(function (day) {
-          day.classList.remove("last-clicked");
+    fetch(`get_training_report.php?date=${formattedDate}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('training-report-content').innerText = "TRENING WYKONANY - zobacz raport";
+                document.getElementById('view-report-btn').style.display = 'block';
+                document.getElementById('view-report-btn').onclick = function() {
+                    showTrainModal(data.report);
+                };
+            } else {
+                document.getElementById('training-report-content').innerText = "Brak treningu w wybranym dniu.";
+                document.getElementById('view-report-btn').style.display = 'none';
+            }
         });
-
-        // Dodaj klasę "last-clicked" tylko do klikniętego dnia
-        clickedDay.classList.add("last-clicked");
-      }
-
-      function getDaysInMonth(month, year) {
-        // Użyjemy miesiąca następnego, aby ustalić datę ostatniego dnia bieżącego miesiąca
-        // Ponieważ dzień 0 zawsze oznacza ostatni dzień poprzedniego miesiąca
-        return new Date(year, month + 1, 0).getDate();
-      }
-
-      // Funkcja do uzyskania dnia tygodnia dla pierwszego dnia miesiąca
-      function getFirstDayOfMonth(month, year) {
-        return new Date(year, month, 1).getDay();
-      }
-
-      // Funkcja do generowania pustych pól dla poprzednich dni w kalendarzu
-      function generateEmptyCells(firstDayIndex) {
-        var emptyCells = "";
-        for (var i = 1; i < firstDayIndex; i++) {
-          emptyCells += '<li><span class="empty"></span></li>';
-        }
-        return emptyCells;
-      }
-
-      // Funkcja otwierająca modal do planowania treningu
-      function openPlanModal() {
-        var modal = document.getElementById("planModal");
-        modal.style.display = "block";
-        document.getElementById("trainingDescriptionInput").focus();
-      }
-
-      // Funkcja zamykająca modal do planowania treningu
-      function closePlanModal() {
-        var modal = document.getElementById("planModal");
-        document.getElementById("trainingDescriptionInput").value = "";
-        document.getElementById("trainingTimeInput").value = "";
-        modal.style.display = "none";
-      }
-
-
-
-      // Funkcja zapisująca plan treningowy
-      function saveTrainingPlan() {
-  var description = document.getElementById("trainingDescriptionInput").value;
-  var time = document.getElementById("trainingTimeInput").value;
-  var plannedDay = document.querySelector(".last-clicked");
-
-  // Sprawdź czy wszystkie pola są uzupełnione
-  if (!description || !time || !plannedDay) {
-    alert("Wypełnij wszystkie pola!");
-    return;
-  }
-
-  var dayId = plannedDay.id; // Pobierz ID klikniętego dnia
-
-  // Przygotuj dane do wysłania
-  var data = new FormData();
-  data.append('description', description);
-  data.append('time', time);
-  data.append('dayId', dayId);
-
-  // Użyj AJAX do wysłania danych do pliku PHP
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'plan.php', true);
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      // Pobierz odpowiedź z serwera
-      var response = xhr.responseText;
-      // Sprawdź odpowiedź - możesz obsłużyć różne przypadki, np. sukces lub błąd
-      if (response === "success") {
-        // Jeśli zapis do bazy danych powiódł się, wykonaj odpowiednie akcje, np. zamknięcie modala
-        closePlanModal();
-        // Wyświetl komunikat o sukcesie
-        showSuccessNotification_calendar("Trening został zaplanowany pomyślnie!");
-        // Oznacz kliknięty dzień jako zaplanowany
-        plannedDay.classList.add("planned");
-      } else {
-        // Jeśli zapis do bazy danych nie powiódł się, wyświetl komunikat o błędzie
-        alert("Wystąpił błąd podczas zapisywania planu treningowego. Spróbuj ponownie.");
-      }
-    } else {
-      // Jeśli wystąpił błąd w połączeniu, wyświetl komunikat o błędzie
-      alert('Wystąpił problem z połączeniem. Spróbuj ponownie.');
-    }
-  };
-  xhr.send(data);
-  //window.location.href = "userpage.php?show_calendar=true";
 }
 
+function showTrainModal(report) {
+    const modal = document.getElementById('training-report-modal');
+    const modalContent = document.getElementById('training-report-modal-content');
+    modalContent.innerHTML = `
+        <h3>Raport treningu</h3>
+        <p>Data: ${report.Date}</p>
+        <p>Czas trwania: ${report.Training_time}</p>
+        <h4>Ćwiczenia:</h4>
+        <ul>
+            ${report.Exercises.map(exercise => `
+                <li>
+                    Nazwa: ${exercise.Nazwa_cwiczenia}, 
+                    Obciążenie: ${exercise.Obciazenie}, 
+                    Serie: ${exercise.Serie}, 
+                    Powtórzenia: ${exercise.Powtorzenia}, 
+                    Wykonane: ${exercise.Czy_wykonane ? 'Tak' : 'Nie'}
+                </li>`).join('')}
+        </ul>
+        <button onclick="closeTrainModal()">Zamknij</button>
+    `;
+    modal.style.display = 'block';
+}
 
-      // Funkcja obsługująca kliknięcie na dzień zaplanowany
-      function showPlannedTraining(dayId) {
+function closeTrainModal() {
+    document.getElementById('training-report-modal').style.display = 'none';
+}
+
+function plan(dayId) {
+    document.getElementById("startTraining").style.display = "none";
+    document.getElementById("planTraining").style.display = "block";
+    handleDayClick(dayId);
+}
+
+function start(dayId) {
+    document.getElementById("planTraining").style.display = "none";
+    document.getElementById("startTraining").style.display = "block";
+    document.getElementById("plannedInfo").style.display = "none";
+    handleDayClick(null);
+}
+
+function handleDayClick(dayId) {
+    var clickedDay = document.getElementById(dayId); // Pobierz kliknięty dzień na podstawie jego ID
+
+    // Usuń klasę "last-clicked" ze wszystkich dni w kalendarzu
+    var allDays = document.querySelectorAll(".days li span");
+    allDays.forEach(function (day) {
+        day.classList.remove("last-clicked");
+    });
+
+    // Dodaj klasę "last-clicked" tylko do klikniętego dnia
+    if (clickedDay) {
+        clickedDay.classList.add("last-clicked");
+    }
+}
+
+function getDaysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+}
+
+// Funkcja do uzyskania dnia tygodnia dla pierwszego dnia miesiąca
+function getFirstDayOfMonth(month, year) {
+    return new Date(year, month, 1).getDay();
+}
+
+// Funkcja do generowania pustych pól dla poprzednich dni w kalendarzu
+function generateEmptyCells(firstDayIndex) {
+    var emptyCells = "";
+    for (var i = 1; i < firstDayIndex; i++) {
+        emptyCells += '<li><span class="empty"></span></li>';
+    }
+    return emptyCells;
+}
+
+// Funkcja otwierająca modal do planowania treningu
+function openPlanModal() {
+    var modal = document.getElementById("planModal");
+    modal.style.display = "block";
+    document.getElementById("trainingDescriptionInput").focus();
+}
+
+// Funkcja zamykająca modal do planowania treningu
+function closePlanModal() {
+    var modal = document.getElementById("planModal");
+    document.getElementById("trainingDescriptionInput").value = "";
+    document.getElementById("trainingTimeInput").value = "";
+    modal.style.display = "none";
+}
+
+// Funkcja zapisująca plan treningowy
+function saveTrainingPlan() {
+    var description = document.getElementById("trainingDescriptionInput").value;
+    var time = document.getElementById("trainingTimeInput").value;
+    var plannedDay = document.querySelector(".last-clicked");
+
+    // Sprawdź czy wszystkie pola są uzupełnione
+    if (!description || !time || !plannedDay) {
+        alert("Wypełnij wszystkie pola!");
+        return;
+    }
+
+    var dayId = plannedDay.id; // Pobierz ID klikniętego dnia
+
+    // Przygotuj dane do wysłania
+    var data = new FormData();
+    data.append('description', description);
+    data.append('time', time);
+    data.append('dayId', dayId);
+
+    // Użyj AJAX do wysłania danych do pliku PHP
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'plan.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // Pobierz odpowiedź z serwera
+            var response = xhr.responseText;
+            // Sprawdź odpowiedź - możesz obsłużyć różne przypadki, np. sukces lub błąd
+            if (response ===            "success") {
+                // Jeśli zapis do bazy danych powiódł się, wykonaj odpowiednie akcje, np. zamknięcie modala
+                closePlanModal();
+                // Wyświetl komunikat o sukcesie
+                showSuccessNotification_calendar("Trening został zaplanowany pomyślnie!");
+                // Oznacz kliknięty dzień jako zaplanowany
+                plannedDay.classList.add("planned");
+            } else {
+                // Jeśli zapis do bazy danych nie powiódł się, wyświetl komunikat o błędzie
+                alert("Wystąpił błąd podczas zapisywania planu treningowego. Spróbuj ponownie.");
+            }
+        } else {
+            // Jeśli wystąpił błąd w połączeniu, wyświetl komunikat o błędzie
+            alert('Wystąpił problem z połączeniem. Spróbuj ponownie.');
+        }
+    };
+    xhr.send(data);
+}
+
+// Funkcja obsługująca kliknięcie na dzień zaplanowany lub wykonany
+function showPlannedTraining(dayId) {
     var plannedDay = document.getElementById(dayId);
     var plannedTrainingDescription = document.getElementById("plannedTrainingDescription");
     var plannedTrainingTime = document.getElementById("plannedTrainingTime");
 
-    // Sprawdź, czy dany dzień jest zaplanowany
-    if (plannedDay.classList.contains("planned")) {
+    // Sprawdź, czy dany dzień jest zaplanowany lub wykonany
+    if (plannedDay.classList.contains("planned") || plannedDay.classList.contains("well-done")) {
         // Pobierz opis i godzinę treningu z bazy danych
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'pobierz_dane_treningowe.php', true); // Ustaw ścieżkę do skryptu PHP, który pobiera dane
@@ -479,118 +580,131 @@ $conn->close();
             }
         };
         xhr.send();
+
+        if (plannedDay.classList.contains("well-done")) {
+            document.getElementById('training-report-content').innerText = "TRENING WYKONANY - zobacz raport";
+            document.getElementById('view-report-btn').style.display = 'block';
+            document.getElementById("planTraining").style.display = "none"; // Ukryj przycisk "Zaplanuj trening"
+        } else {
+            document.getElementById('view-report-btn').style.display = 'none';
+            document.getElementById("planTraining").style.display = "block"; // Pokaż przycisk "Zaplanuj trening"
+        }
     } else {
         // Jeśli dzień nie jest zaplanowany, ukryj plannedInfo
         document.getElementById("plannedInfo").style.display = "none";
+        document.getElementById('view-report-btn').style.display = 'none';
     }
 }
 
-
-      function showContent(section) {
-        var content = document.getElementById("content");
-        var html = "";
-        // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
-        switch (section) {
-          case "panel":
+function showContent(section) {
+    var content = document.getElementById("content");
+    var html = "";
+    // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
+    switch (section) {
+        case "panel":
             html = "<div class='userinfo' id='side_user'>";
             html += "<br><h2><bold>Witaj Radek!</bold></h2><br>";
             html += "</div>";
             html += "<div id='clock'></div>";
             html += "<hr>";
             html +=
-              '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
+                '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
             document.getElementById("panel").classList.add("selected");
             document.getElementById("kalendarz").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
+                .getElementById("powiadomienia")
+                .classList.remove("selected");
             break;
-          case "kalendarz":
+        case "kalendarz":
             var currentDate = new Date();
             var monthNames = [
-              "STYCZEŃ",
-              "LUTY",
-              "MARZEC",
-              "KWIECIEŃ",
-              "MAJ",
-              "CZERWIEC",
-              "LIPIEC",
-              "SIERPIEŃ",
-              "WRZESIEŃ",
-              "PAŹDZIERNIK",
-              "LISTOPAD",
-              "GRUDZIEŃ",
+                "STYCZEŃ",
+                "LUTY",
+                "MARZEC",
+                "KWIECIEŃ",
+                "MAJ",
+                "CZERWIEC",
+                "LIPIEC",
+                "SIERPIEŃ",
+                "WRZESIEŃ",
+                "PAŹDZIERNIK",
+                "LISTOPAD",
+                "GRUDZIEŃ",
             ];
             var monthIndex = currentDate.getMonth();
             var year = currentDate.getFullYear();
             var activeDay = currentDate.getDate();
             var firstDayIndex = getFirstDayOfMonth(monthIndex, year);
             var html =
-              '<h2 id="cals">Kalendarz</h2><div class="calendar"><div class="month"><ul><li><h2>';
+                '<h2 id="cals">Kalendarz</h2><div class="calendar"><div class="month"><ul><li><h2>';
             html += monthNames[monthIndex];
             html += "<span> ";
             html += year;
             html += "</span></h2></li></ul></div>";
             html +=
-              '<ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>';
+                '<ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>';
             html += '<ul class="days">';
             // Pobieramy liczbę dni w danym miesiącu
             var daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
             html += generateEmptyCells(firstDayIndex);
 
             for (var i = 1; i <= daysInMonth; i++) {
-              if (i === activeDay) {
-                html +=
-                  '<li><span class="active" onclick="start(this.id)">' +
-                    i +
-                  "</span></li>";
+                if (i === activeDay) {
+                    html +=
+                        '<li><span class="active" onclick="start(this.id)">' +
+                        i +
+                        "</span></li>";
+                      } else {
+                    html +=
+                        '<li><span class="inactive" onclick="plan(this.id); showPlannedTraining(\'day_' +
+                        i +
+                        '\')" id="day_' +
+                        i +
+                        '">' +
+                        i +
+                        "</span></li>";
                 }
-                else {
-                html +=
-                  '<li><span class="inactive" onclick="plan(this.id); showPlannedTraining(\'day_' +
-                  i +
-                  '\')" id="day_' +
-                  i +
-                  '">' +
-                  i +
-                  "</span></li>";
-              }
             }
 
             html += "</ul>";
             // opis zaplanowanego treningu
             html +=
-              '<div class="planned_info" id="plannedInfo"><span id="plannedTrainingDescription"></span> <span id="plannedTrainingTime"></span></div>';
+                '<div class="planned_info" id="plannedInfo"><span id="plannedTrainingDescription"></span> <span id="plannedTrainingTime"></span></div>';
             // Dodajemy przycisk "Zaplanuj trening" i "Rozpocznij trening"
             html +=
-              '<a href="training.html" class="button" id="startTraining">Rozpocznij trening</a>';
+                '<a href="training.html" class="button" id="startTraining">Rozpocznij trening</a>';
             html +=
-              '<button class="button" id="planTraining" onclick="openPlanModal()">Zaplanuj trening</button>';
+                '<button class="button" id="planTraining" onclick="openPlanModal()">Zaplanuj trening</button>';
+            html +=
+                '<button id="view-report-btn" style="display:none;" onclick="showTrainingReport()">Zobacz raport</button>';
             html += "</div>";
             html += "</div></div><span class='mobile_cal'>";
             // Modal do planowania treningu
             html +=
-              '<div id="planModal" class="modal"><div class="modal-content"><span class="close" onclick="closePlanModal()">&times;</span>';
+                '<div id="planModal" class="modal"><div class="modal-content"><span class="close" onclick="closePlanModal()">&times;</span>';
             html +=
-              '<h3>Zaplanuj trening</h3><input type="text" id="trainingDescriptionInput" placeholder="Opis treningu..."/>';
+                '<h3>Zaplanuj trening</h3><input type="text" id="trainingDescriptionInput" placeholder="Opis treningu..."/>';
             html +=
-              '<span class="icon"><i class="fa fa-clock-o"></i></span><input type="time" id="trainingTimeInput" />';
+                '<span class="icon"><i class="fa fa-clock-o"></i></span><input type="time" id="trainingTimeInput" />';
             html +=
-              '<div class="button" onclick="saveTrainingPlan()">Zapisz</div></div></div>';
+                '<div class="button" onclick="saveTrainingPlan()">Zapisz</div></div></div>';
             // Komunikat o udanym zaplanowaniu treningu
             html +=
-              '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
+                '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
+            html += '<div id="training-report-modal" class="modal"><div class="modal-content" id="training-report-modal-content">';
+            html += '<!-- Treść raportu będzie dynamicznie generowana --></div></div>';
 
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");
             document.getElementById("panel").classList.remove("selected");
             document
-              .getElementById("powiadomienia")
-              .classList.remove("selected");
+                .getElementById("powiadomienia")
+                .classList.remove("selected");
             break;
+
 
           case "powiadomienia":
             document.getElementById("powiadomienia").classList.add("selected");
