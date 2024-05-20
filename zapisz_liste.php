@@ -24,17 +24,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $listName = $postData->listName;
   $exercises = $postData->exercises; // Przekształć tablicę w format JSON
 
-  // Przygotuj zapytanie SQL
-  $sql = "INSERT INTO your_lists (User_ID, List_Name, Exercise_list) VALUES ('$id', '$listName', '$exercises')";
+ // Sprawdź, czy istnieje już lista o danej nazwie dla danego użytkownika
+    $sql_check = "SELECT * FROM your_lists WHERE User_ID='$id' AND List_Name='$listName'";
+    $result = $conn->query($sql_check);
 
-  // Wykonaj zapytanie
-  if ($conn->query($sql) === TRUE) {
-    //echo "New record created successfully";
-    //header("Location: your_lists.html?addList=true&listName=$listName");
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+    if ($result->num_rows > 0) {
+        // Lista o danej nazwie już istnieje
+        echo json_encode(array("error" => "listExists"));
+        header("Location: create_list.html?error=listExists");
 
+    } else {
+        // Przygotuj zapytanie SQL do dodania nowej listy
+        $sql_insert = "INSERT INTO your_lists (User_ID, List_Name, Exercise_list) VALUES ('$id', '$listName', '$exercises')";
+
+        // Wykonaj zapytanie
+        if ($conn->query($sql_insert) === TRUE) {
+            header("Location: your_lists.html?addList=true&listName=$listName");
+        } else {
+            echo "Error: " . $sql_insert . "<br>" . $conn->error;
+        }
+    }
   // Zamknij połączenie z bazą danych
   $conn->close();
 }

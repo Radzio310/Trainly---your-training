@@ -41,6 +41,20 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
         });
     </script>';
 }
+else if (isset($_GET['error']) && $_GET['error'] == 'same_password') {
+  echo '<script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var errorNotification = document.getElementById("error_notification");
+          errorNotification.style.display = "block";
+          setTimeout(function () {
+              errorNotification.style.display = "none";
+          }, 3000);
+      });
+  </script>';
+}
+else {
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -196,6 +210,11 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
     <div class="success_notification" id="success_notification">
       <span id="success_message">Zmiany zostały zapisane poprawnie!</span>
     </div>
+    <div class="success_notification" id="error_notification">
+      <span id="error_message" style="color: red; font-weight: bold">Nowe hasło musi się różnić od obecnego!</span>
+    </div>
+
+
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -211,26 +230,16 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
           menu.classList.toggle("active");
         });
 
-        // Ukryj domyślnie powiadomienie po załadowaniu strony
-        hideNotification();
       });
 
       function submitForm(event) {
     event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
     var isFormValid = validateForm();
     if (isFormValid) {
-        var successNotification = document.getElementById("success_notification");
-        successNotification.style.display = "block";
-        setTimeout(function () {
-            successNotification.style.display = "none";
-            if (window.location.search.indexOf('success=true') === -1) {
-                window.location.href = window.location.href + '?success=true';
-            }
+                  // Wyczyść pola z hasłem i powtórzeniem hasła
             document.getElementById("settingsForm").submit();
-            // Wyczyść pola z hasłem i powtórzeniem hasła
             document.getElementById("password").value = "";
             document.getElementById("confirm_password").value = "";
-        }, 3000);
     }
     return isFormValid;
 }
@@ -248,13 +257,6 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
           password_error.style.display = "none";
           return true;
         }
-      }
-
-      function hideNotification() {
-        var successNotification = document.getElementById(
-          "success_notification"
-        );
-        successNotification.style.display = "none";
       }
     </script>
   </body>
