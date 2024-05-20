@@ -159,6 +159,11 @@
         <div class="button" onclick="saveList()">Zapisz</div>
       </div>
     </div>
+    <div class="success_notification" id="error_notification">
+      <span id="error_message" style="color: red; font-weight: bold"
+        >Podana nazwa listy już istnieje!</span
+      >
+    </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -287,7 +292,13 @@
           xhr.setRequestHeader("Content-Type", "application/json");
           xhr.onload = function () {
             if (xhr.status === 200) {
-              alert("Lista o takiej nazwie już istnieje!");
+              //alert("Lista o takiej nazwie już istnieje!");
+              document.getElementById("error_notification").style.display =
+                "block";
+              setTimeout(function () {
+                document.getElementById("error_notification").style.display =
+                  "none";
+              }, 3000);
             } else {
               window.location.href =
                 "your_list.php?add_list=true&list_name=" + listName;

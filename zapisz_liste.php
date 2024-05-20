@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Wykonaj zapytanie
         if ($conn->query($sql_insert) === TRUE) {
             header("Location: your_lists.html?addList=true&listName=$listName");
+            echo '<script>document.getElementById("error_notification").style.display = "none";</script>';
         } else {
             echo "Error: " . $sql_insert . "<br>" . $conn->error;
         }
