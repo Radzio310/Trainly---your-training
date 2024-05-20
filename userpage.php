@@ -293,8 +293,8 @@ $conn->close();
             "Lista " + listName + " została dodana do Twoich list!"
           );
         }
-        if (train === "success") {
-          showTrainNotification("Trening został zapisany!");
+        if (train === "training_saved") {
+          showTrainNotification("Trening zakończony! Wyniki zostały zapisane.");
         }
         if (train == "training_too_short") {
           showTrainFalseNotification(
@@ -354,10 +354,6 @@ function markTrainingDays() {
                     var dayElement = document.getElementById("day_" + day);
                     if (dayElement) {
                         dayElement.classList.add("well-done");
-                        dayElement.addEventListener('click', function() {
-                            //handleDayClick("day_" + day); // Dodanie obsługi kliknięcia dla dni "well-done"
-                            showTrainingReport(day); // Wyświetlenie raportu treningu
-                        });
                         // Ustaw tytuł, aby wskazywać, że trening został wykonany
                         dayElement.setAttribute("title", "Trening wykonany. Kliknij, aby zobaczyć raport.");
                     }
@@ -476,7 +472,13 @@ function handleDayClick(dayId) {
         document.getElementById("planTraining").style.display = "none"; // Ukryj przycisk "Zaplanuj trening"
           document.getElementById("plannedInfo").style.display = "none";
           showTrainingReport();
-    } else {
+    } else if (clickedDay.classList.contains("planned")) {
+        document.getElementById('view-report-btn').style.display = 'none';
+        document.getElementById("planTraining").style.display = "block"; // Pokaż przycisk "Zaplanuj trening"
+        document.getElementById("plannedInfo").style.display = "block";
+    }
+    else {
+        document.getElementById("plannedInfo").style.display = "none";
         document.getElementById('view-report-btn').style.display = 'none';
         document.getElementById("planTraining").style.display = "block"; // Pokaż przycisk "Zaplanuj trening"
     }

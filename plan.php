@@ -1,6 +1,7 @@
 <?php
 session_start();
 $id = $_SESSION['user_id'];
+
 // Sprawdź, czy dane zostały przesłane za pomocą metody POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sprawdź, czy wszystkie wymagane dane zostały przesłane
@@ -23,15 +24,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Przygotuj i wykonaj zapytanie SQL, np. wstaw dane do tabeli
-        $sql = "INSERT INTO calendars (User_ID, Training_description, Training_time, Training_day) VALUES ('$id','$description', '$time', '$dayId')";
+        // Sprawdź, czy istnieje już trening dla danego użytkownika w danym dniu
+        $sql_check = "SELECT * FROM calendars WHERE User_ID = '$id' AND Training_day = '$dayId'";
+        $result = $conn->query($sql_check);
 
-        if ($conn->query($sql) === TRUE) {
-            // Jeśli zapytanie zostało wykonane pomyślnie, zwróć sukces
-            echo "success";
+        if ($result->num_rows > 0) {
+            // Jeśli istnieje, zaktualizuj istniejący wpis
+            $sql_update = "UPDATE calendars SET Training_description = '$description', Training_time = '$time' WHERE User_ID = '$id' AND Training_day = '$dayId'";
+            if ($conn->query($sql_update) === TRUE) {
+                echo "success";
+            } else {
+                echo "error: " . $conn->error;
+            }
         } else {
-            // Jeśli wystąpił błąd podczas wykonywania zapytania, zwróć błąd
-            echo "error: " . $conn->error;
+            // Jeśli nie istnieje, wstaw nowy wpis
+            $sql_insert = "INSERT INTO calendars (User_ID, Training_description, Training_time, Training_day) VALUES ('$id','$description', '$time', '$dayId')";
+            if ($conn->query($sql_insert) === TRUE) {
+                echo "success";
+            } else {
+                echo "error: " . $conn->error;
+            }
         }
 
         // Zamknij połączenie z bazą danych
