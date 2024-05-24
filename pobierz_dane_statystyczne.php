@@ -2,11 +2,7 @@
 session_start();
 $id = $_SESSION['user_id'];
 
-// Połącz się z bazą danych
-$servername = "localhost";
-$username = "root"; // domyślnie 'root' w XAMPP
-$password = ""; // domyślne hasło w XAMPP jest puste
-$dbname = "trainly";
+require_once "config.php";
 
 // Stwórz połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);

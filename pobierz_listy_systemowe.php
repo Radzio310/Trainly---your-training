@@ -9,11 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Połącz z bazą danych
-$servername = "localhost"; // Zmień na swój serwer baz danych
-$username = "root"; // Zmień na swoją nazwę użytkownika bazy danych
-$password = ""; // Zmień na swoje hasło do bazy danych
-$dbname = "trainly"; // Zmień na nazwę swojej bazy danych
+require_once "config.php";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

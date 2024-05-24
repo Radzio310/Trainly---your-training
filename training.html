@@ -23,6 +23,25 @@
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      #train_history {
+        font-family: "Michroma", sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        text-align: center;
+        margin-top: 25px;
+        width: 40%;
+        color: #734a40;
+        border: 3px solid #734a40;
+        background-color: transparent;
+        margin-left: 30%;
+      }
+
+      #train_history:hover {
+        color: #d9b5a0;
+        background-color: #734a40;
+      }
+    </style>
   </head>
 
   <body class="fade-in">
@@ -55,7 +74,7 @@
       </nav>
     </header>
     <main class="train_mob">
-      <h2 id="train">ZACZYNAMY TRENING!</h2>
+      <h2 id="train" style="margin-top: -1vh">ZACZYNAMY TRENING!</h2>
       <div class="columns">
         <ul class="opcje_listy" onclick="openUserListsModal()">
           <li class="header">
@@ -78,6 +97,11 @@
           <li class="our_list"></li>
         </ul>
       </div>
+      <a href="history.php"
+        ><button class="button" id="train_history">
+          HISTORIA TRENINGÓW
+        </button></a
+      >
       <div class="success_notification" id="success_notification">
         <span id="success_message"></span>
       </div>

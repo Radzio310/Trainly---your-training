@@ -2,14 +2,11 @@
 session_start();
 $id = $_SESSION['user_id'];
 
-// Połącz się z bazą danych
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "trainly";
+require_once "config.php";
 
 // Stwórz połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);
+$conn->set_charset("utf8mb4");
 
 // Sprawdzenie połączenia
 if ($conn->connect_error) {
@@ -22,7 +19,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $trainingId = $data['Training_ID'];
 $date = $data['Date'];
 $trainingTime = $data['Training_time'];
-$exercises = json_encode($data['Exercises']);
+$exercises = json_encode($data['Exercises'], JSON_UNESCAPED_UNICODE); // Dodaj flagę JSON_UNESCAPED_UNICODE
 
 // Przygotowanie zapytania SQL
 $sql = "INSERT INTO history (User_ID, Training_ID, Date, Training_time, Exercises)

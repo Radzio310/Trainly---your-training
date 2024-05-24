@@ -6,11 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Odbierz dane z żądania POST
   $postData = json_decode(file_get_contents("php://input"));
 
-  // Połącz się z bazą danych
-  $servername = "localhost";
-  $username = "root"; // domyślnie 'root' w XAMPP
-  $password = ""; // domyślne hasło w XAMPP jest puste
-  $dbname = "trainly";
+  require_once "config.php";
 
   // Stwórz połączenie z bazą danych
   $conn = new mysqli($servername, $username, $password, $dbname);

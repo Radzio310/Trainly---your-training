@@ -352,8 +352,13 @@
       document.addEventListener("click", function (event) {
         if (event.target.classList.contains("myCheck")) {
           var checkBox = event.target;
-          checkBox.classList.toggle("checked");
-          checkBox.classList.toggle("unchecked");
+          if (checkBox.classList.contains("checked")) {
+            checkBox.classList.add("unchecked");
+            checkBox.classList.remove("checked");
+          } else {
+            checkBox.classList.add("checked");
+            checkBox.classList.remove("unchecked");
+          }
 
           // Znajdź element collapsible
           var collapsible = checkBox.parentNode.previousElementSibling;
@@ -452,16 +457,6 @@
         document.getElementById("myModal").style.display = "none";
       };
 
-      document.getElementById("confirmEndTraining").onclick = function () {
-        clearInterval(x); // Zatrzymaj timer
-        var distance = new Date().getTime() - startTime; // Oblicz czas trwania treningu
-        var hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      };
-
       // Funkcja do zbierania danych z ćwiczeń
       function gatherTrainingData() {
         const exercises = [];
@@ -490,8 +485,6 @@
 
       function sendTrainingReport() {
         // Zbieranie danych
-        const userId = "USER_ID"; // Wstaw identyfikator użytkownika
-        const trainingId = "TRAINING_ID"; // Wstaw identyfikator treningu
         const date = new Date().toISOString().slice(0, 19).replace("T", " "); // Aktualna data i czas
         const trainingTimeString = document
           .getElementById("demo")
@@ -499,19 +492,17 @@
         const trainingTimeInSeconds = parseTime(trainingTimeString); // Przeliczanie czasu treningu na sekundy
 
         // Sprawdzenie, czy czas treningu jest większy niż 5 minut
-        if (trainingTimeInSeconds > 300) {
+        if (trainingTimeInSeconds > 3) {
           const exercises = gatherTrainingData();
 
           // Tworzenie obiektu z danymi
           const trainingReport = {
-            User_ID: userId,
-            Training_ID: trainingId,
             Date: date,
             Training_time: trainingTimeString,
             Exercises: exercises,
           };
 
-          // Wysłanie danych do serwera
+          // Wysłanie danych do serwera save_training_report.php
           const xhr = new XMLHttpRequest();
           xhr.open("POST", "save_training_report.php", true);
           xhr.setRequestHeader(
@@ -520,6 +511,8 @@
           );
           xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              // Po zapisaniu raportu treningu, zaktualizuj statystyki użytkownika
+              updateTrainingStats(trainingTimeInSeconds);
               window.location.href = "userpage.php?train=training_saved";
             } else {
               window.location.href = "userpage.php?train=error";
@@ -531,28 +524,41 @@
         }
       }
 
-      // Modyfikacja funkcji kończącej trening
-      document.getElementById("confirmEndTraining").onclick = function () {
-        clearInterval(x); // Zatrzymaj timer
-        var distance = new Date().getTime() - startTime; // Oblicz czas trwania treningu
-        var hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        alert(
-          "Trening został zakończony. Czas trwania treningu: " +
-            hours +
-            "h " +
-            minutes +
-            "m " +
-            seconds +
-            "s"
-        );
+      function updateTrainingStats(trainingTimeInSeconds) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_stats.php", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-        // Wyślij raport z treningu
-        sendTrainingReport();
-      };
+        const data = {
+          User_ID: "USER_ID", // Wstaw identyfikator użytkownika
+          Training_time: trainingTimeInSeconds / 60, // Czas treningu w minutach
+        };
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            window.location.href = "userpage.php?train=training_saved";
+          } else {
+            window.location.href = "userpage.php?train=error";
+          }
+        };
+        xhr.send(JSON.stringify(data));
+      }
+
+      // Modyfikacja funkcji kończącej trening
+      document
+        .getElementById("confirmEndTraining")
+        .addEventListener("click", function () {
+          clearInterval(x); // Zatrzymaj timer
+          var distance = new Date().getTime() - startTime; // Oblicz czas trwania treningu
+          var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Wyślij raport z treningu
+          sendTrainingReport();
+        });
 
       function parseTime(timeString) {
         const timeParts = timeString.split(" ");

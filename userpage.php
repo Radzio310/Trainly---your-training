@@ -123,10 +123,7 @@
               session_start();
               $id = $_SESSION['user_id'];
 
-              $servername = "localhost";
-              $username = "root"; // domyślnie 'root' w XAMPP
-              $password = ""; // domyślne hasło w XAMPP jest puste
-              $dbname = "trainly";
+              require_once "config.php";
 
               $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -356,6 +353,12 @@ function markTrainingDays() {
                         dayElement.classList.add("well-done");
                         // Ustaw tytuł, aby wskazywać, że trening został wykonany
                         dayElement.setAttribute("title", "Trening wykonany. Kliknij, aby zobaczyć raport.");
+                        // Dodaj obsługę kliknięcia na wykonany dzień
+                        dayElement.addEventListener('click', function() {
+                            document.getElementById('view-report-btn').style.display = "block";
+                            document.getElementById('plannedInfo').style.display = "none";
+                            document.getElementById('planTraining').style.display = "none";
+                        });
                     }
                 });
             } else {
@@ -382,55 +385,8 @@ function markTrainingDays() {
     }
 });
 
-// Funkcja do wyświetlania raportu treningu
-function showTrainingReport(day) {
-    var date = new Date();
-    var currentMonth = date.getMonth() + 1;
-    var currentYear = date.getFullYear();
-    var formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-    fetch(`get_training_report.php?date=${formattedDate}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('training-report-content').innerText = "TRENING WYKONANY - zobacz raport";
-                document.getElementById('view-report-btn').style.display = 'block';
-                document.getElementById('view-report-btn').onclick = function() {
-                    showTrainModal(data.report);
-                };
-            } else {
-                document.getElementById('training-report-content').innerText = "Brak treningu w wybranym dniu.";
-                document.getElementById('view-report-btn').style.display = 'none';
-            }
-        });
-}
-
-
-function showTrainModal(report) {
-    const modal = document.getElementById('training-report-modal');
-    const modalContent = document.getElementById('training-report-modal-content');
-    modalContent.innerHTML = `
-        <h3>Raport treningu</h3>
-        <p>Data: ${report.Date}</p>
-        <p>Czas trwania: ${report.Training_time}</p>
-        <h4>Ćwiczenia:</h4>
-        <ul>
-            ${report.Exercises.map(exercise => `
-                <li>
-                    Nazwa: ${exercise.Nazwa_cwiczenia}, 
-                    Obciążenie: ${exercise.Obciazenie}, 
-                    Serie: ${exercise.Serie}, 
-                    Powtórzenia: ${exercise.Powtorzenia}, 
-                    Wykonane: ${exercise.Czy_wykonane ? 'Tak' : 'Nie'}
-                </li>`).join('')}
-        </ul>
-        <button onclick="closeTrainModal()">Zamknij</button>
-    `;
-    modal.style.display = 'block';
-}
-
-function closeTrainModal() {
-    document.getElementById('training-report-modal').style.display = 'none';
+function showTrainingReport() {
+  window.location.href = "history.php"; // nie działało bardziej zaawansowane wyświetlanie historii na razie
 }
 
 function plan(dayId) {
@@ -447,6 +403,7 @@ function start(dayId) {
     document.getElementById("planTraining").style.display = "none";
     document.getElementById("startTraining").style.display = "block";
     document.getElementById("plannedInfo").style.display = "none";
+    document.getElementById('view-report-btn').style.display = 'none';
     handleDayClick(null);
 }
 
@@ -464,6 +421,9 @@ function handleDayClick(dayId) {
     if (clickedDay) {
         clickedDay.classList.add("last-clicked");
     }
+    if(!clickedDay.classList.contains("well-done")) {
+        document.getElementById('view-report-btn').style.display = 'none';
+    }
 
     // Sprawdź, czy dany dzień jest zaplanowany lub wykonany
     if (clickedDay.classList.contains("well-done")) {
@@ -476,6 +436,10 @@ function handleDayClick(dayId) {
         document.getElementById('view-report-btn').style.display = 'none';
         document.getElementById("planTraining").style.display = "block"; // Pokaż przycisk "Zaplanuj trening"
         document.getElementById("plannedInfo").style.display = "block";
+    } else if (clickedDay.classList.contains("active")) {
+        document.getElementById('view-report-btn').style.display = 'none';
+        document.getElementById("planTraining").style.display = "none"; // Pokaż przycisk "Zaplanuj trening"
+        document.getElementById("plannedInfo").style.display = "none";
     }
     else {
         document.getElementById("plannedInfo").style.display = "none";
@@ -579,10 +543,13 @@ function showPlannedTraining(dayId) {
             document.getElementById('training-report-content').innerText = "TRENING WYKONANY - zobacz raport";
             document.getElementById('view-report-btn').style.display = 'block';
             document.getElementById("planTraining").style.display = "none"; // Ukryj przycisk "Zaplanuj trening"
-            showTrainingReport();
+            document.getElementById("plannedInfo").style.display = "none"; // Ukryj opis zaplanowanego treningu
+            // Dodaj link do strony "history.php" po kliknięciu na przycisk
+            document.getElementById('view-report-btn').setAttribute('onclick', 'window.location.href = "history.php"');
         } else {
             document.getElementById('view-report-btn').style.display = 'none';
             document.getElementById("planTraining").style.display = "block"; // Pokaż przycisk "Zaplanuj trening"
+            document.getElementById("plannedInfo").style.display = "block"; // Pokaż opis zaplanowanego treningu
         }
 
         // Pobierz opis i godzinę treningu z bazy danych tylko dla dni zaplanowanych lub wykonanych
@@ -601,11 +568,6 @@ function showPlannedTraining(dayId) {
                     if (trainingData) {
                         plannedTrainingDescription.innerText = trainingData.Training_description;
                         plannedTrainingTime.innerText = " || " + trainingData.Training_time;
-                        // Wyświetl plannedInfo
-                        document.getElementById("plannedInfo").style.display = "block";
-                    } else {
-                        // Jeśli brak danych treningowych dla danego dnia, ukryj plannedInfo
-                        document.getElementById("plannedInfo").style.display = "none";
                     }
                 } else {
                     console.error("Wystąpił błąd podczas pobierania danych treningowych.");
@@ -617,12 +579,12 @@ function showPlannedTraining(dayId) {
         xhr.send();
 
     } else {
-        // Jeśli dzień nie jest zaplanowany, ukryj plannedInfo i przycisk "Zobacz raport"
+        // Jeśli dzień nie jest zaplanowany, ukryj opis zaplanowanego treningu i przycisk "Zobacz raport"
         document.getElementById("plannedInfo").style.display = "none";
         document.getElementById('view-report-btn').style.display = 'none';
+
     }
 }
-
 
 function showContent(section) {
     var content = document.getElementById("content");
@@ -721,8 +683,6 @@ function showContent(section) {
             // Komunikat o udanym zaplanowaniu treningu
             html +=
                 '<div class="success_notification" id="success_notification"><span id="success_message"></span></div>';
-            html += '<div id="training-report-modal" class="modal"><div class="modal-content" id="training-report-modal-content">';
-            html += '<!-- Treść raportu będzie dynamicznie generowana --></div></div>';
 
             document.getElementById("kalendarz").classList.add("selected");
             document.getElementById("statystyki").classList.remove("selected");

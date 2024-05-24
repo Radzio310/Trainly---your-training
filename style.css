@@ -1276,6 +1276,10 @@ hr {
   border-radius: 50%;
 }
 
+.active .well-done {
+  border-radius: 50%;
+}
+
 #view-report-btn {
   display: none;
   border: none;
@@ -1283,6 +1287,11 @@ hr {
   font-size: 1.5vw;
   cursor: pointer;
   margin-top: 25px;
+}
+
+#view-report-btn:hover {
+  background-color: #734a40;
+  color: #d9b5a0;
 }
 
 /* Statystyki */

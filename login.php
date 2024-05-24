@@ -1,9 +1,6 @@
 <?php
 // Dane dostępowe do bazy danych MySQL w XAMPP
-$servername = "localhost";
-$username = "root"; // Domyślnie w XAMPPie jest to 'root'
-$password = ""; // Domyślne hasło w XAMPPie jest puste
-$dbname = "trainly"; // Nazwa twojej bazy danych
+require_once "config.php";
 
 // Tworzymy połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,9 +1,5 @@
 <?php
-// Połącz z bazą danych
-$servername = "localhost";
-$username = "root"; // domyślnie 'root' w XAMPP
-$password = ""; // domyślne hasło w XAMPP jest puste
-$dbname = "trainly";
+require_once "config.php";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
