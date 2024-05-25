@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $id = $_SESSION['user_id'];
+?>
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -120,8 +124,6 @@
         <div class="Widok_list">
           <ul class="twoje-listy">
             <?php
-              session_start();
-              $id = $_SESSION['user_id'];
               require_once "config.php";
               // Połącz się z bazą danych
               $conn = new mysqli($servername, $username, $password, $dbname);

@@ -492,7 +492,7 @@
         const trainingTimeInSeconds = parseTime(trainingTimeString); // Przeliczanie czasu treningu na sekundy
 
         // Sprawdzenie, czy czas treningu jest większy niż 5 minut
-        if (trainingTimeInSeconds > 3) {
+        if (trainingTimeInSeconds > 300) {
           const exercises = gatherTrainingData();
 
           // Tworzenie obiektu z danymi

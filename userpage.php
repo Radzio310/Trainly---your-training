@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $id = $_SESSION['user_id'];
+?>
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -120,8 +124,6 @@
         <div id="userinfo" class="userinfo">
           <br />
           <?php
-              session_start();
-              $id = $_SESSION['user_id'];
 
               require_once "config.php";
 

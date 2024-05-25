@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $id = $_SESSION['user_id'];
+?>
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -139,9 +143,6 @@
                 <tbody>
                     <!-- Pętla generująca wiersze tabeli -->
                     <?php
-                        // Pobierz ID użytkownika z sesji
-                        session_start();
-                        $id = $_SESSION['user_id'];
 
                         require_once "config.php";
 
