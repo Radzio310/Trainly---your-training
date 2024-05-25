@@ -141,6 +141,11 @@
               }
               echo "<h2 id='welcome'><bold>Witaj $user_name!</bold></h2>";
 
+              echo "<script>
+                  var userName = '$user_name';
+                  var userGender = '$user_gender';
+              </script>";
+
               if($user_gender == 'female') {
                 echo "<script>
                 document.getElementsById('userinfo').style.backgroundImage = 'url('Graphics/userpage_hero_female.png')';
@@ -592,13 +597,12 @@ function showContent(section) {
     // W zależności od klikniętego przycisku w sidebarze, generujemy odpowiednią zawartość
     switch (section) {
         case "panel":
-            html = "<div class='userinfo' id='side_user'>";
-            html += "<br><h2><bold>Witaj Radek!</bold></h2><br>";
-            html += "</div>";
-            html += "<div id='clock'></div>";
-            html += "<hr>";
-            html +=
-                '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
+          var html = "<div class='userinfo' id='side_user'>";
+    html += "<br><h2><bold>Witaj " + userName + "!</bold></h2><br>";
+    html += "</div>";
+    html += "<div id='clock'></div>";
+    html += "<hr>";
+    html += '<div class="button" id="user_button" onclick="startTraining()">Zacznij trening!</div>';
             document.getElementById("panel").classList.add("selected");
             document.getElementById("kalendarz").classList.remove("selected");
             document.getElementById("lista").classList.remove("selected");

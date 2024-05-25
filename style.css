@@ -740,6 +740,10 @@ input[type="submit"]:hover {
   border-radius: 25px;
 }
 
+.modal-content p {
+  font-size: 24px;
+}
+
 .close {
   color: #d9b5a0;
   float: right;
@@ -759,7 +763,7 @@ input[type="submit"]:hover {
 /* Dodane style dla paska nawigacyjnego po lewej stronie */
 
 #welcome {
-  margin-left: 100px;
+  margin-left: 150px;
 }
 
 .sidebar {
@@ -1921,6 +1925,10 @@ hr {
   display: none;
 }
 
+#end_training {
+  margin-bottom: 25px;
+}
+
 #exercise-list li {
   list-style-type: none;
   color: #734a40;
@@ -2090,6 +2098,10 @@ textarea:focus {
   border: 3px solid #bf907e;
   background-color: #d9d9d9;
   color: #734a40;
+}
+
+#czy_na_pewno {
+  font-size: 24px;
 }
 
 /* ----------------------------------- */
@@ -2831,8 +2843,14 @@ textarea:focus {
   .index header {
     height: 30vh;
   }
-  h2 {
+  h1 {
     font-size: 25vw;
+  }
+  #o_nas {
+    font-size: 15vw;
+  }
+  h2 {
+    font-size: 20vw;
     text-align: center;
     margin-bottom: 5vw;
     width: 100%;
@@ -2945,7 +2963,7 @@ textarea:focus {
     width: 95%;
     font-size: 4vw;
     margin-left: 2.5%;
-    height: 5%;
+    height: 7.5%;
   }
   .index footer {
     height: 15vh;
@@ -2997,6 +3015,10 @@ textarea:focus {
     font-size: 15vw;
     margin-top: 50%;
     margin-bottom: 5%;
+  }
+  #loginError {
+    font-weight: bolder;
+    font-size: 10vw;
   }
   #register {
     font-size: 10vw;
@@ -3145,6 +3167,9 @@ textarea:focus {
     color: #d9b5a0;
     border-radius: 100px;
     margin-top: 10%;
+  }
+  label {
+    font-size: 10vw;
   }
   #password_error {
     font-size: 10vw;
@@ -3310,6 +3335,12 @@ textarea:focus {
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
   }
+  #view-report-btn {
+    padding: 5vw;
+    font-size: 10vw;
+    margin-top: 10vw;
+    font-weight: bolder;
+  }
   .mobile_cal {
     display: block;
     margin-top: 150vw;
@@ -3463,16 +3494,16 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     padding: 3vh;
-    width: 95%;
-    min-height: 65vh;
+    width: 80%;
+    min-height: 25vh;
     display: inline-block;
     border-radius: 50px;
-    margin-bottom: 5vh;
+    margin-bottom: 10vh;
     border: 5px solid #734a40;
   }
   .badge {
     padding: 5vw;
-    font-size: 10vw;
+    font-size: 15vw;
   }
   #our_addEx li {
     border: 3px solid #734a40;
@@ -3578,7 +3609,7 @@ textarea:focus {
     display: block;
   }
   .twoje-listy h3 {
-    font-size: 15vw;
+    font-size: 10vw;
   }
   .twoje-listy p {
     font-size: 10vw;
@@ -3605,5 +3636,119 @@ textarea:focus {
     border-radius: 50px;
     margin-left: 20vw;
     border: 3px solid #734a40;
+  }
+  /* Training.html */
+  #train {
+    font-size: 20vw;
+    margin-top: 15vh;
+  }
+  .go-on-fire {
+    background-image: url("Graphics/Go_on_fire.png");
+    min-height: 65vh;
+  }
+  #exercise-list-training {
+    margin-top: 75px;
+  }
+  #exercise-list-training li {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 10vw;
+  }
+  #train_history {
+    margin-bottom: 75px;
+    font-size: 10vw;
+  }
+  /*TRAIN.html*/
+  #twoj_trening {
+    height: auto;
+    width: 95%;
+    margin-top: 20vh;
+    margin-left: 2.5%;
+  }
+  .timer {
+    font-size: 10vw;
+    min-width: 10vw;
+    display: block;
+  }
+  #end_training {
+    margin-bottom: 50px;
+    padding: 15px;
+  }
+  #trenuj {
+    text-align: center;
+    font-size: 15vw;
+    margin-left: 0;
+    margin-top: 10vh;
+  }
+  #footer_train {
+    display: none;
+  }
+  #exercise-list li {
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  .collapsible {
+    padding: 5px;
+    font-size: 12.5vw;
+    font-weight: bolder;
+    border-radius: 45px;
+  }
+  iframe {
+    width: 35%;
+    margin-left: 32.5%;
+  }
+  .Trening {
+    display: block;
+    margin-left: 2.5%;
+    margin-top: 5vh;
+  }
+  .Trening input {
+    width: 10%;
+    margin-left: 15px;
+    margin-right: 25%;
+    font-size: 10vw;
+  }
+  .Trening label {
+    font-size: 10vw;
+    margin-left: 10%;
+  }
+  .myCheck {
+    width: 10vh;
+    height: 10vh;
+  }
+  .exercise_details {
+    width: 100%;
+    max-width: 100%;
+  }
+  .exercise_details p {
+    font-size: 12.5vw;
+    margin-top: 50px;
+  }
+  #addExerciseForm {
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 100px;
+    margin-bottom: 50px;
+  }
+  #addExerciseForm input,
+  textarea {
+    width: 75%;
+    font-size: 10vw;
+  }
+  #addExerciseForm textarea {
+    min-height: 150px;
+  }
+  #addExerciseForm input[type="button"] {
+    width: 40%;
+    border-radius: 25px;
+    font-size: 10vw;
+  }
+  #confirmEndTraining {
+    font-weight: bolder;
+    font-size: 15vw;
+  }
+  #anuluj {
+    font-weight: bolder;
+    font-size: 15vw;
   }
 }
