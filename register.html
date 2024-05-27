@@ -63,6 +63,7 @@
         display: none;
       }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   </head>
 
   <body class="fade-in">
@@ -344,6 +345,9 @@
           // Sprawdź, czy wszystkie pola formularza są wypełnione
           if (name && surname && age && email && phone && password) {
             if (terms) {
+              //var hashedPassword = CryptoJS.SHA256(password).toString();
+              //document.getElementById("password").value = hashedPassword;
+
               this.submit();
 
               // Wyczyść wpisane dane przez użytkownika

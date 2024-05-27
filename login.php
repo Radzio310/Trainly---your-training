@@ -16,10 +16,12 @@ $password = $_POST['password'];
 
 // Zabezpieczamy przed atakami SQL Injection
 $login = mysqli_real_escape_string($conn, $login);
-$password = mysqli_real_escape_string($conn, $password);
+
+// Haszujemy hasło
+//$password = hash('sha256', $password);
 
 // Tworzymy zapytanie SQL do sprawdzenia danych logowania
-$sql = "SELECT * FROM users WHERE login='$login' AND password='$password'";
+$sql = "SELECT * FROM users WHERE Login='$login' AND Password='$password'";
 $result = $conn->query($sql);
 
 // Sprawdzamy, czy zapytanie zwróciło jakieś wyniki
