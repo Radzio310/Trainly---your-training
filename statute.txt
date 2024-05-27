@@ -1,0 +1,60 @@
+Regulamin Serwisu Trainly
+
+§ 1. Postanowienia ogólne
+Niniejszy regulamin określa zasady korzystania z serwisu internetowego Trainly dostępnego pod adresem www.trainly.com.pl.
+Administratorem serwisu jest TRAINLY, z siedzibą w [adres siedziby], wpisana do rejestru przedsiębiorców prowadzonego przez [nazwa organu rejestrowego], pod numerem [numer KRS/REGON/NIP].
+Kontakt z administratorem możliwy jest pod adresem e-mail: trainly.tkt@gmail.com lub numerem telefonu: 662471178.
+
+§ 2. Definicje
+Serwis – serwis internetowy Trainly dostępny pod adresem www.trainly.com.pl.
+Użytkownik – osoba fizyczna korzystająca z Serwisu.
+Konto – konto utworzone przez Użytkownika w Serwisie.
+Regulamin – niniejszy regulamin Serwisu Trainly.
+RODO – Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych.
+
+§ 3. Zasady korzystania z Serwisu
+- Korzystanie z Serwisu jest dobrowolne i bezpłatne.
+- Aby uzyskać pełny dostęp do funkcjonalności Serwisu, Użytkownik musi zarejestrować Konto.
+- Użytkownik zobowiązuje się do podania prawdziwych danych podczas rejestracji oraz do ich aktualizacji w razie zmian.
+- Użytkownikowi przysługuje prawo do usunięcia Konta w każdym czasie.
+
+§ 4. Polityka prywatności i ochrona danych osobowych
+- Administrator przetwarza dane osobowe Użytkowników zgodnie z przepisami prawa, w szczególności z RODO.
+- Administratorem danych osobowych jest Trainly
+- Dane osobowe przetwarzane są w celu:
+    świadczenia usług drogą elektroniczną,
+    zapewnienia pełnej funkcjonalności Serwisu,
+    kontaktowania się z Użytkownikami.
+- Podstawą prawną przetwarzania danych osobowych jest zgoda Użytkownika, wykonanie umowy oraz uzasadniony interes Administratora.
+- Użytkownik ma prawo do:
+    dostępu do swoich danych,
+    sprostowania danych,
+    usunięcia danych,
+    ograniczenia przetwarzania danych,
+    przenoszenia danych,
+    wniesienia sprzeciwu wobec przetwarzania danych,
+    cofnięcia zgody na przetwarzanie danych.
+- Dane osobowe mogą być udostępniane podmiotom współpracującym z Administratorem w zakresie niezbędnym do świadczenia usług.
+- Administrator stosuje odpowiednie środki techniczne i organizacyjne w celu zapewnienia ochrony przetwarzanych danych osobowych.
+
+§ 5. Pliki cookies
+- Serwis korzysta z plików cookies w celu zapewnienia prawidłowego działania, personalizacji treści oraz analizy ruchu.
+- Pliki cookies mogą być wykorzystywane do:
+    zapamiętywania preferencji Użytkownika,
+    tworzenia statystyk oglądalności, marketingu i personalizacji reklam.
+- Użytkownik może zarządzać plikami cookies za pomocą ustawień przeglądarki internetowej.
+
+§ 6. Prawa i obowiązki Użytkownika
+- Użytkownik zobowiązuje się do korzystania z Serwisu w sposób zgodny z przepisami prawa, postanowieniami Regulaminu oraz zasadami współżycia społecznego.
+- Użytkownik zobowiązuje się do niepodejmowania działań, które mogłyby zakłócić funkcjonowanie Serwisu.
+- Użytkownik ponosi odpowiedzialność za wszelkie treści umieszczone w Serwisie.
+
+§ 7. Prawa i obowiązki Administratora
+- Administrator zobowiązuje się do świadczenia usług zgodnie z postanowieniami Regulaminu.
+- Administrator zastrzega sobie prawo do czasowego zawieszenia działania Serwisu z przyczyn technicznych.
+- Administrator zastrzega sobie prawo do modyfikacji Regulaminu. O wszelkich zmianach Użytkownicy będą informowani z odpowiednim wyprzedzeniem.
+
+§ 8. Postanowienia końcowe
+- Regulamin wchodzi w życie z dniem jego opublikowania na stronie internetowej Serwisu.
+- W sprawach nieuregulowanych Regulaminem zastosowanie mają przepisy prawa polskiego.
+- Wszelkie spory związane z korzystaniem z Serwisu będą rozstrzygane przez właściwe sądy polskie.

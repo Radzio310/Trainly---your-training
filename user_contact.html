@@ -36,13 +36,13 @@
         </div>
         <div class="menu">
           <ul>
-            <a href="userpage.html">
+            <a href="userpage.php">
               <li>Twój panel</li>
             </a>
-            <a href="settings.html">
+            <a href="settings.php">
               <li>Ustawienia</li>
             </a>
-            <a href="user_contact.html" class="current_site">
+            <a href="user_contact.php" class="current_site">
               <li>Kontakt</li>
             </a>
             <a href="index.html">
@@ -54,7 +54,12 @@
     </header>
     <main class="con_mob">
       <section class="Formularz_kontaktowy">
-        <form action="" method="POST" onsubmit="return submitForm(event)">
+        <form
+          id="contact"
+          action="user_send_message.php"
+          method="POST"
+          onsubmit="return submitForm(event)"
+        >
           <h1>Skontaktuj się z nami</h1>
           <label class="plik" for="attachment"
             >Wybierz plik do załączenia:</label
@@ -115,16 +120,27 @@
       });
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sprawdź czy parametr "add_list" jest obecny w adresie URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var success = urlParams.get("success");
+      if (success === "true") {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        successNotification.style.display = "block";
+        setTimeout(function () {
+          successNotification.style.display = "none";
+          document.getElementById("attachment").value = "";
+          document.getElementById("message").value = "";
+        }, 3000);
+      }
+    });
+
     function submitForm(event) {
-      event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
-      // Wyświetlanie powiadomienia o sukcesie
-      var successNotification = document.getElementById("success_notification");
-      successNotification.style.display = "block";
-      setTimeout(function () {
-        successNotification.style.display = "none";
-      }, 3000);
-      document.getElementById("attachment").value = "";
-      document.getElementById("message").value = "";
+      //event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+      document.getElementById("contact").submit();
+
       return isFormValid;
     }
   </script>

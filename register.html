@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-
-<html lang="”pl”">
+<html lang="pl">
   <head>
     <meta charset="utf-8" />
-
     <title>Trainly - Rejestracja</title>
     <link rel="icon" type="image/png" href="Graphics/Trainly-ikonka.svg" />
-
     <meta name="author" content="Radosław Witkowicz" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
@@ -19,6 +15,54 @@
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .terms-checkbox {
+        display: flex;
+        align-items: center;
+      }
+
+      .terms-checkbox input[type="checkbox"] {
+        display: none;
+      }
+
+      .terms-checkbox label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .terms-checkbox label::before {
+        content: "";
+        width: 15px;
+        height: 15px;
+        border: 2px solid #734a40;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .terms-checkbox input[type="checkbox"]:checked + label::before {
+        background-image: url("Graphics/checked.png");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .terms-checkbox a {
+        color: #734a40;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .terms-checkbox a:hover {
+        text-decoration: none;
+      }
+
+      #termsError {
+        color: red;
+        display: none;
+      }
+    </style>
   </head>
 
   <body class="fade-in">
@@ -88,7 +132,6 @@
           <div class="gender-selection">
             <input type="radio" id="male" name="gender" value="male" checked />
             <label for="male">Mężczyzna</label>
-
             <input type="radio" id="female" name="gender" value="female" />
             <label for="female">Kobieta</label>
           </div>
@@ -121,6 +164,16 @@
             required
           />
           <br />
+          <div class="terms-checkbox">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms"
+              >Akceptuję <a href="#" id="termsLink">regulamin</a></label
+            >
+          </div>
+          <p class="error-message" id="termsError">
+            Musisz zaakceptować regulamin.
+          </p>
+          <br />
           <input type="submit" value="Załóż konto" />
         </form>
       </section>
@@ -129,7 +182,6 @@
       <a href="index.html">
         <img class="logo" src="Graphics/Trainly-logo_2.png" />
       </a>
-      <!-- Dodaj ikonki mediów społecznościowych -->
       <div class="social-media-icons">
         <a
           href="https://www.facebook.com/profile.php?id=61558575186327"
@@ -161,6 +213,75 @@
         </p>
       </div>
     </div>
+    <div id="termsModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>
+          <bold>Regulamin Serwisu Trainly</bold> <br /><br />§ 1. Postanowienia
+          ogólne <br />Niniejszy regulamin określa zasady korzystania z serwisu
+          internetowego Trainly dostępnego pod adresem www.trainly.com.pl.
+          Administratorem serwisu jest TRAINLY, z siedzibą w [adres siedziby],
+          wpisana do rejestru przedsiębiorców prowadzonego przez [nazwa organu
+          rejestrowego], pod numerem [numer KRS/REGON/NIP]. Kontakt z
+          administratorem możliwy jest pod adresem e-mail: trainly.tkt@gmail.com
+          lub numerem telefonu: 662471178. <br /><br />§ 2. Definicje
+          <br />Serwis – serwis internetowy Trainly dostępny pod adresem
+          www.trainly.com.pl. <br />Użytkownik – osoba fizyczna korzystająca z
+          Serwisu. <br />Konto – konto utworzone przez Użytkownika w Serwisie.
+          <br />Regulamin – niniejszy regulamin Serwisu Trainly. <br />RODO –
+          Rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27
+          kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z
+          przetwarzaniem danych osobowych. <br /><br />§ 3. Zasady korzystania z
+          Serwisu<br />
+          - Korzystanie z Serwisu jest dobrowolne i bezpłatne. <br />- Aby
+          uzyskać pełny dostęp do funkcjonalności Serwisu, Użytkownik musi
+          zarejestrować Konto. <br />- Użytkownik zobowiązuje się do podania
+          prawdziwych danych podczas rejestracji oraz do ich aktualizacji w
+          razie zmian. - <br />Użytkownikowi przysługuje prawo do usunięcia
+          Konta w każdym czasie. <br /><br />§ 4. Polityka prywatności i ochrona
+          danych osobowych<br />- Administrator przetwarza dane osobowe
+          Użytkowników zgodnie z przepisami prawa, w szczególności z RODO.
+          <br />- Administratorem danych osobowych jest Trainly <br />- Dane
+          osobowe przetwarzane są w celu: <br />świadczenia usług drogą
+          elektroniczną, <br />zapewnienia pełnej funkcjonalności Serwisu,
+          <br />kontaktowania się z Użytkownikami. <br />- Podstawą prawną
+          przetwarzania danych osobowych jest zgoda Użytkownika, wykonanie umowy
+          oraz uzasadniony interes Administratora. <br />- Użytkownik ma prawo
+          do: <br />dostępu do swoich danych, <br />sprostowania danych,
+          <br />usunięcia danych, <br />ograniczenia przetwarzania danych,
+          <br />przenoszenia danych, <br />wniesienia sprzeciwu wobec
+          przetwarzania danych, <br />cofnięcia zgody na przetwarzanie danych.
+          <br />- Dane osobowe mogą być udostępniane podmiotom współpracującym z
+          Administratorem w zakresie niezbędnym do świadczenia usług. <br />-
+          Administrator stosuje odpowiednie środki techniczne i organizacyjne w
+          celu zapewnienia ochrony przetwarzanych danych osobowych.
+          <br /><br />§ 5. Pliki cookies <br />- Serwis korzysta z plików
+          cookies w celu zapewnienia prawidłowego działania, personalizacji
+          treści oraz analizy ruchu. <br />- Pliki cookies mogą być
+          wykorzystywane do: zapamiętywania preferencji Użytkownika, tworzenia
+          statystyk oglądalności, marketingu i personalizacji reklam. <br />-
+          Użytkownik może zarządzać plikami cookies za pomocą ustawień
+          przeglądarki internetowej. <br /><br />§ 6. Prawa i obowiązki
+          Użytkownika <br />- Użytkownik zobowiązuje się do korzystania z
+          Serwisu w sposób zgodny z przepisami prawa, postanowieniami Regulaminu
+          oraz zasadami współżycia społecznego. <br />- Użytkownik zobowiązuje
+          się do niepodejmowania działań, które mogłyby zakłócić funkcjonowanie
+          Serwisu. <br />- Użytkownik ponosi odpowiedzialność za wszelkie treści
+          umieszczone w Serwisie. <br /><br />§ 7. Prawa i obowiązki
+          Administratora <br />- Administrator zobowiązuje się do świadczenia
+          usług zgodnie z postanowieniami Regulaminu. <br />- Administrator
+          zastrzega sobie prawo do czasowego zawieszenia działania Serwisu z
+          przyczyn technicznych. <br />- Administrator zastrzega sobie prawo do
+          modyfikacji Regulaminu. O wszelkich zmianach Użytkownicy będą
+          informowani z odpowiednim wyprzedzeniem. <br /><br />§ 8.
+          Postanowienia końcowe <br />- Regulamin wchodzi w życie z dniem jego
+          opublikowania na stronie internetowej Serwisu. <br />- W sprawach
+          nieuregulowanych Regulaminem zastosowanie mają przepisy prawa
+          polskiego. <br />- Wszelkie spory związane z korzystaniem z Serwisu
+          będą rozstrzygane przez właściwe sądy polskie.
+        </p>
+      </div>
+    </div>
   </body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -189,13 +310,21 @@
       });
 
       // Obsługa kliknięcia na krzyżyk w oknie modalnym
-      document.getElementsByClassName("close")[0].onclick = function () {
-        // Przenieś użytkownika na stronę logowania
-        window.location.href = "login.html";
-      };
-      document.getElementsByClassName("close")[1].onclick = function () {
-        // Przenieś użytkownika na stronę logowania
-        window.location.href = "register.html";
+      const modalCloses = document.getElementsByClassName("close");
+      for (let close of modalCloses) {
+        close.onclick = function () {
+          // Zamknij okno modalne
+          this.parentElement.parentElement.style.display = "none";
+          if (this.parentElement.parentElement.id === "successModal") {
+            window.location.href = "login.html";
+          }
+        };
+      }
+
+      // Pokaż modal z regulaminem
+      document.getElementById("termsLink").onclick = function (event) {
+        event.preventDefault();
+        document.getElementById("termsModal").style.display = "block";
       };
 
       document
@@ -210,25 +339,26 @@
           var email = document.getElementById("email").value;
           var phone = document.getElementById("phone").value;
           var password = document.getElementById("password").value;
+          var terms = document.getElementById("terms").checked;
 
           // Sprawdź, czy wszystkie pola formularza są wypełnione
           if (name && surname && age && email && phone && password) {
-            this.submit();
+            if (terms) {
+              this.submit();
 
-            // Wyczyść wpisane dane przez użytkownika
-            document.getElementById("name").value = "";
-            document.getElementById("surname").value = "";
-            document.getElementById("age").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("password").value = "";
+              // Wyczyść wpisane dane przez użytkownika
+              document.getElementById("name").value = "";
+              document.getElementById("surname").value = "";
+              document.getElementById("age").value = "";
+              document.getElementById("phone").value = "";
+              document.getElementById("email").value = "";
+              document.getElementById("password").value = "";
+              document.getElementById("terms").checked = false;
+            } else {
+              document.getElementById("termsError").style.display = "block";
+            }
           }
         });
-      // Zamknij okno modalne po kliknięciu na krzyżyk
-      document.getElementsByClassName("close").onclick = function () {
-        document.getElementById("successModal").style.display = "none";
-        document.getElementById("failureModal").style.display = "none"; // Dodajamy również zamykanie failureModal
-      };
     });
   </script>
 </html>

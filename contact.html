@@ -146,20 +146,27 @@
       });
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sprawdź czy parametr "add_list" jest obecny w adresie URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var success = urlParams.get("success");
+      if (success === "true") {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        successNotification.style.display = "block";
+        setTimeout(function () {
+          successNotification.style.display = "none";
+          document.getElementById("attachment").value = "";
+          document.getElementById("message").value = "";
+        }, 3000);
+      }
+    });
+
     function submitForm(event) {
-      event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+      //event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
       // Wyświetlanie powiadomienia o sukcesie
-      var successNotification = document.getElementById("success_notification");
-      successNotification.style.display = "block";
-      setTimeout(function () {
-        successNotification.style.display = "none";
-        document.getElementById("contact").submit();
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("attachment").value = "";
-        document.getElementById("message").value = "";
-      }, 3000);
+      document.getElementById("contact").submit();
       return isFormValid;
     }
   </script>
