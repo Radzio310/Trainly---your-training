@@ -82,12 +82,7 @@ if ($stats) {
         $intensity = 'bardzo wysoka';
     }
     
-    $newAverageTrainingTimeInSeconds = $trainingTimeInSecons;
-
-    $newHours = floor($newAverageTrainingTimeInSeconds / 3600);
-    $newMinutes = floor(($newAverageTrainingTimeInSeconds % 3600) / 60);
-    $newSeconds = floor($newAverageTrainingTimeInSeconds % 60);
-    $newAverageTrainingTime = sprintf('%02d:%02d:%02d', $newHours, $newMinutes, $newSeconds);
+    $newAverageTrainingTime = sprintf('%02d:%02d:%02d', floor($trainingTimeInSeconds / 3600), floor(($trainingTimeInSeconds % 3600) / 60), floor($trainingTimeInSeconds % 60));
 
     $insertStatsSql = "INSERT INTO stats (User_ID, Training_time, Training_count, Calories, Intensity)
     VALUES ('$id', '$newAverageTrainingTime', 1, '$caloriesBurned', '$intensity')";
@@ -99,20 +94,3 @@ if ($stats) {
 
 $conn->close();
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Training Update</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var currentAverageTrainingTime = "<?php echo isset($stats) ? $stats['Training_time'] : '00:00:00'; ?>";
-            var newAverageTrainingTime = "<?php echo $newAverageTrainingTime; ?>";
-            alert("Średni czas treningu obecnie: " + currentAverageTrainingTime + "\nNowy średni czas treningu: " + newAverageTrainingTime);
-            //window.location.href = "userpage.php?train=training_saved";
-        });
-    </script>
-</head>
-<body>
-</body>
-</html>
