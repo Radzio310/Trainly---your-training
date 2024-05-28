@@ -23,6 +23,21 @@
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      #mobile_end_training {
+        display: none;
+        margin-bottom: 25px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        #end_training {
+          display: none;
+        }
+        #mobile_end_training {
+          display: block;
+        }
+      }
+    </style>
   </head>
 
   <body class="fade-in">
@@ -128,6 +143,9 @@
           value="Dodaj ćwiczenie"
         />
       </form>
+      <div class="button" id="mobile_end_training" onclick="openModal()">
+        Zakończ trening
+      </div>
       <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>

@@ -95,6 +95,82 @@
         #exercise-list-training td:nth-child(5) {
             width: 15%;
         }
+        
+        #train_return {
+        font-family: "Michroma", sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        text-align: center;
+        width: 40%;
+        color: #734a40;
+        border: 3px solid #734a40;
+        background-color: transparent;
+        margin-left: 35%;
+        transition: background-color 0.5s, color 0.3s;
+        }
+        
+        #train_return:hover {
+            background-color: #734a40;
+            color: #d9b5a0;
+        }
+        
+        @media only screen and (max-width: 600px) {
+        header, footer {
+            height: 20vh;
+        }
+        
+        main {
+            margin-top: 25vh;
+            height: auto;
+            min-height: 100vh;
+        }
+        
+            #train_history {
+        margin-top: 100px;
+        margin-bottom: 25px;
+        }
+
+        .history-table {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        max-height: 60%;
+        margin-bottom: 50px;
+        }
+
+        thead th {
+            font-weight: bolder;
+            font-size: 10vw;
+        }
+        tbody tr {
+            font-weight: bolder;
+        }
+        tbody #tr_head {
+            font-weight: bolder;
+        }
+        td {
+            padding: 10px;
+            font-size: 7.5vw;
+        }
+
+        th {
+            padding: 5px;
+        }
+        #train_return {
+        width: 30%;
+        font-size: 12.5vw;
+        margin-left: 20%;
+        }
+        .modal {
+            height: 300vh;
+        }
+        .modal-content {
+            margin-top: 100vh;
+        }
+        .menu {
+            margin-top: 8vh;
+        }
+        
+        }
     </style>
   </head>
 
@@ -181,22 +257,7 @@
                 </tbody>
             </table>
         </div>
-        <a href="training.html" class="button" id="train_return" 
-        style='
-        font-family: "Michroma", sans-serif;
-        font-weight: 900;
-        font-style: italic;
-        text-align: center;
-        width: 40%;
-        color: #734a40;
-        border: 3px solid #734a40;
-        background-color: transparent;
-        margin-left: 35%;
-        transition: background-color 0.5s, color 0.3s; /* Dodaj przejścia */
-        '
-        onmouseover="this.style.backgroundColor='#734a40'; this.style.color='#d9b5a0';"
-        onmouseout="this.style.backgroundColor='transparent'; this.style.color='#734a40';"
-        '>Powrót do treningów</a>
+        <a href="training.html" class="button" id="train_return">Powrót do treningów</a>
 
         <!-- Modal dla raportu treningu -->
         <div id="myModal" class="modal">
@@ -242,6 +303,19 @@
       </div>
     </footer>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.querySelector(".hamburger");
+      const menu = document.querySelector(".menu");
+
+      // Dodajemy obsługę kliknięcia na hamburger
+      hamburger.addEventListener("click", function () {
+        // Dodajemy/Usuwaemy klasę "clicked" po kliknięciu
+        this.classList.toggle("clicked");
+
+        // Pokazujemy/Ukrywamy menu po kliknięciu
+        menu.classList.toggle("active");
+      });
+    });
         // Funkcja otwierająca modal
         function openModal(trainingId) {
             var modal = document.getElementById("myModal");

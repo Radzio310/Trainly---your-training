@@ -33,6 +33,14 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
+    <style>
+        @media only screen and (max-width: 600px) {
+            #view-report-btn {
+              font-size: 12.5vw;
+              border-radius: 100px;
+            }
+        }
+    </style>
   </head>
 
   <body class="fade-in">
@@ -674,7 +682,7 @@ function showContent(section) {
             html +=
                 '<button class="button" id="planTraining" onclick="openPlanModal()">Zaplanuj trening</button>';
             html +=
-                '<button class="button" id="view-report-btn" style="display:none;" onclick="showTrainingReport()"><bold>Trening wykonany!</bold><br> Kliknij, aby zobaczyć raport</button>';
+                '<button class="button" id="view-report-btn" style="display:none;" onclick="showTrainingReport()">Trening wykonany!</br>Kliknij, aby zobaczyć raport</button>';
             html += "</div>";
             html += "</div></div><span class='mobile_cal'>";
             // Modal do planowania treningu
