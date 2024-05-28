@@ -750,14 +750,14 @@ function showContent(section) {
             var statistics = JSON.parse(xhr_stat.responseText);
             var trainingDaysWidth = (statistics.Training_count / 30) * 100;
             var trainingTimeWidth = (parseTime(statistics.Training_time) / 10800) * 100; // 3 hours = 10800 seconds
-            var caloriesWidth = (statistics.Calories / 1500) * 100;
+            var caloriesWidth = (statistics.Calories / 3000) * 100;
             var intensityWidth = getIntensityWidth(statistics.Intensity);
 
             var stat_html = "<h2 id='stats'>Statystyki</h2><div class='statystyki'>";
-            stat_html += "<h3>Całkowita liczba treningów w miesiącu</h3><div class='statistics'><div class='training' style='width: " + trainingDaysWidth + "%'>" + statistics.Training_count + "</div></div>";
-            stat_html += "<h3>Średni czas treningu</h3><div class='statistics'><div class='time' style='width: " + trainingTimeWidth + "%'>" + statistics.Training_time + "</div></div>";
-            stat_html += "<h3>Spalone kalorie</h3><div class='statistics'><div class='calories' style='width: " + caloriesWidth + "%'>" + statistics.Calories + " kcal</div></div>";
-            stat_html += "<h3>Średnia intensywność treningu</h3><div class='statistics'><div class='intensitivity' style='width: " + intensityWidth + "%'>" + statistics.Intensity + "</div></div>";
+            stat_html += "<h3>Całkowita liczba treningów w miesiącu</h3><div class='statistics'><div class='training' style='width: " + trainingDaysWidth + "%; max-width: 100%;'>" + statistics.Training_count + "</div></div>";
+            stat_html += "<h3>Średni czas treningu</h3><div class='statistics'><div class='time' style='width: " + trainingTimeWidth + "%; max-width: 100%;'>" + statistics.Training_time + "</div></div>";
+            stat_html += "<h3>Spalone kalorie</h3><div class='statistics'><div class='calories' style='width: " + caloriesWidth + "%; max-width: 100%;'>" + statistics.Calories + "kcal</div></div>";
+            stat_html += "<h3>Średnia intensywność treningu</h3><div class='statistics'><div class='intensitivity' style='width: " + intensityWidth + "%; max-width: 100%;'>" + statistics.Intensity + "</div></div>";
             stat_html += "</div><span class='mobile_stats'></span>";
 
             // Wyświetl dane w sekcji statystyk

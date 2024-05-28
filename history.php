@@ -269,8 +269,8 @@
                         <tr>
                             <th>Ćwiczenie</th>
                             <th>Obciąż.</th>
-                            <th>Powtórz.</th>
                             <th>Serie</th>
+                            <th>Powtórz.</th>
                             <th>✓</th>
                         </tr>
                     </thead>
