@@ -120,28 +120,40 @@
       });
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      // Sprawdź czy parametr "add_list" jest obecny w adresie URL
-      var urlParams = new URLSearchParams(window.location.search);
-      var success = urlParams.get("success");
-      if (success === "true") {
-        var successNotification = document.getElementById(
-          "success_notification"
-        );
-        successNotification.style.display = "block";
-        setTimeout(function () {
-          successNotification.style.display = "none";
-          document.getElementById("attachment").value = "";
-          document.getElementById("message").value = "";
-        }, 3000);
-      }
-    });
-
     function submitForm(event) {
-      //event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
-      document.getElementById("contact").submit();
+      event.preventDefault(); // Anuluj domyślną akcję przekierowania formularza
+      // Wyświetlanie powiadomienia o sukcesie
+      var successNotification = document.getElementById("success_notification");
+      successNotification.style.display = "block";
+      setTimeout(function () {
+        successNotification.style.display = "none";
+        document.getElementById("contact").submit();
+        document.getElementById("attachment").value = "";
+        document.getElementById("message").value = "";
+      }, 3000);
 
       return isFormValid;
+    }
+
+    //ZAKOŃCZENIE SESJI
+    document.addEventListener("DOMContentLoaded", function () {
+      checkSession(); // Sprawdź sesję natychmiast po załadowaniu strony
+      setInterval(checkSession, 300000); // Sprawdzaj stan sesji co 5 minut
+    });
+
+    function checkSession() {
+      fetch("check_session.php")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "expired") {
+            endSession();
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+
+    function endSession() {
+      window.location.href = "login.html?session_end='true'";
     }
   </script>
 </html>

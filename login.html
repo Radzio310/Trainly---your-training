@@ -51,7 +51,7 @@
     <main class="log_mob">
       <section class="Logowanie">
         <form id="loginForm" action="login.php" method="POST">
-          <h1>Zaloguj się i zacznij swój trening!</h1>
+          <h1>Zaloguj się i zacznij swój trening!!!</h1>
           <div style="color: red; display: none" id="loginError">
             Nieprawidłowy login lub hasło
           </div>
@@ -107,18 +107,46 @@
         />
       </div>
     </div>
+    <div class="success_notification" id="success_notification">
+      <span id="success_message"></span>
+    </div>
   </body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Sprawdź czy parametr "end_session" jest obecny w adresie URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var end_session = urlParams.get("end_session");
+
+      if (end_session === "true") {
+        showSuccessNotification(
+          "Sesja zakończona! Użytkownik został wylogowany automatycznie"
+        );
+      }
+
+      function showSuccessNotification(message) {
+        var successNotification = document.getElementById(
+          "success_notification"
+        );
+        var successMessage = document.getElementById("success_message");
+        successMessage.innerText = message; // Ustawiamy treść powiadomienia
+
+        successNotification.style.display = "block"; // Wyświetlamy powiadomienie
+
+        // Ukrywamy powiadomienie po 7 sekundach
+        setTimeout(function () {
+          successNotification.style.display = "none";
+        }, 7000);
+      }
+
       const hamburger = document.querySelector(".hamburger");
       const menu = document.querySelector(".menu");
       const loadingModal = document.getElementById("loadingModal");
       const loginInput = document.getElementById("login");
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const error = urlParams.get("error");
+      const urlParams2 = new URLSearchParams(window.location.search);
+      const error = urlParams2.get("error");
 
-      // Jeśli success jest ustawiony na "true", wyświetl successModal
+      // Jeśli success jest ustawiony na "true", wyświetl loginError
       if (error === "true") {
         document.getElementById("loginError").style.display = "block";
       }

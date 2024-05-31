@@ -39,6 +39,17 @@
               font-size: 12.5vw;
               border-radius: 100px;
             }
+            .your_list {
+              background-image: url("Graphics/Twoja_lista.png");
+            }
+            
+            .create_list {
+              background-image: url("Graphics/Create_list.png");
+            }
+            
+            .our_list {
+              background-image: url("Graphics/Our_list.png");
+            }
         }
     </style>
   </head>
@@ -974,6 +985,28 @@ function getIntensityWidth(intensity) {
           successNotification.style.display = "none";
         }, 7000);
       }
+      
+      //ZAKOŃCZENIE SESJI
+      document.addEventListener("DOMContentLoaded", function () {
+        checkSession(); // Sprawdź sesję natychmiast po załadowaniu strony
+        setInterval(checkSession, 300000); // Sprawdzaj stan sesji co 5 minut
+      });
+
+      function checkSession() {
+        fetch("check_session.php")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "expired") {
+              endSession();
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function endSession() {
+        window.location.href = "login.html?session_end='true'";
+      }
+      
     </script>
   </body>
 </html>
