@@ -56,6 +56,11 @@
           width: 40%;
           margin-left: 30%;
         }
+        #your,
+        #our {
+          background-size: cover;
+          background-position: center;
+        }
       }
     </style>
   </head>
@@ -92,7 +97,7 @@
     <main class="train_mob">
       <h2 id="train">ZACZYNAMY TRENING!</h2>
       <div class="columns">
-        <ul class="opcje_listy" onclick="openUserListsModal()">
+        <ul class="opcje_listy" id="your" onclick="openUserListsModal()">
           <li class="header">
             <h2 style="margin-top: 20px">Twoje listy</h2>
           </li>
@@ -115,6 +120,7 @@
         </a>
         <ul
           class="opcje_listy"
+          id="our"
           style="background-image: url('Graphics/Our_list.png')"
           onclick="openOurListsModal()"
         >
