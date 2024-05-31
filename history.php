@@ -176,9 +176,11 @@
 
   <body class="fade-in">
     <header>
-      <div class="container">
-        <img class="logo" src="Graphics/Trainly-logo-active.png" />
-      </div>
+        <a href="training.html">
+          <div class="container">
+            <img class="logo" src="Graphics/Trainly-logo-active.png" />
+          </div>
+        </a>
       <nav>
         <div class="hamburger">
           <div class="line"></div>
@@ -232,7 +234,7 @@
                         }
 
                         // Zapytanie SQL pobierające historię treningów dla danego użytkownika (możesz dostosować ten kod do pobierania danych dla konkretnego użytkownika)
-                        $historyQuery = "SELECT * FROM history WHERE User_ID = '$id'";
+                        $historyQuery = "SELECT * FROM history WHERE User_ID = '$id' ORDER BY Date DESC";
                         $historyResult = $conn->query($historyQuery);
                         $licznik = 1;
 

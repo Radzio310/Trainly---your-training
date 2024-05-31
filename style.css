@@ -1929,6 +1929,10 @@ hr {
   margin-bottom: 25px;
 }
 
+#mobile_end_training {
+  display: none;
+}
+
 #exercise-list li {
   list-style-type: none;
   color: #734a40;
@@ -2810,6 +2814,42 @@ textarea:focus {
   }
 }
 
+@media screen and (max-width: 750px) and (min-width: 725px) {
+  body {
+    transform: scale(0.48);
+  }
+}
+
+@media screen and (max-width: 725px) and (min-width: 700px) {
+  body {
+    transform: scale(0.45);
+  }
+}
+
+@media screen and (max-width: 700px) and (min-width: 675px) {
+  body {
+    transform: scale(0.42);
+  }
+}
+
+@media screen and (max-width: 675px) and (min-width: 650px) {
+  body {
+    transform: scale(0.39);
+  }
+}
+
+@media screen and (max-width: 650px) and (min-width: 625px) {
+  body {
+    transform: scale(0.36);
+  }
+}
+
+@media screen and (max-width: 625px) and (min-width: 600px) {
+  body {
+    transform: scale(0.33);
+  }
+}
+
 /* Media query dla smartfonów w orientacji pionowej*/
 
 @media only screen and (max-width: 600px) {
@@ -3673,6 +3713,10 @@ textarea:focus {
   #end_training {
     margin-bottom: 50px;
     padding: 15px;
+  }
+  #mobile_end_training {
+    display: block;
+    margin-bottom: 25px;
   }
   #trenuj {
     text-align: center;

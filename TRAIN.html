@@ -24,6 +24,54 @@
     />
     <link rel="stylesheet" href="style.css" />
     <style>
+      #end_training {
+        margin-top: 3vh;
+      }
+
+      #openHistoryBtn {
+        margin-top: 25px;
+        width: 40%;
+        margin-left: 30%;
+        background-color: transparent;
+        color: #734a40;
+        border: 3px solid #734a40;
+        margin-bottom: 25px;
+      }
+
+      #openHistoryBtn:hover {
+        transition: 0.5s;
+        background-color: #734a40;
+        color: #d9b5a0;
+        font-style: italic;
+      }
+
+      thead th {
+        background-color: #734a40;
+        color: #d9b5a0;
+        font-weight: bold;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      #exerciseModal .modal-content {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+
+      #exercise-list-training td:nth-child(1) {
+        width: 40%;
+        /* Nazwa ćwiczenia */
+      }
+
+      #exercise-list-training td:nth-child(2),
+      #exercise-list-training td:nth-child(3),
+      #exercise-list-training td:nth-child(4),
+      #exercise-list-training td:nth-child(5) {
+        width: 15%;
+      }
+
       #mobile_end_training {
         display: none;
         margin-bottom: 25px;
@@ -143,6 +191,7 @@
           value="Dodaj ćwiczenie"
         />
       </form>
+      <button id="openHistoryBtn" class="button">Historia treningów</button>
       <div class="button" id="mobile_end_training" onclick="openModal()">
         Zakończ trening
       </div>
@@ -163,6 +212,50 @@
           >
             Anuluj
           </button>
+        </div>
+      </div>
+      <!-- Modal dla historii treningów -->
+      <div id="historyModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeHistoryModal()">&times;</span>
+          <h2 id="train_history">HISTORIA TRENINGÓW</h2>
+          <div class="history-table">
+            <table class="table">
+              <thead>
+                <tr id="tr_head">
+                  <th>Nr treningu</th>
+                  <th>Data treningu</th>
+                  <th>Czas treningu</th>
+                  <th>Ćwiczenia</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <!-- Tabela z historią treningów -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="exerciseModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeExerciseModal()">&times;</span>
+          <h2>Raport treningu</h2>
+          <div class="history-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nazwa ćwiczenia</th>
+                  <th>Obciąż. (kg)</th>
+                  <th>Powtórzenia</th>
+                  <th>Serie</th>
+                  <th>✓</th>
+                </tr>
+              </thead>
+              <tbody id="exercise-list-training">
+                <!-- Lista ćwiczeń dla wybranego treningu -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </main>
@@ -475,6 +568,111 @@
         document.getElementById("myModal").style.display = "none";
       };
 
+      const historyModal = document.getElementById("historyModal");
+      function closeHistoryModal() {
+        historyModal.style.display = "none";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const openHistoryBtn = document.getElementById("openHistoryBtn");
+
+        openHistoryBtn.addEventListener("click", function () {
+          historyModal.style.display = "block";
+          loadHistory();
+        });
+
+        function loadHistory() {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "get_history.php", true);
+          xhr.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+          );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              const history = JSON.parse(xhr.responseText);
+              const historyTableBody =
+                document.getElementById("historyTableBody");
+              historyTableBody.innerHTML = "";
+
+              if (history.length > 0) {
+                let counter = 1;
+                history.forEach(function (entry) {
+                  const row = document.createElement("tr");
+                  row.innerHTML = `
+                                    <td>${counter++}</td>
+                                    <td>${entry.Date}</td>
+                                    <td>${entry.Training_time}</td>
+                                    <td><button class='button' onclick='openExerciseModal(${
+                                      entry.Training_ID
+                                    })'>Zobacz raport</button></td>
+                                `;
+                  historyTableBody.appendChild(row);
+                });
+              } else {
+                const row = document.createElement("tr");
+                row.innerHTML =
+                  "<td colspan='4'>Brak danych do wyświetlenia.</td>";
+                historyTableBody.appendChild(row);
+              }
+            }
+          };
+          xhr.send();
+        }
+      });
+
+      function openExerciseModal(trainingId) {
+        var modal = document.getElementById("exerciseModal");
+        modal.style.display = "block";
+
+        // Wyczyść poprzednie dane ćwiczeń
+        document.getElementById("exercise-list-training").innerHTML = "";
+
+        // Wykonaj AJAX, aby pobrać dane ćwiczeń dla wybranego Training_ID
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "get_exercises.php", true);
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            var exerciseList = document.getElementById(
+              "exercise-list-training"
+            );
+            if (response.length > 0) {
+              response.forEach(function (exercise) {
+                var row = document.createElement("tr");
+                var completedClass = exercise.Czy_wykonane
+                  ? "completed"
+                  : "not-completed";
+                var statusText = exercise.Czy_wykonane ? "✓" : "✗";
+                row.innerHTML = `
+                                <td style='width: 50%;'>${exercise.Nazwa_cwiczenia}</td>
+                                <td>${exercise.Obciazenie}kg</td>
+                                <td>${exercise.Powtorzenia}</td>
+                                <td>${exercise.Serie}</td>
+                                <td class="${completedClass}">${statusText}</td>
+                            `;
+                exerciseList.appendChild(row);
+              });
+            } else {
+              var row = document.createElement("tr");
+              row.innerHTML =
+                "<td colspan='5'>Brak danych do wyświetlenia.</td>";
+              exerciseList.appendChild(row);
+            }
+          }
+        };
+        xhr.send("trainingId=" + trainingId);
+      }
+
+      function closeExerciseModal() {
+        var modal = document.getElementById("exerciseModal");
+        modal.style.display = "none";
+      }
+
       // Funkcja do zbierania danych z ćwiczeń
       function gatherTrainingData() {
         const exercises = [];
@@ -549,7 +747,7 @@
 
         const data = {
           User_ID: "USER_ID", // Wstaw identyfikator użytkownika
-          Training_time: trainingTimeInSeconds, // Czas treningu w minutach
+          Training_time: trainingTimeInSeconds, // Czas treningu w sekundach
         };
 
         xhr.onreadystatechange = function () {

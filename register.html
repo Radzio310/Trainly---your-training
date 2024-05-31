@@ -62,6 +62,22 @@
         color: red;
         display: none;
       }
+
+      @media only screen and (max-width: 600px) {
+        .terms-checkbox label::before {
+          width: 50px;
+          height: 50px;
+          border: 2px solid #734a40;
+          border-radius: 50%;
+          margin-right: 20px;
+        }
+        #termsModal {
+          margin-top: -500px;
+        }
+        #termsModal p {
+          font-size: 12.5vw;
+        }
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   </head>
@@ -151,6 +167,8 @@
             type="email"
             name="email"
             id="email"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+            title="[poczatek@domena.rozszerzenie]"
             placeholder="Email"
             required
           />
