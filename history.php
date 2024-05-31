@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="style.css" />
     <style>
         /* HISTORY.html */
+        main {
+            height: 450px;
+        }
         #train_history {
         text-align: center;
         font-style: italic;
@@ -115,6 +118,8 @@
         }
         
         @media only screen and (max-width: 600px) {
+        
+
         header, footer {
             height: 20vh;
         }
@@ -123,18 +128,22 @@
             margin-top: 25vh;
             height: auto;
             min-height: 100vh;
+            max-height: 250vh;
+        }
+        .history-table {
+            height: 300vh;
         }
         
             #train_history {
         margin-top: 100px;
-        margin-bottom: 25px;
+        margin-bottom: 0;
         }
 
         .history-table {
         margin-left: 2.5%;
         margin-right: 2.5%;
         max-height: 60%;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
         }
 
         thead th {
@@ -159,6 +168,7 @@
         width: 30%;
         font-size: 12.5vw;
         margin-left: 20%;
+        justify-content: center;
         }
         .modal {
             height: 300vh;
@@ -205,7 +215,7 @@
         </div>
       </nav>
     </header>
-    <main class="history_mob" style="height: 450px;">
+    <main class="history_mob">
         <!-- Kod dla historii treningów -->
         <h2 id="train_history">HISTORIA TRENINGÓW</h2>
         <div class="history-table">

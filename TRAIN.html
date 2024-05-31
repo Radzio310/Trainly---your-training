@@ -84,6 +84,23 @@
         #mobile_end_training {
           display: block;
         }
+        .modal-content {
+          margin-top: 25vh;
+        }
+        thead th {
+          font-size: 10vw;
+        }
+        tbody td {
+          font-size: 7.5vw;
+        }
+        #exerciseModal .modal-content {
+          width: 100%;
+          margin: 0;
+          margin-top: 30vh;
+        }
+        #myModal .modal-content {
+          margin-top: 100%;
+        }
       }
     </style>
   </head>
@@ -332,20 +349,20 @@
                 var li = document.createElement("li");
 
                 li.innerHTML = `
-              <button type="button" class="collapsible">${exercise}</button>
-              <div class="exercise_details">
-                  <p>Ładowanie opisu...</p>
-                  <form class="Trening">
-                      <label for="weight">Obciążenie (kg):</label>
-                      <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
-                      <label for="sets">Powtórzenia na serię:</label>
-                      <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
-                      <label for="sets">Ilość serii:</label>
-                      <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
-                  </form>
-                  <div class="myCheck unchecked" onclick="checkEx()"></div>
-              </div>
-            `;
+            <button type="button" class="collapsible">${exercise}</button>
+            <div class="exercise_details">
+                <p>Ładowanie opisu...</p>
+                <form class="Trening">
+                    <label for="weight">Obciążenie (kg):</label>
+                    <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
+                    <label for="sets">Powtórzenia na serię:</label>
+                    <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
+                    <label for="sets">Ilość serii:</label>
+                    <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
+                </form>
+                <div class="myCheck unchecked" onclick="checkEx()"></div>
+            </div>
+          `;
                 exerciseListElement.appendChild(li);
 
                 var xhr_des = new XMLHttpRequest();
@@ -517,20 +534,20 @@
         var exerciseList = document.getElementById("exercise-list");
         var newExerciseItem = document.createElement("li");
         newExerciseItem.innerHTML = `
-          <button type="button" class="collapsible">${exerciseName}</button>
-          <div class="exercise_details">
-              <p>${exerciseDescription}</p>
-              <form class="Trening">
-                  <label for="weight">Obciążenie (kg):</label>
-                  <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
-                  <label for="sets">Powtórzenia na serię:</label>
-                  <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
-                  <label for="sets">Ilość serii:</label>
-                  <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
-              </form>
-              <div class="myCheck unchecked" onclick="checkEx()"></div>
-          </div>
-      `;
+        <button type="button" class="collapsible">${exerciseName}</button>
+        <div class="exercise_details">
+            <p>${exerciseDescription}</p>
+            <form class="Trening">
+                <label for="weight">Obciążenie (kg):</label>
+                <input type="number" id="weight" name="weight" min="0" max="200" step="1"/>
+                <label for="sets">Powtórzenia na serię:</label>
+                <input type="number" id="sets" name="sets" min="0" max="50" step="1"/>
+                <label for="sets">Ilość serii:</label>
+                <input type="number" id="sets" name="sets" min="0" max="10" step="1"/>
+            </form>
+            <div class="myCheck unchecked" onclick="checkEx()"></div>
+        </div>
+    `;
         exerciseList.appendChild(newExerciseItem);
 
         // Dodaj klasę "collapsible" do nowego elementu listy
@@ -600,13 +617,13 @@
                 history.forEach(function (entry) {
                   const row = document.createElement("tr");
                   row.innerHTML = `
-                                      <td>${counter++}</td>
-                                      <td>${entry.Date}</td>
-                                      <td>${entry.Training_time}</td>
-                                      <td><button class='button' onclick='openExerciseModal(${
-                                        entry.Training_ID
-                                      })'>Zobacz raport</button></td>
-                                  `;
+                                    <td>${counter++}</td>
+                                    <td>${entry.Date}</td>
+                                    <td>${entry.Training_time}</td>
+                                    <td><button class='button' onclick='openExerciseModal(${
+                                      entry.Training_ID
+                                    })'>Zobacz raport</button></td>
+                                `;
                   historyTableBody.appendChild(row);
                 });
               } else {
@@ -649,12 +666,12 @@
                   : "not-completed";
                 var statusText = exercise.Czy_wykonane ? "✓" : "✗";
                 row.innerHTML = `
-                                  <td style='width: 50%;'>${exercise.Nazwa_cwiczenia}</td>
-                                  <td>${exercise.Obciazenie}kg</td>
-                                  <td>${exercise.Powtorzenia}</td>
-                                  <td>${exercise.Serie}</td>
-                                  <td class="${completedClass}">${statusText}</td>
-                              `;
+                                <td style='width: 50%;'>${exercise.Nazwa_cwiczenia}</td>
+                                <td>${exercise.Obciazenie}kg</td>
+                                <td>${exercise.Powtorzenia}</td>
+                                <td>${exercise.Serie}</td>
+                                <td class="${completedClass}">${statusText}</td>
+                            `;
                 exerciseList.appendChild(row);
               });
             } else {
