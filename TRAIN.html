@@ -24,8 +24,16 @@
     />
     <link rel="stylesheet" href="style.css" />
     <style>
+      #twoj_trening {
+        margin-left: 15%;
+      }
+
       #end_training {
         margin-top: 3vh;
+      }
+
+      #myModal {
+        z-index: 999999;
       }
 
       #openHistoryBtn {
@@ -78,6 +86,9 @@
       }
 
       @media only screen and (max-width: 600px) {
+        header {
+          height: 17.5vh;
+        }
         #end_training {
           display: none;
         }
@@ -263,8 +274,8 @@
                 <tr>
                   <th>Nazwa ćwiczenia</th>
                   <th>Obciąż. (kg)</th>
-                  <th>Powtórzenia</th>
                   <th>Serie</th>
+                  <th>Powtórz.</th>
                   <th>✓</th>
                 </tr>
               </thead>
